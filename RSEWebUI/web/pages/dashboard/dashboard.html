@@ -3,8 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <title>Dashboard</title>
+    <script src="/common/jquery-2.0.3.min.js"></script>
+    <script src="dashboard.js"></script>
+    <link rel="stylesheet" type="text/css" href="dashboard.css">
 </head>
 <body>
-    <h1>Hi This is the dashboard!</h1>
+    <h1 style="text-align: center">Hi This is the dashboard!</h1>
+    <div class="section" class="glyphicon-user">
+        <h2 class="sub-title"> Active users: </h2>
+        <ul id ="activeUsersList" onselect="stockSelected()">
+            <li>Guy</li>
+            <li>Elinoy</li>
+        </ul>
+    </div>
+    <div class="section">
+        <h2 class="sub-title">Active stocks:</h2>
+        <ul id="activeStocksList" class="list-group-item">
+            <li>Google</li>
+            <li>Tesla</li>
+        </ul>
+    </div>
+    <div class="section">
+    <h2 class="sub-title">User information:</h2>
+        <button id="loadFileButton" onclick="loadXMLFile()">Load XML File</button>
+        <span style="display: flex">
+        <h4 class="user-info">User balance:</h4>
+        <p id="userBalance">0</p>
+        </span>
+        <h4 class="user-info"> Previous transactions:</h4>
+        <ol id="previousTransactions"></ol>
+        <h4 class="user-info"> Awaiting commands:</h4>
+        <ol id="awaitingCommands"></ol>
+        <h4 class="user-info"> Add to balance:</h4>
+        <form id="addingToBalance" method="post">
+            <input type="number" name="quantity" placeholder="Amount to add" min="1" />
+            <input type="submit" value="Add to balance"/>
+        </form>
+        <h4 class="user-info"> Add trade command:</h4>
+        <form id="addTradeCommand" method="post">
+            <span style="display: flex" >
+                <p>Choose command direction:</p>
+                <input type="radio" id="buy" name="buy/sell" value="buy">
+                <label for="buy">Buy</label>
+                <input type="radio" name="buy/sell" value="sell">
+                <label for="buy">Sell</label><br><br>
+            </span>
+            <select id="stockSymbol "name="symbol">
+                <option value="" disabled selected hidden>Symbol select</option>
+                <option value="Google">google</option>
+            </select><br><br>
+            <select id="tradecommandType" name="Trade command type">
+                <option value="" disabled selected hidden>Command type select</option>
+                <option value="LMT">LMT</option>
+                <option value="MKT">MKT</option>
+                <option value="IOC">IOC</option>
+                <option value="FOC">FOC</option>
+            </select><br><br>
+            <input type="number" name="quantity" placeholder="Quantity" min="1"><br><br>
+            <input type="submit" name="Add trade command"><br><br>
+        </form>
+
+    </div>
+
+
 </body>
 </html>
