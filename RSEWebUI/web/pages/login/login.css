@@ -1,0 +1,25 @@
+html {
+    background-image: url("SE.jpeg");
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 0.80;
+}
+
+#login-page {
+    position: relative;
+}
+
+#login-form {
+}
+
+#main-header {
+    position: absolute;
+    margin: 5% 0 0 20%;
+    font: normal 70px/1 Impact, Charcoal, sans-serif;
+    color: rgba(255,255,255,1);
+    letter-spacing: 3px;
+    text-shadow: 7px 4px 3px rgba(0,0,0,0.5) , 7px 6px 10px rgb(0, 0, 0);
+}
+
