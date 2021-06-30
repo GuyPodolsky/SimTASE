@@ -16,6 +16,7 @@ import java.util.*;
 public class User {
     private final String userName;
     private boolean isAdmin;
+    private int userBalance;
     private Map<String, UserHoldings> userStocks;
     private SortedMap<LocalDateTime,Float> totalHoldingsValue;
     private List<Transaction> userTransactions;
@@ -33,9 +34,11 @@ public class User {
         this.userSellCommands = new TreeMap<>();
         updateWorth();
         this.isAdmin =_isAdmin;
+        userBalance =0;
     }
     public User(String name,Map<String, UserHoldings> stocks){
         this.userName = name;
+        userBalance =0;
         this.userTransactions = new LinkedList<>();
         userBuyCommands = new TreeMap<>();
         userSellCommands = new TreeMap<>();
@@ -78,6 +81,10 @@ public class User {
     }
 
     public void addUserTransaction(Transaction transaction){
+        if(transaction.getSeller().getUserName().equals(userName))      // if the user is the seller - we need to add the turnover to his balance
+            userBalance+=transaction.getTurnover();
+        else        // else - the user is the buyer and we need to reduce the turnover from the user balance
+            userBalance-= transaction.getTurnover();
         userTransactions.add(transaction);
     }
 
@@ -147,5 +154,16 @@ public class User {
     @Override
     public String toString() {
         return userName;
+    }
+
+    public int getUserBalance() {
+        return userBalance;
+    }
+
+    public void setUserBalance(int userBalance) {
+        this.userBalance = userBalance;
+    }
+    public void addToUserBalance(int addition){
+        userBalance+=addition;
     }
 }
