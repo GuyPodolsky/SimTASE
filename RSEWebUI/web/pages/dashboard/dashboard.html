@@ -9,59 +9,145 @@
 </head>
 <body>
     <h1 style="text-align: center">Hi This is the dashboard!</h1>
-    <div class="section" class="glyphicon-user">
+    <div id ="activeUsersSection" class="section" class="glyphicon-user">
         <h2 class="sub-title"> Active users: </h2>
         <ul id ="activeUsersList" onselect="stockSelected()">
-            <li>Guy</li>
-            <li>Elinoy</li>
+            <li>Guy | Admin</li>
+            <li>Elinoy | Trader</li>
         </ul>
     </div>
-    <div class="section">
+    <div id ="activeStocksSection" class="section">
         <h2 class="sub-title">Active stocks:</h2>
-        <ul id="activeStocksList" class="list-group-item">
-            <li>Google</li>
-            <li>Tesla</li>
-        </ul>
+        <table id="activeStocksList" class="table" style="flex-direction: column">
+            <tr>
+                <th>Symbol</th>
+                <th>Company name</th>
+                <th>Share price</th>
+                <th>User holdings</th>
+                <th>Total transactions turnover</th>
+            </tr>
+            <tr>
+                <td>GGL</td>
+                <td>Google</td>
+                <td>1000</td>
+                <td>10</td>
+                <td>139482</td>
+
+            </tr>
+            <tr>
+                <td>GGL</td>
+                <td>Google</td>
+                <td>1000</td>
+                <td>10</td>
+                <td>139482</td>
+            </tr>
+            <tr>
+                <td>GGL</td>
+                <td>Google</td>
+                <td>1000</td>
+                <td>10</td>
+                <td>139482</td>
+            </tr>
+            <tr>
+                <td>GGL</td>
+                <td>Google</td>
+                <td>1000</td>
+                <td>10</td>
+                <td>139482</td>
+            </tr>
+        </table>
     </div>
-    <div class="section">
-    <h2 class="sub-title">User information:</h2>
-        <button id="loadFileButton" onclick="loadXMLFile()">Load XML File</button>
-        <span style="display: flex">
-        <h4 class="user-info">User balance:</h4>
-        <p id="userBalance">0</p>
+    <div class="section2">
+    <h2 class="sub-title" class="user-info-block">User information:</h2>
+        <span id="loadFileButton" class="user-info-block" >
+            <h4 class="user-info">Load stocks from XML file:</h4> <br> <br>
+            <button onclick="loadXMLFile()">Load XML File</button>
         </span>
-        <h4 class="user-info"> Previous transactions:</h4>
-        <ol id="previousTransactions"></ol>
-        <h4 class="user-info"> Awaiting commands:</h4>
-        <ol id="awaitingCommands"></ol>
-        <h4 class="user-info"> Add to balance:</h4>
-        <form id="addingToBalance" method="post">
-            <input type="number" name="quantity" placeholder="Amount to add" min="1" />
-            <input type="submit" value="Add to balance"/>
-        </form>
-        <h4 class="user-info"> Add trade command:</h4>
-        <form id="addTradeCommand" method="post">
-            <span style="display: flex" >
-                <p>Choose command direction:</p>
-                <input type="radio" id="buy" name="buy/sell" value="buy">
-                <label for="buy">Buy</label>
-                <input type="radio" name="buy/sell" value="sell">
-                <label for="buy">Sell</label><br><br>
+
+        <div id="balance" class="user-info-block">
+             <span>
+            <h4 class="user-info">User balance:</h4>
+            <p id="userBalance"> 0 </p>
             </span>
-            <select id="stockSymbol "name="symbol">
-                <option value="" disabled selected hidden>Symbol select</option>
-                <option value="Google">google</option>
-            </select><br><br>
-            <select id="tradecommandType" name="Trade command type">
-                <option value="" disabled selected hidden>Command type select</option>
-                <option value="LMT">LMT</option>
-                <option value="MKT">MKT</option>
-                <option value="IOC">IOC</option>
-                <option value="FOC">FOC</option>
-            </select><br><br>
-            <input type="number" name="quantity" placeholder="Quantity" min="1"><br><br>
-            <input type="submit" name="Add trade command"><br><br>
-        </form>
+            <span>
+                <h4 class="user-info"> Add to balance:</h4>
+                <form id="addingToBalance" method="post" style="display: flex">
+                    <input type="number" name="quantity" placeholder="Amount to add" min="1" />
+                    <input type="submit" value="Add"/>
+                </form>
+            </span>
+        </div>
+        <div class="user-info-block">
+            <h4 class="user-info"> Previous transactions:</h4>
+            <table id="previousTransactions" class="table">
+                <tr>
+                    <th>Type</th>
+                    <th>Symbol</th>
+                    <th>Date</th>
+                    <th>Transaction turnover</th>
+                    <th>Previous balance</th>
+                    <th>Updated balance</th>
+                </tr>
+            </table>
+        </div>
+<!--        <div class="user-info-block">
+            <h4 class="user-info"> Awaiting commands:</h4>
+            <table id="awaitingCommands">
+                <tr>
+                    <th>Date</th>
+                    <th>Symbol</th>
+                    <th>Direction</th>
+                    <th>Type</th>
+                    <th>Quantity</th>
+                    <th>Wanted price</th>
+                </tr>
+            </table>
+        </div>-->
+        <br><br>
+        <div class="user-adding-forms">
+            <br><br>
+            <div class="user-adding-forms">
+                <h4 class="user-info"> Add trade command:</h4>
+                <form id="addTradeCommand" method="post">
+                    <span style="display:-ms-inline-flexbox" >
+                        <p>Choose command direction:</p>
+                        <input type="radio" id="buy" name="buy/sell" value="buy" align="middle">
+                        <label for="buy">Buy</label>
+                        <input type="radio" id="sell" name="buy/sell" value="sell" align="middle">
+                        <label for="sell">Sell</label><br><br>
+                    </span>
+                    <select id="stockSymbol "name="symbol">
+                        <option value="" disabled selected hidden>Symbol select</option>
+                        <option value="Google">google</option>
+                    </select><br><br>
+                    <select id="tradecommandType" name="Trade command type">
+                        <option value="" disabled selected hidden>Command type select</option>
+                        <option value="LMT">LMT</option>
+                        <option value="MKT">MKT</option>
+                        <option value="IOC">IOC</option>
+                        <option value="FOC">FOC</option>
+                    </select><br><br>
+                    <input type="number" name="quantity" placeholder="Quantity" min="1"><br><br>
+                    <input type="submit" name="Add trade command"><br><br>
+                </form>
+            </div>
+            <div id="addPublicOfferBlock" class="user-adding-forms">
+                <h4 class="user-info"> Add new company public offering:</h4>
+                <form id="addPublicOffering" method="post">
+                    <span style="display:inline-flex;">
+                        <label>Company name:  </label>
+                        <input type="text" name="company name">
+                    </span>
+                    <span style="display: inline-flex">
+                        <label>Company symbol:  </label>
+                        <input type="text" name="company symbol">
+                    </span>
+                    <input type="number" name="shares quantity" min="1" placeholder="Public offering shares amount" style="width: 16em"><br><br>
+                    <input type="number" name="company estimated value" min="1" placeholder="Company estimated value" style="width: 16em"><br><br>
+                    <input type="submit" name="Add new company">
+                </form>
+            </div>
+        </div>
 
     </div>
 
