@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>---symbol--- Stock View</title>
+    <link rel="stylesheet" type="text/css" href="stockview.css">
+</head>
+<body id="main-header">
+    <div id="details-box">
+        <div id="back-btn-box">
+            <form>
+                <input id="back-btn" type="image" src="goback.png" onclick="history.back()">
+            </form>
+        </div>
+        <div id="logout-box">
+            <label>Hi ----,</label>
+            <button>Logout</button>
+        </div>
+        <center>
+            <div id="details-box-header">
+                <h1>---symbol--- Stock View</h1>
+            </div>
+        </center>
+            <div id="details-box-details">
+                <dl id="detail-list">
+                    <li id="company-name">Company Name: ----- </li>
+                    <li id="stock-quantity">Stocks Quantity: ------ </li>
+                    <li id="share-value">Share Value: ------- </li>
+                    <li id="turnover">Turnover: ------ </li>
+                    <li id="own-holdings">Yow own ------ shares</li>
+                </dl>
+            </div>
+    </div>
+    <div id="graph-box">
+        <!--Optional-->
+        <canvas id="price-chart"></canvas>
+    </div>
+    <div id="trans-and-ops-box">
+        <div id="trans-or-ops-box">
+            <form id="trans-or-ops">
+                <input type="radio" id="viewChoice1" name="view">
+                <label>Transactions</label>
+                <input type="radio" id="viewChoice2" name="view">
+                <label>Trade Commands</label>
+            </form>
+        </div>
+        <div id="table-view-box">
+            <table id="table-view">
+                <tr id="ops-header">
+                    <th>Timestamp</th>
+                    <th>User</th>
+                    <th>Direction</th>
+                    <th>Type</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                </tr>
+                <tr id="trans-header">
+                    <th>Timestamp</th>
+                    <th>Quantity</th>
+                    <th>Price Per Share</th>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div id="buy-sell-box">
+        <form id="buy-sell-form">
+            <input type="radio" id="dirChoice1" name="dir">
+            <label>Buy</label>
+            <input type="radio" id="dirChoice2" name="dir">
+            <label>Sell</label>
+            <br>
+            <label>Type:</label>
+            <select id="type-select">
+                <option value="0">LMT</option>
+                <option value="1">MKT</option>
+                <option value="2">FOC</option>
+                <option value="3">IOC</option>
+            </select>
+            <br>
+            <label>Quantity: </label>
+            <input type="number">
+            <br>
+            <label>Price: </label>
+            <input type="number" step="0.01">
+            <br>
+            <input type="submit">
+            <input type="reset">
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,85 @@
+#main-header{
+    overflow: auto;
+}
+#details-box {
+    display: inline-block;
+    height : 50%;
+    width: 50%;
+    top: 0;
+    left: 0;
+    padding: 1%;
+    position: absolute;
+    overflow: no-display;
+    min-height: 300px;
+    background-color: lightcoral;
+}
+
+#graph-box{
+    display: inline-block;
+    height : 50%;
+    width: 50%;
+    top: 0;
+    right: 0;
+    padding: 1%;
+    position: absolute;
+    min-height: 300px;
+    background-color: blue;
+}
+
+#trans-and-ops-box {
+    display: inline-block;
+    width: 50%;
+    height: 50%;
+    bottom: 0;
+    left: 0;
+    clear: none;
+    padding: 1%;
+    position: absolute;
+    margin-top: 0;
+    background-color: lightblue;
+}
+
+#buy-sell-box {
+    width: fit-content;
+    position: relative;
+    margin-left: 1085px;
+    padding: 25px 50px 25px 50px;
+    background-color: #4cae4c;
+    resize: vertical;
+}
+
+#logout-box{
+    display: inline-block;
+    position: absolute;
+    font-size: medium;
+    width: fit-content;
+    height: 1px;
+    margin-top: 2%;
+    margin-left: 2%;
+
+}
+
+#back-btn-box {
+    display: inline-block;
+    position: relative;
+    top: 0%;
+    left: 0%;
+}
+
+#back-btn{
+    width: 50px;
+    height: 50px;
+}
+
+#details-box-details {
+    display: inline-block;
+    margin-left: 20%;
+    width: 40%;
+}
+
+#trans-or-ops-box {
+    display: inline;
+    margin-left: auto;
+    margin-right: auto;
+    width: 30%;
+}
