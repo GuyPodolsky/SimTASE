@@ -1,6 +1,5 @@
 package engine.logic;
 
-import com.sun.javaws.exceptions.InvalidArgumentException;
 import engine.dto.StockDT;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.StringProperty;
@@ -33,7 +32,7 @@ public interface Trader {
   * @throws FileNotFoundException will be thrown in case the file won't be found.
   * @throws JAXBException will be thrown in case JAXB will fail to read the data from the file.
   */
- void uploadDataFromFile(String path, DoubleProperty doubleProperty, StringProperty stringProperty) throws FileNotFoundException, JAXBException, InvalidArgumentException;
+ void uploadDataFromFile(String path, DoubleProperty doubleProperty, StringProperty stringProperty) throws FileNotFoundException, JAXBException;
 
  /**
   * A method that creates a list of all stocks output buffers in order to show late all the trade commands in the system.

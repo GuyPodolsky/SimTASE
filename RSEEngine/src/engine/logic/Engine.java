@@ -1,6 +1,5 @@
 package engine.logic;
 
-import com.sun.javaws.exceptions.InvalidArgumentException;
 import engine.dto.StockDT;
 import engine.dto.TradeCommandDT;
 import javafx.beans.property.DoubleProperty;
@@ -214,7 +213,7 @@ public class Engine implements Trader {
      * @throws JAXBException            will be thrown in case the JAXB process failed.
      * @throws IllegalArgumentException will be thrown in case the the file isn't a xml file.
      */
-    public void uploadDataFromFile(String path, DoubleProperty doubleProperty, StringProperty stringProperty) throws FileNotFoundException, JAXBException, IllegalArgumentException, InvalidArgumentException // first option
+    public void uploadDataFromFile(String path, DoubleProperty doubleProperty, StringProperty stringProperty) throws FileNotFoundException, JAXBException, IllegalArgumentException // first option
     {
         // need to upload all the stocks from xml file
         MultiKeyMap<String,Stock> tmpStocks = new MultiKeyMap<String, Stock>();
@@ -260,7 +259,7 @@ public class Engine implements Trader {
      * @param tmpStocks a temporary MultiKeyMap of system's stocks (prevents a deletion of the previous system data in case there will be a failure).
      * @throws JAXBException will be thrown in case there is a problem in the process of JAXB.
      */
-    private void deserializeFrom(InputStream in, MultiKeyMap<String, Stock> tmpStocks, DoubleProperty doubleProperty, StringProperty stringProperty) throws JAXBException, IllegalArgumentException, InputMismatchException, DateTimeException, InvalidArgumentException {
+    private void deserializeFrom(InputStream in, MultiKeyMap<String, Stock> tmpStocks, DoubleProperty doubleProperty, StringProperty stringProperty) throws JAXBException, IllegalArgumentException, InputMismatchException, DateTimeException {
         try {
             synchronized (lock2) {
                 JAXBContext jc = JAXBContext.newInstance(JAXB_XML_PACKAGE_NAME);

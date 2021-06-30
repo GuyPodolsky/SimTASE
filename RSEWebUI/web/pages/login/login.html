@@ -14,8 +14,9 @@
     <br/>
     <h2>Please enter your name: </h2>
     <form id="loginForm" method="GET" action="/login">
-        <input type="text" name="username" class=""/>
-        <input type="checkbox" name="is_admin" value="false"/>
+        <input type="text" id="username" name="username" class=""/><br><br>
+        <label for="is_admin"> Admin?</label>
+        <input type="checkbox" id="is_admin" name="is_admin" value="admin"/>
         <input type="submit" value="Login"/>
     </form>
 </div>
