@@ -1,5 +1,7 @@
 package rse.servlets;
 
+import rse.logger.Logger;
+
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -13,15 +15,21 @@ import javax.servlet.http.HttpSession;
 
 public class RSEServlet extends HttpServlet {
 
-    String dashboard_url = "/../../../pages/dashboard/dashboard.html";
-    String login_url = "/../../../pages/login/login.html";
+    private String dashboard_url = "/../../../pages/dashboard/dashboard.html";
+    private String login_url = "/../../../pages/login/login.html";
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession(false);
-        if(session!=null)
+        if(session!=null) {
+            Logger.getServerLogger().post("New enter of existing user (username: "+session.getAttribute("username")+",is admin:"+session.getAttribute("is_admin")+")");
+            Logger.getServerLogger().post("Redirects to the dashboard page");
             response.sendRedirect(dashboard_url);
-        else
+        } else {
+            Logger.getServerLogger().post("New enter of unknown user");
+            Logger.getServerLogger().post("Redirects to the login page");
             response.sendRedirect(login_url);
+        }
     }
 
     @Override

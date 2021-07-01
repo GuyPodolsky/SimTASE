@@ -3,32 +3,35 @@ package rse.servlets;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.io.PrintWriter;
 import engine.logic.Engine;
 import engine.users.UsersManager;
+import rse.logger.Logger;
+
 public class LoginServlet extends HttpServlet {
 
-    String dashboard_url = "/../../../pages/dashboard/dashboard.html";
+    private String dashboard_url = "/../../../pages/dashboard/dashboard.html";
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        PrintWriter out = response.getWriter();
         String username = request.getParameter("username");
-        String isAdmin  = request.getParameter("is_admin");
-        boolean admin = isAdmin==null ? false:true;
-        out.print("<h1>Hi " +username +", Admin: " + admin +"</h1>");
+        String isAdminStr  = request.getParameter("is_admin");
+        boolean isAdmin = isAdminStr==null ? false:true;
         UsersManager um = Engine.getInstance().getUsersManager();
         if(um.isExists(username))
         {
-            int x=15;
-            //TODO: ERROR Message
+            //TODO: html reaction
         } else {
             try {
-                um.addUser(username, (isAdmin.equals("admin") ? true : false));
-                out.print("<br><h1>Success!</h1>");
+                um.addUser(username, (isAdmin));
+                Logger.getServerLogger().post("New user created (username: " + username +", is admin: " + isAdmin+")");
+                HttpSession session = request.getSession(true);
+                session.setAttribute("username",username);
+                session.setAttribute("is_admin",isAdmin);
+                Logger.getServerLogger().post("New session created (username: " + session.getAttribute("username") +", is admin: " + session.getAttribute("is_admin")+")");
+                Logger.getServerLogger().post("Redirects to the dashboard");
                 response.sendRedirect(dashboard_url);
-
             } catch (IllegalArgumentException e) {
                 response.sendError(600, e.getMessage());
             }
