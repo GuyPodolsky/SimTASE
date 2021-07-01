@@ -6,14 +6,9 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a14c5375-d147-41c4-b6bf-d40cd56cf20d" name="Default" comment=".idea and 3d">
-      <change afterPath="$PROJECT_DIR$/RSEEngine/src/engine/users/UserAction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RSEWebUI/src/rse/servlets/ActiveUsersServlet.java" afterDir="false" />
+    <list default="true" id="a14c5375-d147-41c4-b6bf-d40cd56cf20d" name="Default" comment="I've added updating function in the dashboard.js file that receives a json array from ActiveUsersServlet and trying to display all the users and their role &lt;&lt; I have a problem with getting to the servlet itself (I've sent a massage to Aviad - I hope i'll have the solution).   &#10;I've updated the user balance according to the user transactions.&#10;I've added a new class of UserAction - that is saving the data about a single user action.&#10;In addition I've added a list field in the User class that will save all the user actions (buy/sell transactions and adding to account balance).">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RSEEngine/src/engine/users/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/RSEEngine/src/engine/users/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RSEEngine/src/engine/users/UsersManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/RSEEngine/src/engine/users/UsersManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RSEWebUI/web/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/web/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RSEWebUI/web/pages/dashboard/dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/web/pages/dashboard/dashboard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RSEEngine/src/engine/logic/Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/RSEEngine/src/engine/logic/Engine.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -554,7 +549,7 @@
       <workItem from="1625136471100" duration="239000" />
       <workItem from="1625137183835" duration="487000" />
       <workItem from="1625138641939" duration="16000" />
-      <workItem from="1625138745703" duration="14925000" />
+      <workItem from="1625138745703" duration="17012000" />
     </task>
     <task id="LOCAL-00001" summary="V1">
       <created>1624972995375</created>
@@ -598,7 +593,13 @@
       <option name="project" value="LOCAL" />
       <updated>1625137312307</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL‎00007" summary="I've added updating function in the dashboard.js file that receives a json array from ActiveUsersServlet and trying to display all the users and their role &lt;&lt; I have a problem with getting to the servlet itself (I've sent a massage to Aviad - I hope i'll have the solution).   &#10;I've updated the user balance according to the user transactions.&#10;I've added a new class of UserAction - that is saving the data about a single user action.&#10;In addition I've added a list field in the User class that will save all the user actions (buy/sell transactions and adding to account balance).">
+      <created>1625166680305</created>
+      <option name="number" value="LOCAL‎00007" />
+      <option name="presentableId" value="LOCAL‎00007" />
+      <updated>1625166680305</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -631,7 +632,8 @@
     <MESSAGE value="Test Servlet" />
     <MESSAGE value="logger" />
     <MESSAGE value=".idea and 3d" />
-    <option name="LAST_COMMIT_MESSAGE" value=".idea and 3d" />
+    <MESSAGE value="I've added updating function in the dashboard.js file that receives a json array from ActiveUsersServlet and trying to display all the users and their role &lt;&lt; I have a problem with getting to the servlet itself (I've sent a massage to Aviad - I hope i'll have the solution).   &#10;I've updated the user balance according to the user transactions.&#10;I've added a new class of UserAction - that is saving the data about a single user action.&#10;In addition I've added a list field in the User class that will save all the user actions (buy/sell transactions and adding to account balance)." />
+    <option name="LAST_COMMIT_MESSAGE" value="I've added updating function in the dashboard.js file that receives a json array from ActiveUsersServlet and trying to display all the users and their role &lt;&lt; I have a problem with getting to the servlet itself (I've sent a massage to Aviad - I hope i'll have the solution).   &#10;I've updated the user balance according to the user transactions.&#10;I've added a new class of UserAction - that is saving the data about a single user action.&#10;In addition I've added a list field in the User class that will save all the user actions (buy/sell transactions and adding to account balance)." />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

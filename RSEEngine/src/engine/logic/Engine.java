@@ -34,6 +34,14 @@ public class Engine implements Trader {
 
     private Engine(){}//private to prevent a creation of instances
 
+    public void addNewStock(String companyName, String symbol, int sharesQuantity,int  estimatedValue){
+        int sharePrice = estimatedValue/sharesQuantity;
+        Stock newStock = new Stock(companyName,symbol,sharePrice);
+        stocks.put(symbol,companyName,newStock);    // todo: check if the order of symbol first and then companyName is correct
+        // todo: i need to add it to the users stocks - need to add new method to user class
+
+    }
+
     public UsersManager getUsersManager(){
         return users;
     }
