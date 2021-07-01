@@ -9,6 +9,9 @@
     <list default="true" id="a14c5375-d147-41c4-b6bf-d40cd56cf20d" name="Default" comment="I've added updating function in the dashboard.js file that receives a json array from ActiveUsersServlet and trying to display all the users and their role &lt;&lt; I have a problem with getting to the servlet itself (I've sent a massage to Aviad - I hope i'll have the solution).   &#10;I've updated the user balance according to the user transactions.&#10;I've added a new class of UserAction - that is saving the data about a single user action.&#10;In addition I've added a list field in the User class that will save all the user actions (buy/sell transactions and adding to account balance).">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RSEEngine/src/engine/logic/Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/RSEEngine/src/engine/logic/Engine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RSEWebUI/src/rse/logger/Logger.java" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/src/rse/logger/Logger.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RSEWebUI/src/rse/servlets/LoginServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/src/rse/servlets/LoginServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RSEWebUI/src/rse/servlets/RSEServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/src/rse/servlets/RSEServlet.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,6 +89,9 @@
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="jar://$PROJECT_DIR$/../../../../Program Files/Java/jdk1.8.0_291/src.zip!/java/nio/file/NoSuchFileException.java" root0="SKIP_INSPECTION" />
+  </component>
   <component name="LogFilters">
     <option name="FILTER_ERRORS" value="false" />
     <option name="FILTER_WARNINGS" value="false" />
@@ -135,6 +141,7 @@
       <recent name="C:\Users\guypodolsky\IdeaProjects\WebRSE\RSEEngine\src\engine\logic" />
       <recent name="C:\Users\guypodolsky\IdeaProjects\WebRSE\RSEEngine\src\engine\jaxb\schema\generated" />
       <recent name="C:\Users\guypodolsky\IdeaProjects\WebRSE\RSEEngine\src\engine\users" />
+      <recent name="C:\Users\guypodolsky\IdeaProjects\WebRSE\RSEEngine\src" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\guypodolsky\IdeaProjects\WebRSE\RSEWebUI\web\pages\login" />
@@ -233,6 +240,7 @@
       <option name="DEPLOY_AS_INSTANT" value="false" />
       <option name="ARTIFACT_NAME" value="" />
       <option name="PM_INSTALL_OPTIONS" value="" />
+      <option name="ALL_USERS" value="false" />
       <option name="DYNAMIC_FEATURES_DISABLED_LIST" value="" />
       <option name="ACTIVITY_EXTRA_FLAGS" value="" />
       <option name="MODE" value="default_activity" />
@@ -245,11 +253,16 @@
       <Java />
       <Profilers>
         <option name="ADVANCED_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_PROFILING_ENABLED" value="false" />
         <option name="STARTUP_CPU_PROFILING_ENABLED" value="false" />
         <option name="STARTUP_CPU_PROFILING_CONFIGURATION_NAME" value="Sample Java Methods" />
+        <option name="STARTUP_NATIVE_MEMORY_PROFILING_ENABLED" value="false" />
+        <option name="NATIVE_MEMORY_SAMPLE_RATE_BYTES" value="2048" />
       </Profilers>
       <option name="DEEP_LINK" value="" />
       <option name="ACTIVITY_CLASS" value="" />
+      <option name="SEARCH_ACTIVITY_IN_GLOBAL_SCOPE" value="false" />
+      <option name="SKIP_ACTIVITY_VALIDATION" value="false" />
       <method v="2" />
     </configuration>
     <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Instrumented Tests">
@@ -269,8 +282,11 @@
       <Java />
       <Profilers>
         <option name="ADVANCED_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_PROFILING_ENABLED" value="false" />
         <option name="STARTUP_CPU_PROFILING_ENABLED" value="false" />
         <option name="STARTUP_CPU_PROFILING_CONFIGURATION_NAME" value="Sample Java Methods" />
+        <option name="STARTUP_NATIVE_MEMORY_PROFILING_ENABLED" value="false" />
+        <option name="NATIVE_MEMORY_SAMPLE_RATE_BYTES" value="2048" />
       </Profilers>
       <method v="2">
         <option name="Make" enabled="true" />
@@ -550,6 +566,7 @@
       <workItem from="1625137183835" duration="487000" />
       <workItem from="1625138641939" duration="16000" />
       <workItem from="1625138745703" duration="17012000" />
+      <workItem from="1625137785673" duration="2872000" />
     </task>
     <task id="LOCAL-00001" summary="V1">
       <created>1624972995375</created>
@@ -598,6 +615,14 @@
       <option name="number" value="LOCAL‎00007" />
       <option name="presentableId" value="LOCAL‎00007" />
       <updated>1625166680305</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00007" summary=".idea and 3d">
+      <created>1625138236436</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1625138236436</updated>
     </task>
     <option name="localTasksCounter" value="8" />
     <servers />
