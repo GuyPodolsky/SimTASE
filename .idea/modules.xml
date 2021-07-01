@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/.idea.iml" filepath="$PROJECT_DIR$/.idea/.idea.iml" />
+      <module fileurl="file://$PROJECT_DIR$/3rd/3rd.iml" filepath="$PROJECT_DIR$/3rd/3rd.iml" />
+      <module fileurl="file://$PROJECT_DIR$/RSEEngine/RSEEngine.iml" filepath="$PROJECT_DIR$/RSEEngine/RSEEngine.iml" />
+      <module fileurl="file://$PROJECT_DIR$/RSEWebUI/RSEWebUI.iml" filepath="$PROJECT_DIR$/RSEWebUI/RSEWebUI.iml" />
+    </modules>
+  </component>
+</project>

@@ -1,0 +1,17 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" build-on-make="true" name="RSEWar">
+    <output-path>$PROJECT_DIR$/out/artifacts/RSEWar</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="RSEWebUI/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="RSEWebUI" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="artifact" artifact-name="RSEEngine" />
+          <element id="library" level="project" name="gson-2.1" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>
