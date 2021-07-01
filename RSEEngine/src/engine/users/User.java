@@ -8,6 +8,7 @@ import javafx.beans.value.ObservableValue;
 
 import javax.management.openmbean.InvalidKeyException;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 /**
@@ -16,32 +17,39 @@ import java.util.*;
 public class User {
     private final String userName;
     private boolean isAdmin;
-    private int userBalance;
+    private float userBalance;
     private Map<String, UserHoldings> userStocks;
     private SortedMap<LocalDateTime,Float> totalHoldingsValue;
     private List<Transaction> userTransactions;
     private Map<LocalDateTime, TradeCommand> userBuyCommands;
     private Map<LocalDateTime,TradeCommand> userSellCommands;
+    private List<UserAction> actions;
 
 
     User(String _username,boolean _isAdmin){
         this.userName = _username;
-        this.userStocks = new TreeMap<>();
-        totalHoldingsValue = new TreeMap<>();
-        totalHoldingsValue.put(LocalDateTime.now(),Float.valueOf(0));
-        this.userTransactions = new LinkedList<>();
-        this.userBuyCommands = new TreeMap<>();
-        this.userSellCommands = new TreeMap<>();
+        if(!_isAdmin){                              // if the user is admin - he can't trade at all it the system
+            this.userStocks = new TreeMap<>();
+            totalHoldingsValue = new TreeMap<>();
+            totalHoldingsValue.put(LocalDateTime.now(),Float.valueOf(0));
+            this.userTransactions = new LinkedList<>();
+            this.userBuyCommands = new TreeMap<>();
+            this.userSellCommands = new TreeMap<>();
+            this.actions = new ArrayList<>();
+        }
+
         updateWorth();
         this.isAdmin =_isAdmin;
         userBalance =0;
     }
     public User(String name,Map<String, UserHoldings> stocks){
         this.userName = name;
+        isAdmin = false;                // because we send stocks to the ctor, the user can't be admin
         userBalance =0;
         this.userTransactions = new LinkedList<>();
         userBuyCommands = new TreeMap<>();
         userSellCommands = new TreeMap<>();
+        this.actions = new ArrayList<>();
         if(!stocks.equals(null))
             this.userStocks = stocks;
         else
@@ -67,6 +75,8 @@ public class User {
     }
 
     public void addUserTradeCommand(TradeCommand command,TradeCommand.direction dir){
+        if(isAdmin)
+            throw new IllegalAccessError("Admin can't add trade commands.");
         if(dir == TradeCommand.direction.SELL)
             userSellCommands.put(command.getDate(),command);
         else
@@ -81,10 +91,16 @@ public class User {
     }
 
     public void addUserTransaction(Transaction transaction){
-        if(transaction.getSeller().getUserName().equals(userName))      // if the user is the seller - we need to add the turnover to his balance
-            userBalance+=transaction.getTurnover();
-        else        // else - the user is the buyer and we need to reduce the turnover from the user balance
-            userBalance-= transaction.getTurnover();
+        if(transaction.getSeller().getUserName().equals(userName)) {      // if the user is the seller - we need to add the turnover to his balance
+            float pre = userBalance;
+            userBalance += transaction.getTurnover();
+            actions.add(new UserAction(actionType.SELL,transaction.getDateStamp().toString(),transaction.getTurnover(),pre, userBalance));
+        }
+        else {        // else - the user is the buyer and we need to reduce the turnover from the user balance
+            float pre = userBalance;
+            userBalance -= transaction.getTurnover();
+            actions.add(new UserAction(actionType.BUY,transaction.getDateStamp().toString(),-transaction.getTurnover(), pre,userBalance));
+        }
         userTransactions.add(transaction);
     }
 
@@ -156,14 +172,23 @@ public class User {
         return userName;
     }
 
-    public int getUserBalance() {
+    public float getUserBalance() {
         return userBalance;
     }
 
-    public void setUserBalance(int userBalance) {
+    public void setUserBalance(float userBalance) {
         this.userBalance = userBalance;
     }
     public void addToUserBalance(int addition){
+        LocalDateTime dateStamp = LocalDateTime.now();
+        String formattedTimestamp = dateStamp.format(DateTimeFormatter.ofPattern("HH:mm:ss:SSS"));
+        float pre = userBalance;
         userBalance+=addition;
+        actions.add(new UserAction(actionType.ADD,formattedTimestamp,addition, pre,userBalance));
+
+    }
+
+    public boolean isAdmin() {
+        return isAdmin;
     }
 }

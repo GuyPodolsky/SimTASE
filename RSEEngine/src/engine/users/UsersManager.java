@@ -53,7 +53,6 @@ public class UsersManager {
         return users;
     }
 
-
     public void setUsers(Map<String, User> newUsers) {
       users = newUsers;
     }
