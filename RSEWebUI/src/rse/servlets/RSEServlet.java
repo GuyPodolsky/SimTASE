@@ -22,11 +22,11 @@ public class RSEServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession(false);
         if(session!=null) {
-            Logger.getServerLogger().post("New enter of existing user (username: "+session.getAttribute("username")+",is admin:"+session.getAttribute("is_admin")+")");
+            Logger.getServerLogger().post("New entry of existing user (username: "+session.getAttribute("username")+",is admin:"+session.getAttribute("is_admin")+")");
             Logger.getServerLogger().post("Redirects to the dashboard page");
             response.sendRedirect(dashboard_url);
         } else {
-            Logger.getServerLogger().post("New enter of unknown user");
+            Logger.getServerLogger().post("New entry of unknown user");
             Logger.getServerLogger().post("Redirects to the login page");
             response.sendRedirect(login_url);
         }
