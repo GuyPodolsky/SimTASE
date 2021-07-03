@@ -9,11 +9,11 @@
         <servlet-class>rse.servlets.LoginServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ActiveUsersServlet</servlet-name>
+        <servlet-name>activeUsers</servlet-name>
         <servlet-class>rse.servlets.ActiveUsersServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ShowStockServlet</servlet-name>
+        <servlet-name>showStock</servlet-name>
         <servlet-class>rse.servlets.ShowStockServlet</servlet-class>
     </servlet>
     <servlet-mapping>
@@ -25,11 +25,11 @@
         <url-pattern>/login</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ActiveUsersServlet</servlet-name>
-        <url-pattern>/rse/servlets/ActiveUsersServlet</url-pattern>
+        <servlet-name>activeUsers</servlet-name>
+        <url-pattern>/activeUsers</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ShowStockServlet</servlet-name>
-        <url-pattern>/servlets/ShowStockServlet</url-pattern>
+        <servlet-name>showStock</servlet-name>
+        <url-pattern>/showStock</url-pattern>
     </servlet-mapping>
 </web-app>

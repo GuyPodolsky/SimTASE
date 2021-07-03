@@ -25,7 +25,7 @@ public class LoginServlet extends HttpServlet {
                 //TODO: html reaction
             } else {
                 try {
-                    um.addUser(username, (isAdmin));
+                    um.addUser(username, isAdmin);
                     Logger.getServerLogger().post("New user created (username: " + username + ", is admin: " + isAdmin + ")");
                     HttpSession session = request.getSession(true);
                     session.setAttribute("username", username);

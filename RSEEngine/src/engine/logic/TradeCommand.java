@@ -24,7 +24,7 @@ public class TradeCommand implements Comparable<TradeCommand>{
     /**
      * A enum of possible trade command types.
      */
-    public enum commandType{LMT,MKT/*TODO:,FOK,IOC*/}
+    public enum commandType{LMT,MKT,FOK,IOC}
 
     /**
      * A variable that defines a format of showing the date and time

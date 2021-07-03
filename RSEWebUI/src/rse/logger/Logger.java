@@ -1,6 +1,5 @@
 package rse.logger;
 
-import java.io.Console;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 

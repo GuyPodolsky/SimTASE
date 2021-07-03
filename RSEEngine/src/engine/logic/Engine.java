@@ -6,7 +6,6 @@ import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.StringProperty;
 import engine.jaxb.schema.generated.*;
 import engine.users.User;
-import engine.users.UserHoldings;
 import engine.users.UsersManager;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -284,14 +283,14 @@ public class Engine implements Trader {
                     tmpStocks.put(tmp.getSymbol(), tmp.getCompanyName(), tmp);                        //inserts the stock into the MultiKeyMap.
                 }
                 doubleProperty.setValue(0.4);
-                stringProperty.setValue("Starting to read users data...");
+/*                stringProperty.setValue("Starting to read users data..."); TODO:do we need to replace it with something else?
                 lock2.wait(500);
                 for (RseUser user : rse.getRseUsers().getRseUser()) {
                     Map<String, UserHoldings> holdings = new TreeMap<>();
                     for (RseItem item : user.getRseHoldings().getRseItem())      // make a list of all the stocks holdings of the user
                         holdings.put(item.getSymbol(), new UserHoldings(item.getSymbol(), tmpStocks.get(item.getSymbol()), item.getQuantity()));
                     users.addUser(user.getName(), new User(user.getName(), holdings));
-                }
+                }*/
                 doubleProperty.setValue(0.8);
                 lock2.wait(500);
             }

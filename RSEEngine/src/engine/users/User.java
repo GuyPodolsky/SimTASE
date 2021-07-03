@@ -36,9 +36,8 @@ public class User {
             this.userBuyCommands = new TreeMap<>();
             this.userSellCommands = new TreeMap<>();
             this.actions = new ArrayList<>();
+            updateWorth();
         }
-
-        updateWorth();
         this.isAdmin =_isAdmin;
         userBalance =0;
     }

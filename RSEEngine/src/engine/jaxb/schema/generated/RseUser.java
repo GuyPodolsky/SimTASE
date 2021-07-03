@@ -9,7 +9,11 @@
 package engine.jaxb.schema.generated;
 
 import javax.xml.bind.annotation.*;
-
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for anonymous complex type.

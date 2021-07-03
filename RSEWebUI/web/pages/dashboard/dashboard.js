@@ -1,29 +1,40 @@
 $(function (){ // onload
     window.setInterval(updateActiveUsers,2000)
-
-
-
 })
 
 function updateActiveUsers(){
     $.ajax({
         type:'GET',
-        url:"/rse/servlets/ActiveUsersServlet",
-        timeout:2000,
-        //action:"/rse/servlets/ActiveUsersServlet",
+        url:"/activeUsers",
+        dataType:'json',
+        //timeout:2000,
         success: function (jsonStr){
-            //var json = JSON.parse(jsonStr);
-            var json = $.praseJSON(jsonStr)
 
-            var users = $("#activeUsersList").getElementsByTagName("li");
-            users.empty();
-            for( var i=0; i<json.length;i++){
-                var li = $.createElement("li");
-                li.innerText/* innerHTML \ textContent */ = json[i].getAttribute("name") + " | " + json[i].getAttribute("is_admin");
+            var users = jsonStr.items.map(function (user) {
+               return user.key + ": " + user.value;
+            });
+
+            $("#activeUsersList").empty();
+
+            for(let i=0;i<users.length;i++){
+                let content = '<li>' + users.join('</li><li>') + ''</li>';
+                let list = $('<ul/>').html(content);
+                ("#activeUsersList").append(list);
             }
+            //var json = $.praseJSON(jsonStr)
+           /* let parsedJson = JSON.parse(jsonStr);
+            parsedJson.forEach((user) => {
+                $("#activeUsersList").innerHTML += "<li>"+ user.userName+"|"+ user.isAdmin +"</li>";
+            });*/
+           /*let users = $("#activeUsersSection").getElementsByTagName("ul");
+              users.empty();
+              for(let i=0; i<json.length;i++){
+                let li = $.createElement("li");
+                li.innerText = json[i].getAttribute("username") + " | " + json[i].getAttribute("is_admin"); /!* innerHTML \ textContent *!/
+                users.insertAfter(li);
+            }*/
         }
     })
-
 }
 
 function loadXMLFile() {
