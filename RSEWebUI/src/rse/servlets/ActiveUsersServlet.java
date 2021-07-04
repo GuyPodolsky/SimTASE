@@ -37,7 +37,7 @@ public class ActiveUsersServlet extends HttpServlet {
         //response.setContentType("text/json");
         PrintWriter out = response.getWriter();
         Logger.getServerLogger().post(users);
-        out.print(users);
+        out.println(users);
         out.flush();
      /*   *//*
         This servlet will return a text describing json object

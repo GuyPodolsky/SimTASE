@@ -8,25 +8,8 @@
   <component name="ChangeListManager">
     <list default="true" id="a14c5375-d147-41c4-b6bf-d40cd56cf20d" name="Default" comment="some changes with logger and servlets">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RSEEngine/src/engine/jaxb/schema/generated/ObjectFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/RSEEngine/src/engine/jaxb/schema/generated/ObjectFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RSEEngine/src/engine/jaxb/schema/generated/RizpaStockExchangeDescriptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/RSEEngine/src/engine/jaxb/schema/generated/RizpaStockExchangeDescriptor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RSEEngine/src/engine/jaxb/schema/generated/RseHoldings.java" beforeDir="false" afterPath="$PROJECT_DIR$/RSEEngine/src/engine/jaxb/schema/generated/RseHoldings.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RSEEngine/src/engine/jaxb/schema/generated/RseItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/RSEEngine/src/engine/jaxb/schema/generated/RseItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RSEEngine/src/engine/jaxb/schema/generated/RseStock.java" beforeDir="false" afterPath="$PROJECT_DIR$/RSEEngine/src/engine/jaxb/schema/generated/RseStock.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RSEEngine/src/engine/jaxb/schema/generated/RseStocks.java" beforeDir="false" afterPath="$PROJECT_DIR$/RSEEngine/src/engine/jaxb/schema/generated/RseStocks.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RSEEngine/src/engine/jaxb/schema/generated/RseUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/RSEEngine/src/engine/jaxb/schema/generated/RseUser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RSEEngine/src/engine/logic/Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/RSEEngine/src/engine/logic/Engine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RSEEngine/src/engine/logic/Stock.java" beforeDir="false" afterPath="$PROJECT_DIR$/RSEEngine/src/engine/logic/Stock.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RSEEngine/src/engine/logic/TradeCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/RSEEngine/src/engine/logic/TradeCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RSEEngine/src/engine/users/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/RSEEngine/src/engine/users/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RSEWebUI/RSEWebUI.iml" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/RSEWebUI.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RSEWebUI/src/rse/logger/Logger.java" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/src/rse/logger/Logger.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RSEWebUI/src/rse/servlets/ActiveUsersServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/src/rse/servlets/ActiveUsersServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RSEWebUI/src/rse/servlets/LoginServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/src/rse/servlets/LoginServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RSEWebUI/web/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/web/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RSEWebUI/web/pages/dashboard/dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/web/pages/dashboard/dashboard.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RSEWebUI/web/pages/dashboard/dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/web/pages/dashboard/dashboard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RSEWebUI/web/pages/login/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/web/pages/login/login.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,9 +86,6 @@
       <filtered-out-file-type name="TAG" />
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
-  </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="jar://$PROJECT_DIR$/../../../../Program Files/Java/jdk1.8.0_291/src.zip!/java/nio/file/NoSuchFileException.java" root0="SKIP_INSPECTION" />
   </component>
   <component name="LogFilters">
     <option name="FILTER_ERRORS" value="false" />

@@ -7,32 +7,19 @@ function updateActiveUsers(){
         type:'GET',
         url:"/activeUsers",
         dataType:'json',
-        //timeout:2000,
+        timeout:2000,
         success: function (jsonStr){
 
-            var users = jsonStr.items.map(function (user) {
-               return user.key + ": " + user.value;
-            });
 
             $("#activeUsersList").empty();
+            var json = jsonStr;
 
-            for(let i=0;i<users.length;i++){
-                let content = '<li>' + users.join('</li><li>') + ''</li>';
-                let list = $('<ul/>').html(content);
-                ("#activeUsersList").append(list);
+            for(let i=0; i<json.length;i++){
+                $(document.createElement("li"))
+                    .text(json[i]["userName"] + " | " + (json[i]["isAdmin"]?"Admin":"Trader"))
+                    .appendTo("#activeUsersList");
             }
-            //var json = $.praseJSON(jsonStr)
-           /* let parsedJson = JSON.parse(jsonStr);
-            parsedJson.forEach((user) => {
-                $("#activeUsersList").innerHTML += "<li>"+ user.userName+"|"+ user.isAdmin +"</li>";
-            });*/
-           /*let users = $("#activeUsersSection").getElementsByTagName("ul");
-              users.empty();
-              for(let i=0; i<json.length;i++){
-                let li = $.createElement("li");
-                li.innerText = json[i].getAttribute("username") + " | " + json[i].getAttribute("is_admin"); /!* innerHTML \ textContent *!/
-                users.insertAfter(li);
-            }*/
+
         }
     })
 }
