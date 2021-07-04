@@ -23,21 +23,19 @@ public class ShowAllStocksServlet extends HttpServlet {
         if(session == null)         // if the user didn't sign correctly to the system
             throw new IllegalAccessError("User must sign in to the system before using RSE.");
 
-       if(session.getAttribute("numOfStocksShowing")== null){
-           session.setAttribute("numOfStocksShowing",0);
-       }
-       int stocksNum = (int) session.getAttribute("numOfStocksShowing");
-       int systemStocks = Engine.getInstance().stocksCount();
-       if(stocksNum < systemStocks){
-           List<StockDT> stocks = Engine.getInstance().showAllStocks();
-           List<StockDT> newStocks = stocks.subList(stocksNum,systemStocks);
-           String res = this.gson.toJson(newStocks);
-           PrintWriter out = response.getWriter();
-           Logger.getServerLogger().post(res);
-           out.println(res);
-           out.flush();
 
-       }
+
+       //int systemStocks = Engine.getInstance().stocksCount();
+
+       List<StockDT> stocks = Engine.getInstance().showAllStocks();
+       //List<StockDT> newStocks = stocks.subList(stocksNum,systemStocks);
+       String res = this.gson.toJson(stocks);
+       PrintWriter out = response.getWriter();
+       Logger.getServerLogger().post(res);
+       out.println(res);
+       out.flush();
+
+
 
     }
 }

@@ -190,4 +190,16 @@ public class User {
     public boolean isAdmin() {
         return isAdmin;
     }
+
+    public void addNewStock(Stock stock, int sharesQuantity){
+/*        LocalDateTime dateStamp = LocalDateTime.now();
+        String formattedTimestamp = dateStamp.format(DateTimeFormatter.ofPattern("HH:mm:ss:SSS"));
+        float pre = userBalance;
+        userBalance+=totalValue;*/
+        UserHoldings holdings = new UserHoldings(stock.getSymbol(), stock, sharesQuantity);
+        userStocks.put(stock.getSymbol(), holdings);
+        //updateWorth();    // todo: ask guy if i need to call this
+
+
+    }
 }

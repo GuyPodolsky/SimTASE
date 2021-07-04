@@ -19,42 +19,40 @@
     <div id ="activeStocksSection" class="section">
         <h2 class="sub-title">Active stocks:</h2>
         <table id="activeStocksList" class="table" style="flex-direction: column" >
-            <tr >
+            <thead >
                 <th>Symbol</th>
                 <th>Company name</th>
                 <th>Share price</th>
-                <th>User holdings</th>
+<!--                <th>User holdings</th>-->
                 <th>Total transactions turnover</th>
-            </tr>
-            <tr id="row1" ondblclick="stockSelected(this,'row1')">
-                <td>GGL</td>
-                <td>Google</td>
-                <td>1000</td>
-                <td>10</td>
-                <td>139482</td>
+            </thead>
+            <tbody id="stocksBody">
+                <tr id="row1" ondblclick="stockSelected('row1')">
+                    <td>GGL</td>
+                    <td>Google</td>
+                    <td>1000</td>
+                    <td>139482</td>
 
-            </tr>
-            <tr>
-                <td>GGL</td>
-                <td>Google</td>
-                <td>1000</td>
-                <td>10</td>
-                <td>139482</td>
-            </tr>
-            <tr>
-                <td>GGL</td>
-                <td>Google</td>
-                <td>1000</td>
-                <td>10</td>
-                <td>139482</td>
-            </tr>
-            <tr>
-                <td>GGL</td>
-                <td>Google</td>
-                <td>1000</td>
-                <td>10</td>
-                <td>139482</td>
-            </tr>
+                </tr>
+                <tr>
+                    <td>GGL</td>
+                    <td>Google</td>
+                    <td>1000</td>
+                    <td>139482</td>
+                </tr>
+                <tr>
+                    <td>GGL</td>
+                    <td>Google</td>
+                    <td>1000</td>
+                    <td>139482</td>
+                </tr>
+                <tr>
+                    <td>GGL</td>
+                    <td>Google</td>
+                    <td>1000</td>
+                    <td>139482</td>
+                </tr>
+            </tbody>
         </table>
     </div>
     <div class="section2">

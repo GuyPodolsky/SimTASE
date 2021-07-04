@@ -33,12 +33,14 @@ public class Engine implements Trader {
 
     private Engine(){}//private to prevent a creation of instances
 
-    public void addNewStock(String companyName, String symbol, int sharesQuantity,int  estimatedValue){
+    public void addNewStock(String companyName, String symbol, int sharesQuantity,int  estimatedValue, String username){
+        if(isSymbolExists(symbol))
+            throw new IllegalArgumentException("There's already a stock with this symbol. The public offering was canceled.");
+
         int sharePrice = estimatedValue/sharesQuantity;
         Stock newStock = new Stock(companyName,symbol,sharePrice);
         stocks.put(symbol,companyName,newStock);    // todo: check if the order of symbol first and then companyName is correct
-        // todo: i need to add it to the users stocks - need to add new method to user class
-
+        users.getUser(username).addNewStock(newStock,sharesQuantity);
     }
 
     public UsersManager getUsersManager(){
@@ -230,7 +232,7 @@ public class Engine implements Trader {
             stringProperty.setValue("Opening file.. ");
             if (!isXMLFile(path))
                 throw new IllegalArgumentException("The given file is not a xml file.");
-            deserializeFrom(inputStream, tmpStocks, doubleProperty, stringProperty);
+            deserializeFrom(inputStream, tmpStocks);
             stocks.clear();
             stocks = tmpStocks;
             stringProperty.setValue("Fetching data from file ended.");
@@ -239,6 +241,28 @@ public class Engine implements Trader {
         } catch (FileNotFoundException e) {
             throw new FileNotFoundException("There is no such a XML file.");
         }
+    }
+    public void uploadDataFromFile(InputStream in) throws FileNotFoundException, JAXBException, IllegalArgumentException // first option
+    {
+        // need to upload all the stocks from xml file
+        MultiKeyMap<String,Stock> tmpStocks = new MultiKeyMap<String, Stock>();
+        try {
+           /* File xmlPath = new File(path);
+            InputStream inputStream = new FileInputStream(new File(path));
+            stringProperty.setValue("Opening file.. ");
+            if (!isXMLFile(path))
+                throw new IllegalArgumentException("The given file is not a xml file.");*/
+            deserializeFrom(in, tmpStocks);
+            //stocks.clear();
+            for(Stock stock: tmpStocks.values()){
+                stocks.put(stock.getSymbol(),stock.getCompanyName(),stock);
+            }
+
+        } catch (JAXBException e) {
+            throw new JAXBException("JAXB Exception detected.");
+        }/* catch (FileNotFoundException e) {
+            throw new FileNotFoundException("There is no such a XML file.");
+        }*/
     }
 
     /**
@@ -266,36 +290,19 @@ public class Engine implements Trader {
      * @param tmpStocks a temporary MultiKeyMap of system's stocks (prevents a deletion of the previous system data in case there will be a failure).
      * @throws JAXBException will be thrown in case there is a problem in the process of JAXB.
      */
-    private void deserializeFrom(InputStream in, MultiKeyMap<String, Stock> tmpStocks, DoubleProperty doubleProperty, StringProperty stringProperty) throws JAXBException, IllegalArgumentException, InputMismatchException, DateTimeException {
-        try {
-            synchronized (lock2) {
-                JAXBContext jc = JAXBContext.newInstance(JAXB_XML_PACKAGE_NAME);
-                Unmarshaller u = jc.createUnmarshaller();
-                RizpaStockExchangeDescriptor rse = (RizpaStockExchangeDescriptor) u.unmarshal(in); //Converts the XML file content into an instance of the generated class.
-                List<RseStock> rseStocks = rse.getRseStocks().getRseStock();                       //gets a list of all the stocks
-                stringProperty.setValue("Starting to read stocks data...");
-                doubleProperty.setValue(0.1);
-                lock2.wait(500);
+    private void deserializeFrom(InputStream in, MultiKeyMap<String, Stock> tmpStocks) throws JAXBException, IllegalArgumentException, InputMismatchException, DateTimeException {
+        synchronized (lock2) {
+            JAXBContext jc = JAXBContext.newInstance(JAXB_XML_PACKAGE_NAME);
+            Unmarshaller u = jc.createUnmarshaller();
+            RizpaStockExchangeDescriptor rse = (RizpaStockExchangeDescriptor) u.unmarshal(in); //Converts the XML file content into an instance of the generated class.
+            List<RseStock> rseStocks = rse.getRseStocks().getRseStock();                       //gets a list of all the stocks
 
-                for (RseStock s : rseStocks)                                                        //casts each generated stock class instance to the system's stock class and inserts them into the MultiKeyMap.
-                {
-                    Stock tmp = castRseStockToStock(s, tmpStocks);                                   //casts the generated stock class to system's stock class.
-                    tmpStocks.put(tmp.getSymbol(), tmp.getCompanyName(), tmp);                        //inserts the stock into the MultiKeyMap.
-                }
-                doubleProperty.setValue(0.4);
-/*                stringProperty.setValue("Starting to read users data..."); TODO:do we need to replace it with something else?
-                lock2.wait(500);
-                for (RseUser user : rse.getRseUsers().getRseUser()) {
-                    Map<String, UserHoldings> holdings = new TreeMap<>();
-                    for (RseItem item : user.getRseHoldings().getRseItem())      // make a list of all the stocks holdings of the user
-                        holdings.put(item.getSymbol(), new UserHoldings(item.getSymbol(), tmpStocks.get(item.getSymbol()), item.getQuantity()));
-                    users.addUser(user.getName(), new User(user.getName(), holdings));
-                }*/
-                doubleProperty.setValue(0.8);
-                lock2.wait(500);
+            for (RseStock s : rseStocks)                                                        //casts each generated stock class instance to the system's stock class and inserts them into the MultiKeyMap.
+            {
+                Stock tmp = castRseStockToStock(s, tmpStocks);                                   //casts the generated stock class to system's stock class.
+                tmpStocks.put(tmp.getSymbol(), tmp.getCompanyName(), tmp);                        //inserts the stock into the MultiKeyMap.
             }
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+
         }
     }
 

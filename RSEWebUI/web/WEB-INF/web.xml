@@ -20,6 +20,18 @@
         <servlet-name>ShowAllStocksServlet</servlet-name>
         <servlet-class>rse.servlets.ShowAllStocksServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddToUserBalance</servlet-name>
+        <servlet-class>rse.servlets.AddToUserBalance</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LoadXMLServlet</servlet-name>
+        <servlet-class>rse.servlets.LoadXMLServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddNewStockServlet</servlet-name>
+        <servlet-class>rse.servlets.AddNewStockServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>rse</servlet-name>
         <url-pattern>/rse</url-pattern>
@@ -39,5 +51,17 @@
     <servlet-mapping>
         <servlet-name>ShowAllStocksServlet</servlet-name>
         <url-pattern>/ShowAllStocksServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddToUserBalance</servlet-name>
+        <url-pattern>/AddToUserBalance</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoadXMLServlet</servlet-name>
+        <url-pattern>/LoadXMLServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddNewStockServlet</servlet-name>
+        <url-pattern>/AddNewStockServlet</url-pattern>
     </servlet-mapping>
 </web-app>
