@@ -5,6 +5,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.io.PrintStream;
+import java.io.PrintWriter;
+
 import engine.logic.Engine;
 import engine.users.UsersManager;
 import rse.logger.Logger;
@@ -16,6 +19,7 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        PrintWriter out = response.getWriter();
         String username = request.getParameter("username");
         if(!username.isEmpty()) {
             String isAdminStr = request.getParameter("is_admin");
@@ -32,7 +36,9 @@ public class LoginServlet extends HttpServlet {
                     session.setAttribute("is_admin", isAdmin);
                     Logger.getServerLogger().post("New session created (username: " + session.getAttribute("username") + ", is admin: " + session.getAttribute("is_admin") + ")");
                     Logger.getServerLogger().post("Redirects to the dashboard page");
-                    response.sendRedirect(dashboard_url);
+                    //out.print("true");
+                    request.setAttribute("is_ok",true);
+                    //response.sendRedirect(dashboard_url);
                 } catch (IllegalArgumentException e) {
                     response.sendError(600, e.getMessage());
                 }
@@ -40,9 +46,12 @@ public class LoginServlet extends HttpServlet {
         } else {
             Logger.getServerLogger().post("Empty username was entered");
             //TODO: html reaction
-            Logger.getServerLogger().post("Redirects to the login page");
-            response.sendRedirect(login_url);
+            //out.print("false");
+            request.setAttribute("is_ok",false);
+            //Logger.getServerLogger().post("Redirects to the login page");
+            //response.sendRedirect(login_url);
         }
+        //out.flush();
     }
 
     @Override

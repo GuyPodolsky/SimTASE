@@ -5,19 +5,22 @@
     <title>Login/Signup To RSE Web System</title>
 
     <script src="../../common/jquery-2.0.3.min.js"></script>
+    <script src="../../common/notification.js"></script>
+    <script src="login.js"></script>
     <link rel="stylesheet" type="text/css" href="login.css">
 </head>
 
-<body id="login-page">
+<body id="login-page" onload="notifyMe('Welcome To RSE','Please login to the system first')">
 <div id="login-form" class="container">
     <h1 id="main-header" >Welcome To Rizpa Stock Exchange</h1>
     <br/>
     <h2>Please enter your name: </h2>
-    <form id="loginForm" method="GET" action="/login">
-        <input type="text" id="username" name="username" class=""/><br><br>
+    <form id="loginForm">
+        <label id="status" hidden="true">status</label>
+        <input id="username" type="text" name="username" class=""/><br><br>
         <label for="is_admin"> Admin?</label>
-        <input type="checkbox" id="is_admin" name="is_admin" value="admin"/>
-        <input type="submit" value="Login"/>
+        <input id="is_admin" type="checkbox" name="is_admin" value="admin"/>
+        <input type="submit" value="Login" onclick="login()"/>
     </form>
 </div>
 </body>
