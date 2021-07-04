@@ -16,6 +16,10 @@
         <servlet-name>showStock</servlet-name>
         <servlet-class>rse.servlets.ShowStockServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ShowAllStocksServlet</servlet-name>
+        <servlet-class>rse.servlets.ShowAllStocksServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>rse</servlet-name>
         <url-pattern>/rse</url-pattern>
@@ -31,5 +35,9 @@
     <servlet-mapping>
         <servlet-name>showStock</servlet-name>
         <url-pattern>/showStock</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ShowAllStocksServlet</servlet-name>
+        <url-pattern>/ShowAllStocksServlet</url-pattern>
     </servlet-mapping>
 </web-app>

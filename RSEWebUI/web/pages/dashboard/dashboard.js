@@ -1,5 +1,8 @@
 $(function (){ // onload
-    window.setInterval(updateActiveUsers,2000)
+    window.setInterval(updateActiveUsers,2000);
+    window.setInterval(updateActiveStocks,2000);
+
+
 })
 
 function updateActiveUsers(){
@@ -18,6 +21,30 @@ function updateActiveUsers(){
                 $(document.createElement("li"))
                     .text(json[i]["userName"] + " | " + (json[i]["isAdmin"]?"Admin":"Trader"))
                     .appendTo("#activeUsersList");
+            }
+
+        }
+    })
+}
+
+function updateActiveStocks(){
+    $.ajax({
+        type:'GET',
+        url:"/ShowAllStocksServlet",
+        dataType:'json',
+        timeout:2000,
+        success: function (jsonStr){
+
+
+            //$("#activeUsersList").empty(); // I don't want to add all the stocks every time. O just want to add the new ones like in the chat
+            var json = jsonStr;
+
+            for(let i=0; i<json.length;i++){            // todo: this looks like it's working - just need to see how the data return and add in to the append (while creating new td)
+                $("#activeStocksList").appendChild($(document.createElement('tr'))
+                    .appendChild($(document.createElement('td')).text(json[i]["symbol"])));
+             /*   $(document.createElement("li"))
+                    .text(json[i]["userName"] + " | " + (json[i]["isAdmin"]?"Admin":"Trader"))
+                    .appendTo("#activeStocksList");*/
             }
 
         }
