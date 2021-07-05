@@ -12,8 +12,8 @@
     <div id ="activeUsersSection" class="section" class="glyphicon-user">
         <h2 class="sub-title"> Active users: </h2>
         <ul id ="activeUsersList" onselect="stockSelected()">
-            <li>Guy | Admin</li>
-            <li>Elinoy | Trader</li>
+            <li>Loading the list of active users</li>
+            <li>Please wait...</li>
         </ul>
     </div>
     <div id ="activeStocksSection" class="section">
@@ -59,6 +59,7 @@
     <h2 class="sub-title" class="user-info-block">User information:</h2>
         <span id="loadFileButton" class="user-info-block" >
             <h4 class="user-info">Load stocks from XML file:</h4> <br> <br>
+            <label id="file-upload-status" style="display: none">status</label>
             <button onclick="loadXMLFile()">Load XML File</button>
         </span>
 

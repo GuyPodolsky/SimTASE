@@ -19,14 +19,14 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        PrintWriter out = response.getWriter();
         String username = request.getParameter("username");
         if(!username.isEmpty()) {
             String isAdminStr = request.getParameter("is_admin");
             boolean isAdmin = isAdminStr == null ? false : true;
             UsersManager um = Engine.getInstance().getUsersManager();
             if (um.isExists(username)) {
-                //TODO: html reaction
+                Logger.getServerLogger().post("Existing username was entered");
+                response.sendError(602,"Existing username was entered");
             } else {
                 try {
                     um.addUser(username, isAdmin);
@@ -36,22 +36,15 @@ public class LoginServlet extends HttpServlet {
                     session.setAttribute("is_admin", isAdmin);
                     Logger.getServerLogger().post("New session created (username: " + session.getAttribute("username") + ", is admin: " + session.getAttribute("is_admin") + ")");
                     Logger.getServerLogger().post("Redirects to the dashboard page");
-                    //out.print("true");
-                    request.setAttribute("is_ok",true);
-                    //response.sendRedirect(dashboard_url);
                 } catch (IllegalArgumentException e) {
                     response.sendError(600, e.getMessage());
                 }
             }
         } else {
             Logger.getServerLogger().post("Empty username was entered");
-            //TODO: html reaction
-            //out.print("false");
-            request.setAttribute("is_ok",false);
-            //Logger.getServerLogger().post("Redirects to the login page");
-            //response.sendRedirect(login_url);
+            response.sendError(601,"Empty username was entered");
         }
-        //out.flush();
+
     }
 
     @Override

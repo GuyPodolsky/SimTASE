@@ -100,49 +100,41 @@ function loadXMLFile() {
     input.type = 'file';
     input.onchange = _ => {
         // you can use this method to get file and perform respective operations
-        let files =   Array.from(input.files);
-        console.log(files);
-        // todo: add here the call to the loading xml servlet
-        $.ajax({
-            type:'POST',
-            data:files,
-            url:"/LoadXMLServlet",
-            error:function (num,msg){
-                alert(msg);
-            },
-            success:function (){
-                updateActiveStocks();
+        let input = document.createElement('input');
+        input.type = 'file';
+        input.onchange = _ => {
+            // you can use this method to get file and perform respective operations
+            let files = Array.from(input.files);
+            if (files.length > 1) {
+                document.getElementById('file-upload-status').style.display = 'block';
+                document.getElementById('file-upload-status').innerHTML = 'Can\'t load more than one file';
+                document.getElementById('file-upload-status').style.color = 'red';
+                setTimeout(function () {
+                    document.getElementById('file-upload-status').style.display = 'none';
+                }, 30 * 1000);
             }
-        })
-    };
-    input.click();
-
-
+            console.log(files);
+            $.ajax({
+                    type: 'POST',
+                    data: {'xmlFile': files[0]},
+                },
+            )
+        };
+        input.click();
+    }
 }
 
-function stockSelected(rowId){
-    /*var symbol = document.getElementById(rowId).getElementsByTagName(dt)[0].value();
-    $(function ())*/
-
-    let symbol = $(rowId).getElementsByTagName('dt')[0].value(); // todo: check if this works properly
+function stockSelected(rowId) {
+    let row = document.getElementById(rowId);
+    let cells = row.getElementsByTagName('td')
+    let symbol = cells[0].innerText;
     $.ajax({
-        type:'GET',
-        data:{'symbol':symbol},
-        url: "enter here",                                  // todo: replace the url to the real servlet
-        success: function(result){
-            //var jsonStr = JSONArray.toJSONString(result);   // <-- NOT GOOD :: result is a string the represent a json object
-            // var json = eval(result);
-            // var json = $.praseJSON(result);
-            var json = JSON.parse(result);          // <-- like in Aviad's powerpoint
-            // todo: here we need to take all the data from the returned json object
-            // and insert it to the right html
-
-            window.location.reload("");         // todo: update the html to the third page
-
-        }});
-
-
-
+        type: 'GET',
+        data: {'symbol': symbol},
+        url: "/showStock",
+        error: function (xhr, httpErrorMessage, customErrorMessage) {
+        }
+    });
 }
 
 

@@ -3,11 +3,10 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Login/Signup To RSE Web System</title>
-
     <script src="../../common/jquery-2.0.3.min.js"></script>
     <script src="../../common/notification.js"></script>
     <script src="login.js"></script>
-    <link rel="stylesheet" type="text/css" href="login.css">
+    <!--<link rel="stylesheet" type="text/css" href="login.css">-->
 </head>
 
 <body id="login-page" onload="notifyMe('Welcome To RSE','Please login to the system first')">
@@ -15,12 +14,12 @@
     <h1 id="main-header" >Welcome To Rizpa Stock Exchange</h1>
     <br/>
     <h2>Please enter your name: </h2>
-    <form id="loginForm">
-        <label id="status" hidden="true">status</label>
+    <form id="loginForm" method="get" action="/login">
+        <label id="status" style="display: none">status</label><br>
         <input id="username" type="text" name="username" class=""/><br><br>
         <label for="is_admin"> Admin?</label>
         <input id="is_admin" type="checkbox" name="is_admin" value="admin"/>
-        <input type="submit" value="Login" onclick="login()"/>
+        <input type="submit" value="Login">
     </form>
 </div>
 </body>
