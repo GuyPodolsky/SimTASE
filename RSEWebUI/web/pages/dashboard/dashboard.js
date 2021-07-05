@@ -75,20 +75,25 @@ function updateActiveStocks(){
 
 
             for(let i=0; i<json.length;i++){            // todo: this looks like it's working - just need to see how the data return and add in to the append (while creating new td)
-                var newRow = $(document.createElement('tr').ondblclick(stockSelected("row"+i)).id("row"+i));
-                //var row = table.insertRow(-1); // will append after the last row
-                newRow.insertCell(0).innerHTML(json[i].symbol);
-                newRow.insertCell(1).innerHTML(json[i].companyName);
-                newRow.insertCell(2).innerHTML(json[i].sharePrice);
-                newRow.insertCell(3).innerHTML(json[i].transactionsTurnOver);
-      /*          row.id("row"+i)
-                row.ondblclick(stockSelected("row"+i));*/
+                var newRow = document.createElement('tr');//.ondblclick("stockSelected(row"+i+")").id("row"+i));
+                var cell1 = document.createElement("td");
+                cell1.innerText = (json[i].symbol);
+                newRow.appendChild(cell1);
+                var cell2 = document.createElement("td");
+                cell2.innerText = (json[i].companyName);
+                newRow.appendChild(cell2);
+                var cell3 = document.createElement("td");
+                cell3.innerText = (json[i].sharePrice);
+                newRow.appendChild(cell3);
+                var cell4 = document.createElement("td");
+                cell4.innerText = (json[i].transactionsTurnOver);
+                newRow.appendChild(cell4);
+                newRow.id = "row"+i;
+                newRow.ondblclick = function (i){stockSelected(i)};
 
-                // $("#activeStocksList").appendChild($(document.createElement('tr'))
-                //     .appendChild($(document.createElement('td')).text(json[i]["symbol"])));
-             /*   $(document.createElement("li"))
-                    .text(json[i]["userName"] + " | " + (json[i]["isAdmin"]?"Admin":"Trader"))
-                    .appendTo("#activeStocksList");*/
+
+                document.getElementById("stocksBody").appendChild(newRow);
+
             }
 
         }
@@ -124,9 +129,10 @@ function loadXMLFile() {
     }
 }
 
-function stockSelected(rowId) {
+function stockSelected(event) {
+    var rowId = event.which.id;
     let row = document.getElementById(rowId);
-    let cells = row.getElementsByTagName('td')
+    let cells = row.childNodes;
     let symbol = cells[0].innerText;
     $.ajax({
         type: 'GET',
