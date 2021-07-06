@@ -1,6 +1,9 @@
+
+
 $(function (){ // onload
     window.setInterval(updateActiveUsers,2000);
     window.setInterval(updateActiveStocks,2000);
+    window.setInterval(updateUserDetails, 2000);
 
     $("#addingToBalance").submit(function (){
         $.ajax({
@@ -9,10 +12,8 @@ $(function (){ // onload
             url:"/AddToUserBalance",
             success: function (res){
                 let result = JSON.parse(res);
-                //alert(result["massage"]);           // todo: for personal check. delete after
-                $("#userBalance").text(result["addition"]);
-
-
+                alert(result["message"]);           // todo: for personal check. delete after
+                //$("#userBalance").text(result["addition"]);
             }
         })
         return false;
@@ -35,8 +36,6 @@ $(function (){ // onload
         })
         return false;
     })
-
-
 })
 
 function updateActiveUsers(){
@@ -143,6 +142,36 @@ function stockSelected(event) {
         }
 
     });
+}
+
+function updateUserDetails() {
+    $.ajax({
+        type: 'GET',
+        url: '/UpdateUserDetails',
+        success: function (json) {
+            let result = JSON.parse(json);
+            document.getElementById("userBalance").innerHTML = result["balance"];
+            let table = document.getElementById("userCurrentBody");
+            table.innerHTML = "";
+            let actions = result["actions"];
+            for(let i=0;i<actions.length;i++){
+                let row = table.insertRow(0);
+                let cell1 = row.insertCell(0);
+                let cell2 = row.insertCell(1);
+                let cell3 = row.insertCell(2);
+                let cell4 = row.insertCell(3);
+                let cell5 = row.insertCell(4);
+                cell1.innerHTML = actions[i]["type"];
+                cell2.innerHTML = actions[i]["date"];
+                cell3.innerHTML = actions[i]["amount"];
+                cell4.innerHTML = actions[i]["preBalance"];
+                cell5.innerHTML = actions[i]["postBalance"];
+            }
+        },
+        error: function () {
+
+        }
+    })
 }
 
 

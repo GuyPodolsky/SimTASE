@@ -29,7 +29,7 @@ public class TradeCommand implements Comparable<TradeCommand>{
     /**
      * A variable that defines a format of showing the date and time
      */
-    private static DateTimeFormatter dateTimeFormat = DateTimeFormatter.ofPattern("HH:mm:ss:SSS");
+    private static DateTimeFormatter dateTimeFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss:SSS");
 
     /**
      * The variables that defines a trade command.

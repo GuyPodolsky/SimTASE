@@ -32,6 +32,10 @@
         <servlet-name>AddNewStockServlet</servlet-name>
         <servlet-class>rse.servlets.AddNewStockServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UpdateUserDetails</servlet-name>
+        <servlet-class>rse.servlets.UserDetailsServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>rse</servlet-name>
         <url-pattern>/rse</url-pattern>
@@ -63,5 +67,9 @@
     <servlet-mapping>
         <servlet-name>AddNewStockServlet</servlet-name>
         <url-pattern>/AddNewStockServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateUserDetails</servlet-name>
+        <url-pattern>/UpdateUserDetails</url-pattern>
     </servlet-mapping>
 </web-app>

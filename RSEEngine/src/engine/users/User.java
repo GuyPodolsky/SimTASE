@@ -25,6 +25,7 @@ public class User {
     private Map<LocalDateTime,TradeCommand> userSellCommands;
     private List<UserAction> actions;
 
+//Constructors:
 
     User(String _username,boolean _isAdmin){
         this.userName = _username;
@@ -41,6 +42,7 @@ public class User {
         this.isAdmin =_isAdmin;
         userBalance =0;
     }
+
     public User(String name,Map<String, UserHoldings> stocks){
         this.userName = name;
         isAdmin = false;                // because we send stocks to the ctor, the user can't be admin
@@ -61,16 +63,79 @@ public class User {
         updateWorth();
     }
 
-    private void updateWorth(){
-        for(UserHoldings hold: userStocks.values())
-        {
-            hold.getTotalHoldProperty().addListener(new ChangeListener<Number>() {
-                @Override
-                public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                        setTotalHoldingsValue(LocalDateTime.now(),getTotalHoldingsValue()-oldValue.floatValue()+newValue.floatValue());
-                }
-            });
-        }
+
+//Getters:
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public boolean isAdmin() {
+        return isAdmin;
+    }
+
+    public float getUserBalance() {
+        return userBalance;
+    }
+
+    public Map<String, UserHoldings> getUserStocks() {
+        return userStocks;
+    }
+
+    public SortedMap<LocalDateTime,Float> getWorthHistory(){
+        return this.totalHoldingsValue;
+    }
+
+    public List<Transaction> getUserTransactions() {
+        return userTransactions;
+    }
+
+    public Map<LocalDateTime, TradeCommand> getUserBuyCommands() {
+        return userBuyCommands;
+    }
+
+    public Map<LocalDateTime, TradeCommand> getUserSellCommands() {
+        return userSellCommands;
+    }
+
+    public List<UserAction> getActions() {
+        return actions;
+    }
+
+    //Special getters:
+
+    public float getTotalHoldingsValue() {
+        return totalHoldingsValue.get(totalHoldingsValue.lastKey());
+    }
+
+    public int getUserStockHoldings(Stock stock){
+        if(!userStocks.containsKey(stock.getSymbol()))
+            throw new InvalidKeyException("The user "+ userName +" don't have shares of the stock " + stock.getSymbol());
+        return userStocks.get(stock.getSymbol()).getQuantity();
+    }
+
+    public int getUserStockHoldings(String stockSymbol){
+        if(!userStocks.containsKey(stockSymbol))
+            throw new InvalidKeyException("The user "+ userName +" don't have shares of the stock " + stockSymbol);
+        return userStocks.get(stockSymbol).getQuantity();
+    }
+
+    public int getUserFreeHoldings(Stock stock){
+        if(!userStocks.containsKey(stock.getSymbol()))
+            throw new InvalidKeyException("The user "+ userName +" don't have shares of the stock " + stock.getSymbol());
+        return userStocks.get(stock.getSymbol()).getFreeShares();
+    }
+
+    public int getUserFreeHoldings(String stockSymbol){
+        if(!userStocks.containsKey(stockSymbol))
+            throw new InvalidKeyException("The user "+ userName +" don't have shares of the stock " + stockSymbol);
+        return userStocks.get(stockSymbol).getFreeShares();
+    }
+
+//Setters:
+
+    public void setUserBalance(float userBalance) {
+        this.userBalance = userBalance;
     }
 
     public void addUserTradeCommand(TradeCommand command,TradeCommand.direction dir){
@@ -103,92 +168,29 @@ public class User {
         userTransactions.add(transaction);
     }
 
-    public String getUserName() {
-        return userName;
-    }
-
-
-    public float getTotalHoldingsValue() {
-        return totalHoldingsValue.get(totalHoldingsValue.lastKey());
-    }
-
     public void setTotalHoldingsValue(LocalDateTime timestamp,float newValue) {
         totalHoldingsValue.put(timestamp,newValue);
     }
 
-    /**
-     *
-     * @param stock the stock we want to get the user holdings of
-     * @return the number of shares the user have of the given stock
-     * @throws InvalidKeyException The method throws exception if the user do not hold shares of the desired stock
-     */
-    public int getUserStockHoldings(Stock stock){
-        if(!userStocks.containsKey(stock.getSymbol()))
-            throw new InvalidKeyException("The user "+ userName +" don't have shares of the stock " + stock.getSymbol());
-        return userStocks.get(stock.getSymbol()).getQuantity();
-    }
-    public int getUserStockHoldings(String stockSymbol){
-        if(!userStocks.containsKey(stockSymbol))
-            throw new InvalidKeyException("The user "+ userName +" don't have shares of the stock " + stockSymbol);
-        return userStocks.get(stockSymbol).getQuantity();
+    private void updateWorth(){
+        for(UserHoldings hold: userStocks.values())
+        {
+            hold.getTotalHoldProperty().addListener(new ChangeListener<Number>() {
+                @Override
+                public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                    setTotalHoldingsValue(LocalDateTime.now(),getTotalHoldingsValue()-oldValue.floatValue()+newValue.floatValue());
+                }
+            });
+        }
     }
 
-    public int getUserFreeHoldings(Stock stock){
-        if(!userStocks.containsKey(stock.getSymbol()))
-            throw new InvalidKeyException("The user "+ userName +" don't have shares of the stock " + stock.getSymbol());
-        return userStocks.get(stock.getSymbol()).getFreeShares();
-    }
-    public int getUserFreeHoldings(String stockSymbol){
-        if(!userStocks.containsKey(stockSymbol))
-            throw new InvalidKeyException("The user "+ userName +" don't have shares of the stock " + stockSymbol);
-        return userStocks.get(stockSymbol).getFreeShares();
-    }
-
-
-
-    public Map<LocalDateTime, TradeCommand> getUserBuyCommands() {
-        return userBuyCommands;
-    }
-
-    public List<Transaction> getUserTransactions() {
-        return userTransactions;
-    }
-
-    public Map<LocalDateTime, TradeCommand> getUserSellCommands() {
-        return userSellCommands;
-    }
-
-    public Map<String, UserHoldings> getUserStocks() {
-        return userStocks;
-    }
-
-    public SortedMap<LocalDateTime,Float> getWorthHistory(){
-        return this.totalHoldingsValue;
-    }
-
-    @Override
-    public String toString() {
-        return userName;
-    }
-
-    public float getUserBalance() {
-        return userBalance;
-    }
-
-    public void setUserBalance(float userBalance) {
-        this.userBalance = userBalance;
-    }
-    public void addToUserBalance(int addition){
+    public void addToUserBalance(float addition){
         LocalDateTime dateStamp = LocalDateTime.now();
         String formattedTimestamp = dateStamp.format(DateTimeFormatter.ofPattern("HH:mm:ss:SSS"));
         float pre = userBalance;
         userBalance+=addition;
         actions.add(new UserAction(actionType.ADD,formattedTimestamp,addition, pre,userBalance));
 
-    }
-
-    public boolean isAdmin() {
-        return isAdmin;
     }
 
     public void addNewStock(Stock stock, int sharesQuantity){
@@ -202,4 +204,12 @@ public class User {
 
 
     }
+
+//Overrides:
+
+    @Override
+    public String toString() {
+        return userName;
+    }
+
 }
