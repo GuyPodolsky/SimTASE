@@ -3,18 +3,13 @@
 $(function (){ // onload
     window.setInterval(updateActiveUsers,5000);
     window.setInterval(updateActiveStocks,2000);
-    window.setInterval(updateUserDetails, 2000);
+    window.setTimeout(updateUserDetails,2000);
 
     $("#addingToBalance").submit(function (){
         $.ajax({
             type:'POST',
             data: $(this).serialize(),
             url:"/AddToUserBalance",
-            success: function (res){
-                let result = JSON.parse(res);
-                alert(result["message"]);           // todo: for personal check. delete after
-                //$("#userBalance").text(result["addition"]);
-            }
         })
         return false;
     })
@@ -29,10 +24,16 @@ $(function (){ // onload
             },
             success: function (msg){
                 alert(msg);
-
             }
+        })
+        return false;
+    })
 
-
+    $("#transferMoney").submit(function (){
+        $.ajax({
+            type:'POST',
+            data:'{"op":"transfer","to":'+document.getElementById("user-select").value+',"amount":'+document.getElementById("trans-amount")+'}',
+            url:'/UpdateUserDetails',
         })
         return false;
     })
@@ -48,14 +49,20 @@ function updateActiveUsers(){
           console.error(msg);
         },
         success: function (jsonStr){
-
             $("#activeUsersList").empty();
-            var json = jsonStr;
-
+            $("#user-select").empty();
+            let json = jsonStr;
             for(let i=0; i<json.length;i++){
                 $(document.createElement("li"))
                     .text(json[i]["userName"] + " | " + (json[i]["isAdmin"]?"Admin":"Trader"))
                     .appendTo("#activeUsersList");
+                if(!json[i]["isAdmin"]) {
+                    let id = json[i]["userName"] + "Sel";
+                    let op = document.createElement('option');
+                    op.id = id;
+                    op.text = json[i]["userName"];
+                    document.getElementById("user-select").appendChild(op);
+                }
             }
 
         }
