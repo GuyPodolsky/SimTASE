@@ -6,14 +6,9 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a14c5375-d147-41c4-b6bf-d40cd56cf20d" name="Default" comment="some changes with logger and servlets">
-      <change afterPath="$PROJECT_DIR$/RSEWebUI/src/rse/servlets/UserDetailsServlet.java" afterDir="false" />
+    <list default="true" id="a14c5375-d147-41c4-b6bf-d40cd56cf20d" name="Default" comment="1. add balance fix&#10;2. user current table &#10;3. UserDetailsServlet">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RSEEngine/src/engine/logic/TradeCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/RSEEngine/src/engine/logic/TradeCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RSEEngine/src/engine/users/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/RSEEngine/src/engine/users/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RSEEngine/src/engine/users/UserAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/RSEEngine/src/engine/users/UserAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RSEWebUI/src/rse/servlets/AddToUserBalance.java" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/src/rse/servlets/AddToUserBalance.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RSEWebUI/web/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/web/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RSEWebUI/src/rse/servlets/UserDetailsServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/src/rse/servlets/UserDetailsServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RSEWebUI/web/pages/dashboard/dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/web/pages/dashboard/dashboard.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RSEWebUI/web/pages/dashboard/dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/web/pages/dashboard/dashboard.js" afterDir="false" />
     </list>
@@ -616,7 +611,14 @@
       <option name="presentableId" value="LOCAL‎00009" />
       <updated>1625392117436</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="1. add balance fix&#10;2. user current table &#10;3. UserDetailsServlet">
+      <created>1625575101057</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1625575101057</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -652,7 +654,8 @@
     <MESSAGE value="I've added updating function in the dashboard.js file that receives a json array from ActiveUsersServlet and trying to display all the users and their role &lt;&lt; I have a problem with getting to the servlet itself (I've sent a massage to Aviad - I hope i'll have the solution).   &#10;I've updated the user balance according to the user transactions.&#10;I've added a new class of UserAction - that is saving the data about a single user action.&#10;In addition I've added a list field in the User class that will save all the user actions (buy/sell transactions and adding to account balance)." />
     <MESSAGE value="Fixed the active users view.&#10;Works well even with multiple users in the system" />
     <MESSAGE value="started to work on showing the active stocks in the system.&#10;I've tried to append the new stocks and not to get all the stocks every time (because we still don't have stocks in the system I can't really check if it worked well)." />
-    <option name="LAST_COMMIT_MESSAGE" value="started to work on showing the active stocks in the system.&#10;I've tried to append the new stocks and not to get all the stocks every time (because we still don't have stocks in the system I can't really check if it worked well)." />
+    <MESSAGE value="1. add balance fix&#10;2. user current table &#10;3. UserDetailsServlet" />
+    <option name="LAST_COMMIT_MESSAGE" value="1. add balance fix&#10;2. user current table &#10;3. UserDetailsServlet" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -666,6 +669,11 @@
           <url>file://$PROJECT_DIR$/RSEWebUI/src/rse/servlets/AddNewStockServlet.java</url>
           <line>16</line>
           <option name="timeStamp" value="19" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/RSEWebUI/src/rse/servlets/UserDetailsServlet.java</url>
+          <line>73</line>
+          <option name="timeStamp" value="34" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

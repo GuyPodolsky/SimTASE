@@ -55,8 +55,8 @@
             <span>
                 <h4 class="user-info">Transfer money: </h4>
                 <form id="transferMoney" method="post" style="display: flex">
-                    <input type="number" name="quantity" placeholder="Amount" min="1" step="0.01"/>
-                    <select>
+                    <input id="trans-amount" type="number" name="quantity" placeholder="Amount" min="1" step="0.01"/>
+                    <select id="user-select">
                         <option id="select-label">Choose a user</option>
                         <option id="op1">Loading users list...</option>
                     </select>

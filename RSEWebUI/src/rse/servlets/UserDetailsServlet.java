@@ -13,6 +13,42 @@ import java.io.PrintWriter;
 
 public class UserDetailsServlet extends HttpServlet {
 
+    private enum operation {
+        Transfer("transfer",0),
+        Add("add",1);
+
+        private String name;
+        private int num;
+        operation(String name, int num) {
+            this.name = name;
+            this.num = num;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public static operation getByName(String name) {
+            for(operation op: operation.values()) {
+                if(op.name.equals(name))
+                    return op;
+            }
+            return null;
+        }
+
+        public static operation getByNum(int num) {
+            for(operation op: operation.values()) {
+                if(op.num == num)
+                    return op;
+            }
+            return null;
+        }
+    }
+
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         HttpSession session = request.getSession(false);
@@ -35,7 +71,20 @@ public class UserDetailsServlet extends HttpServlet {
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) {
-        //TODO: set data to the system.
+        HttpSession session = request.getSession(false);
+        User curUser = Engine.getInstance().getUsersManager().getUser(session.getAttribute("username").toString());
+        String testStr = request.getParameter("to");
+        User otherUser = Engine.getInstance().getUsersManager().getUser(testStr);
+        float amount = Float.parseFloat(request.getParameter("amount"));
+        operation op = operation.getByName(request.getParameter("op"));
+        switch (op){
+            case Transfer:
+                transfer(curUser,otherUser,amount);
+                break;
+            case Add:
+                add(curUser,amount);
+                break;
+        }
     }
 
     private String getUserBalance(User user){
@@ -45,12 +94,23 @@ public class UserDetailsServlet extends HttpServlet {
     private String getUserCurrent(User user){
         StringBuilder jsonResult = new StringBuilder();
         jsonResult.append("\"actions\":[");
-        user.getActions().stream()
-                .forEach((a) -> {
-                    jsonResult.append(a.toJson()+",");
-                });
-        jsonResult.deleteCharAt(jsonResult.lastIndexOf(","));
+        if(!user.getActions().isEmpty()) {
+            user.getActions().stream()
+                    .forEach((a) -> {
+                        jsonResult.append(a.toJson() + ",");
+                    });
+            jsonResult.deleteCharAt(jsonResult.lastIndexOf(","));
+        }
         jsonResult.append("]");
         return jsonResult.toString();
+    }
+
+    private void transfer(User from, User to, float amount){
+        from.setUserBalance(from.getUserBalance()-amount);
+        to.addToUserBalance(amount);
+    }
+
+    private void add(User user, float amount){
+        user.addToUserBalance(amount);
     }
 }
