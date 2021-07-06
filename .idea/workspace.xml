@@ -6,13 +6,8 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a14c5375-d147-41c4-b6bf-d40cd56cf20d" name="Default" comment="some changes with logger and servlets">
+    <list default="true" id="a14c5375-d147-41c4-b6bf-d40cd56cf20d" name="Default" comment="fixed the bug with stack at updateActiveUsers">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RSEEngine/RSEEngine.iml" beforeDir="false" afterPath="$PROJECT_DIR$/RSEEngine/RSEEngine.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RSEEngine/src/engine/users/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/RSEEngine/src/engine/users/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RSEWebUI/src/rse/servlets/ActiveUsersServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/src/rse/servlets/ActiveUsersServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RSEWebUI/src/rse/servlets/AddNewStockServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/src/rse/servlets/AddNewStockServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RSEWebUI/src/rse/servlets/ShowStockServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/src/rse/servlets/ShowStockServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RSEWebUI/web/pages/dashboard/dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/web/pages/dashboard/dashboard.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -79,6 +74,9 @@
       <find>Disconnected from server</find>
       <find>Connected to server</find>
     </findStrings>
+  </component>
+  <component name="Git.Merge.Settings">
+    <option name="BRANCH" value="origin/master" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -611,7 +609,13 @@
       <option name="presentableId" value="LOCAL‎00009" />
       <updated>1625392117436</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL‎00010" summary="fixed the bug with stack at updateActiveUsers">
+      <created>1625581902983</created>
+      <option name="number" value="LOCAL‎00010" />
+      <option name="presentableId" value="LOCAL‎00010" />
+      <updated>1625581902984</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -647,25 +651,36 @@
     <MESSAGE value="I've added updating function in the dashboard.js file that receives a json array from ActiveUsersServlet and trying to display all the users and their role &lt;&lt; I have a problem with getting to the servlet itself (I've sent a massage to Aviad - I hope i'll have the solution).   &#10;I've updated the user balance according to the user transactions.&#10;I've added a new class of UserAction - that is saving the data about a single user action.&#10;In addition I've added a list field in the User class that will save all the user actions (buy/sell transactions and adding to account balance)." />
     <MESSAGE value="Fixed the active users view.&#10;Works well even with multiple users in the system" />
     <MESSAGE value="started to work on showing the active stocks in the system.&#10;I've tried to append the new stocks and not to get all the stocks every time (because we still don't have stocks in the system I can't really check if it worked well)." />
-    <option name="LAST_COMMIT_MESSAGE" value="started to work on showing the active stocks in the system.&#10;I've tried to append the new stocks and not to get all the stocks every time (because we still don't have stocks in the system I can't really check if it worked well)." />
+    <MESSAGE value="fixed the bug with stack at updateActiveUsers" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed the bug with stack at updateActiveUsers" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
+        <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/RSEWebUI/src/rse/servlets/ActiveUsersServlet.java</url>
           <line>35</line>
           <option name="timeStamp" value="20" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
+        <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/RSEWebUI/src/rse/servlets/ActiveUsersServlet.java</url>
           <line>38</line>
           <option name="timeStamp" value="21" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
+        <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/RSEWebUI/src/rse/servlets/ShowStockServlet.java</url>
           <line>29</line>
           <option name="timeStamp" value="22" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/RSEWebUI/src/rse/servlets/UserDetailsServlet.java</url>
+          <line>78</line>
+          <option name="timeStamp" value="23" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/RSEWebUI/src/rse/servlets/UserDetailsServlet.java</url>
+          <line>74</line>
+          <option name="timeStamp" value="24" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

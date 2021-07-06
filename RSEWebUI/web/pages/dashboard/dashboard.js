@@ -1,9 +1,9 @@
 
 
 $(function (){ // onload
-    window.setInterval(updateActiveUsers,5000);
-    window.setInterval(updateActiveStocks,2000);
-    window.setTimeout(updateUserDetails,2000);
+    window.setInterval(updateActiveUsers,3000);
+    window.setInterval(updateActiveStocks,3000);
+    window.setInterval(updateUserDetails,3000);
 
     $("#addingToBalance").submit(function (){
         $.ajax({
@@ -32,8 +32,14 @@ $(function (){ // onload
     $("#transferMoney").submit(function (){
         $.ajax({
             type:'POST',
-            data:'{"op":"transfer","to":'+document.getElementById("user-select").value+',"amount":'+document.getElementById("trans-amount")+'}',
+            data:{
+                op:"transfer",
+                to:document.getElementById("user-select").value,
+                amount:document.getElementById("trans-amount").value},
             url:'/UpdateUserDetails',
+            error:function (){
+                alert("PROBLEMMMMM");
+            }
         })
         return false;
     })
@@ -44,7 +50,7 @@ function updateActiveUsers(){
         type:'GET',
         url:"/activeUsers",
         dataType:'json',
-        //timeout:2000,
+        timeout:2000,
         error:function (msg){
           console.error(msg);
         },
@@ -77,14 +83,12 @@ function updateActiveStocks(){
         timeout:2000,
         success: function (jsonStr){
 
-            //$("#activeUsersList").empty(); // I don't want to add all the stocks every time. O just want to add the new ones like in the chat
             var json = jsonStr;
             var table = $("#stocksBody");
             table.empty();
 
-
-            for(let i=0; i<json.length;i++){            // todo: this looks like it's working - just need to see how the data return and add in to the append (while creating new td)
-                var newRow = document.createElement('tr');//.ondblclick("stockSelected(row"+i+")").id("row"+i));
+            for(let i=0; i<json.length;i++){
+                var newRow = document.createElement('tr');
                 var cell1 = document.createElement("td");
                 cell1.innerText = (json[i].symbol);
                 newRow.appendChild(cell1);
