@@ -45,24 +45,39 @@
             <p id="userBalance"> 0 </p>
             </span>
             <span>
-                <h4 class="user-info"> Add to balance:</h4>
+                <h4 class="user-info">Add to balance:</h4>
                 <form id="addingToBalance" method="post" style="display: flex">
-                    <input type="number" name="quantity" placeholder="Amount to add" min="1" />
-                    <input type="submit" value="Add"/>
+                    <input type="number" name="quantity" placeholder="Amount to add" min="1" step="0.01" />
+                    <input type="submit" value="Add" onclick=""/>
+                </form>
+            </span>
+            <br>
+            <span>
+                <h4 class="user-info">Transfer money: </h4>
+                <form id="transferMoney" method="post" style="display: flex">
+                    <input type="number" name="quantity" placeholder="Amount" min="1" step="0.01"/>
+                    <select>
+                        <option id="select-label">Choose a user</option>
+                        <option id="op1">Loading users list...</option>
+                    </select>
+                    <input type="submit" value="Transfer">
                 </form>
             </span>
         </div>
         <div class="user-info-block">
             <h4 class="user-info"> Previous transactions:</h4>
-            <table id="previousTransactions" class="table">
-                <tr>
-                    <th>Type</th>
-                    <th>Symbol</th>
-                    <th>Date</th>
-                    <th>Transaction turnover</th>
-                    <th>Previous balance</th>
-                    <th>Updated balance</th>
-                </tr>
+            <table id="userCurrent" class="table">
+                <thead>
+                    <tr>
+                        <th>Type</th>
+                        <th>Date</th>
+                        <th>Amount</th>
+                        <th>Previous balance</th>
+                        <th>Updated balance</th>
+                    </tr>
+                </thead>
+                <tbody id="userCurrentBody">
+                </tbody>
             </table>
         </div>
 <!--        <div class="user-info-block">

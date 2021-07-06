@@ -13,21 +13,18 @@ import java.io.IOException;
 import java.util.Map;
 
 public class AddToUserBalance extends HttpServlet {
-    Gson gson = new Gson();
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         HttpSession session = request.getSession(false);
         if(session == null)
             throw new IllegalStateException("User must enter to the system first.");
         String name = String.valueOf(session.getAttribute("username"));
-        int addition = Integer.parseInt(request.getParameter("quantity"));
-        Logger.getServerLogger().post(String.valueOf(addition));
+        float addition = Float.parseFloat(request.getParameter("quantity"));
         Engine.getInstance().getUsersManager().getUser(name).addToUserBalance(addition);
-        Logger.getServerLogger().post("{ \"massage\":\"Added "+addition +" to "+name+" balance.\"");
-        Logger.getServerLogger().post("\"addition\":"+ Engine.getInstance().getUsersManager().getUser(name).getUserBalance()+"}");
+        String jsonResult = "{\"message\":\"Added " + addition + " to " + name + " balance.\",\"addition\":" + Engine.getInstance().getUsersManager().getUser(name).getUserBalance() + "}";
+        Logger.getServerLogger().post(jsonResult);
 
-        response.getWriter().println("{ \"massage\":\"Added "+addition +" to "+name+" balance.\",");
-        response.getWriter().println("\"addition\":"+ Engine.getInstance().getUsersManager().getUser(name).getUserBalance()+"}");
+        response.getWriter().println(jsonResult);
 
 
 

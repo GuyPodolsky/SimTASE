@@ -77,11 +77,16 @@ public class UserAction {
         this.postBalance = postBalance;
     }
 
-    /**
-     *
-     * @return string that represents the action as a JSON object
-     * This will ease the showing of each user action in the web using js.
-     */
+    public String toJson(){
+        String jsonResult = "{";
+        jsonResult += ("\"type\":\""+getAction()+"\",");
+        jsonResult += ("\"date\":\""+getDate()+"\",");
+        jsonResult += ("\"amount\":"+getTransactionAmount()+",");
+        jsonResult += ("\"preBalance\":"+getPreBalance()+",");
+        jsonResult += ("\"postBalance\":"+getPostBalance()+"}");
+        return jsonResult;
+    }
+
     @Override
     public String toString() {
         return "UserAction{" +
@@ -92,6 +97,5 @@ public class UserAction {
                 ", postBalance=" + postBalance +
                 '}';
     }
-
 
 }
