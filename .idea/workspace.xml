@@ -6,7 +6,7 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a14c5375-d147-41c4-b6bf-d40cd56cf20d" name="Default" comment="started to work on showing the active stocks in the system.&#10;I've tried to append the new stocks and not to get all the stocks every time (because we still don't have stocks in the system I can't really check if it worked well).">
+    <list default="true" id="a14c5375-d147-41c4-b6bf-d40cd56cf20d" name="Default" comment="now the stocks table updates according to the active stocks in the system.&#10;I still have a problem with the switch to the next page - I don't really sure what to send to the function. I'll work on it tomorrow.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RSEWebUI/web/pages/dashboard/dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/web/pages/dashboard/dashboard.js" afterDir="false" />
     </list>
@@ -537,6 +537,7 @@
       <workItem from="1625137785673" duration="2872000" />
       <workItem from="1625228658283" duration="12348000" />
       <workItem from="1625328978355" duration="3530000" />
+      <workItem from="1625573266536" duration="2332000" />
     </task>
     <task id="LOCAL-00001" summary="V1">
       <created>1624972995375</created>
@@ -605,7 +606,13 @@
       <option name="presentableId" value="LOCAL‎00009" />
       <updated>1625392117436</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL‎00010" summary="now the stocks table updates according to the active stocks in the system.&#10;I still have a problem with the switch to the next page - I don't really sure what to send to the function. I'll work on it tomorrow.">
+      <created>1625512815185</created>
+      <option name="number" value="LOCAL‎00010" />
+      <option name="presentableId" value="LOCAL‎00010" />
+      <updated>1625512815185</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -641,7 +648,8 @@
     <MESSAGE value="I've added updating function in the dashboard.js file that receives a json array from ActiveUsersServlet and trying to display all the users and their role &lt;&lt; I have a problem with getting to the servlet itself (I've sent a massage to Aviad - I hope i'll have the solution).   &#10;I've updated the user balance according to the user transactions.&#10;I've added a new class of UserAction - that is saving the data about a single user action.&#10;In addition I've added a list field in the User class that will save all the user actions (buy/sell transactions and adding to account balance)." />
     <MESSAGE value="Fixed the active users view.&#10;Works well even with multiple users in the system" />
     <MESSAGE value="started to work on showing the active stocks in the system.&#10;I've tried to append the new stocks and not to get all the stocks every time (because we still don't have stocks in the system I can't really check if it worked well)." />
-    <option name="LAST_COMMIT_MESSAGE" value="started to work on showing the active stocks in the system.&#10;I've tried to append the new stocks and not to get all the stocks every time (because we still don't have stocks in the system I can't really check if it worked well)." />
+    <MESSAGE value="now the stocks table updates according to the active stocks in the system.&#10;I still have a problem with the switch to the next page - I don't really sure what to send to the function. I'll work on it tomorrow." />
+    <option name="LAST_COMMIT_MESSAGE" value="now the stocks table updates according to the active stocks in the system.&#10;I still have a problem with the switch to the next page - I don't really sure what to send to the function. I'll work on it tomorrow." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

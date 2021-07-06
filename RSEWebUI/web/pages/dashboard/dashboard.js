@@ -130,8 +130,9 @@ function loadXMLFile() {
 }
 
 function stockSelected(event) {
-    var rowId = event.which.id;
-    let row = document.getElementById(rowId);
+    //var rowId = event.relatedTarget.id;
+    //let row = document.getElementById(rowId);
+    let row = event.currentTarget;
     let cells = row.childNodes;
     let symbol = cells[0].innerText;
     $.ajax({
@@ -140,6 +141,7 @@ function stockSelected(event) {
         url: "/showStock",
         error: function (xhr, httpErrorMessage, customErrorMessage) {
         }
+
     });
 }
 
