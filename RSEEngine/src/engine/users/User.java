@@ -1,5 +1,6 @@
 package engine.users;
 
+import com.google.gson.annotations.Expose;
 import engine.logic.Stock;
 import engine.logic.TradeCommand;
 import engine.logic.Transaction;
@@ -15,7 +16,9 @@ import java.util.*;
  * This class saves all the data about a specific user in the system
  */
 public class User {
+    @Expose
     private final String userName;
+    @Expose
     private boolean isAdmin;
     private float userBalance;
     private Map<String, UserHoldings> userStocks;

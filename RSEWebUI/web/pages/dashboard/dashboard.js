@@ -1,7 +1,7 @@
 
 
 $(function (){ // onload
-    window.setInterval(updateActiveUsers,2000);
+    window.setInterval(updateActiveUsers,5000);
     window.setInterval(updateActiveStocks,2000);
     window.setInterval(updateUserDetails, 2000);
 
@@ -43,7 +43,10 @@ function updateActiveUsers(){
         type:'GET',
         url:"/activeUsers",
         dataType:'json',
-        timeout:2000,
+        //timeout:2000,
+        error:function (msg){
+          console.error(msg);
+        },
         success: function (jsonStr){
 
             $("#activeUsersList").empty();
@@ -139,6 +142,9 @@ function stockSelected(event) {
         data: {'symbol': symbol},
         url: "/showStock",
         error: function (xhr, httpErrorMessage, customErrorMessage) {
+        },
+        success: function (){
+
         }
 
     });

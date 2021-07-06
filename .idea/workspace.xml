@@ -7,14 +7,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a14c5375-d147-41c4-b6bf-d40cd56cf20d" name="Default" comment="some changes with logger and servlets">
-      <change afterPath="$PROJECT_DIR$/RSEWebUI/src/rse/servlets/UserDetailsServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RSEEngine/src/engine/logic/TradeCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/RSEEngine/src/engine/logic/TradeCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RSEEngine/RSEEngine.iml" beforeDir="false" afterPath="$PROJECT_DIR$/RSEEngine/RSEEngine.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RSEEngine/src/engine/users/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/RSEEngine/src/engine/users/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RSEEngine/src/engine/users/UserAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/RSEEngine/src/engine/users/UserAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RSEWebUI/src/rse/servlets/AddToUserBalance.java" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/src/rse/servlets/AddToUserBalance.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RSEWebUI/web/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/web/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RSEWebUI/web/pages/dashboard/dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/web/pages/dashboard/dashboard.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RSEWebUI/src/rse/servlets/ActiveUsersServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/src/rse/servlets/ActiveUsersServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RSEWebUI/src/rse/servlets/AddNewStockServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/src/rse/servlets/AddNewStockServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RSEWebUI/src/rse/servlets/ShowStockServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/src/rse/servlets/ShowStockServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RSEWebUI/web/pages/dashboard/dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/web/pages/dashboard/dashboard.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -92,9 +90,6 @@
       <filtered-out-file-type name="TAG" />
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
-  </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="jar://$PROJECT_DIR$/../../../../Program Files/Java/jdk1.8.0_291/src.zip!/java/nio/file/NoSuchFileException.java" root0="SKIP_INSPECTION" />
   </component>
   <component name="LogFilters">
     <option name="FILTER_ERRORS" value="false" />
@@ -355,7 +350,7 @@
       </method>
     </configuration>
     <configuration name="Tomcat 8.5.23" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 8.5.23" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
-      <option name="BROWSER_ID" value="b2a9dca7-9d0b-4e1e-98a8-afb19c1328d2" />
+      <option name="BROWSER_ID" value="98ca6316-2f89-46d9-a9e5-fa9e2b0625b3" />
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
         <artifact name="RSEWar">
@@ -658,17 +653,27 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/RSEWebUI/src/rse/servlets/AddNewStockServlet.java</url>
-          <line>17</line>
-          <option name="timeStamp" value="18" />
+          <url>file://$PROJECT_DIR$/RSEWebUI/src/rse/servlets/ActiveUsersServlet.java</url>
+          <line>35</line>
+          <option name="timeStamp" value="20" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/RSEWebUI/src/rse/servlets/AddNewStockServlet.java</url>
-          <line>16</line>
-          <option name="timeStamp" value="19" />
+          <url>file://$PROJECT_DIR$/RSEWebUI/src/rse/servlets/ActiveUsersServlet.java</url>
+          <line>38</line>
+          <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/RSEWebUI/src/rse/servlets/ShowStockServlet.java</url>
+          <line>29</line>
+          <option name="timeStamp" value="22" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="javax.servlet.ServletException" memberName="stackTrace" />
+      </pinned-members>
+    </pin-to-top-manager>
     <watches-manager>
       <configuration name="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory">
         <watch expression="session" />

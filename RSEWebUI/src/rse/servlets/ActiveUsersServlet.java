@@ -1,6 +1,7 @@
 package rse.servlets;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import engine.logic.Engine;
 import engine.users.User;
 import engine.users.UsersManager;
@@ -18,7 +19,7 @@ import java.util.Map;
 /*@WebServlet(name = "ActiveUsersServlet", urlPatterns = "/servlets/ActiveUsersServlet")*/
 public class ActiveUsersServlet extends HttpServlet {
 
-    private Gson gson = new Gson();
+    private Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -26,19 +27,25 @@ public class ActiveUsersServlet extends HttpServlet {
         HttpSession session = request.getSession(false);
         if(session == null)
             throw new IllegalAccessError("User must sign in to the system before using RSE.");
+        try {
+            // i dont really sure if we need this in here
+            String username = session.getAttribute("username").toString();
+            boolean isAdmin = Boolean.getBoolean(session.getAttribute("is_admin").toString());
 
-        // i dont really sure if we need this in here
-        String username = session.getAttribute("username").toString();
-        boolean isAdmin = Boolean.getBoolean(session.getAttribute("is_admin").toString()); // todo: check how do we save this attribute
+            UsersManager um = Engine.getInstance().getUsersManager();
+            String users = this.gson.toJson(new ArrayList<>(um.getUsers().values()));
 
-        UsersManager um = Engine.getInstance().getUsersManager();
-        String users = this.gson.toJson(new ArrayList<>(um.getUsers().values()));
+            //response.setContentType("text/json");
+            PrintWriter out = response.getWriter();
+            Logger.getServerLogger().post(users);
+            out.println(users);
+            out.flush();
+        }catch (Exception e){
+            response.sendError(500, e.getMessage());
+            response.getWriter().println(e.getMessage());
+        }
 
-        //response.setContentType("text/json");
-        PrintWriter out = response.getWriter();
-        Logger.getServerLogger().post(users);
-        out.println(users);
-        out.flush();
+
      /*   *//*
         This servlet will return a text describing json object
         this will be a list with every user name and is if he's admin or trader.

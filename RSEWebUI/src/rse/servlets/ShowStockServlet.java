@@ -1,9 +1,11 @@
 package rse.servlets;
 
+import com.google.gson.Gson;
 import engine.dto.StockDT;
 import engine.dto.TradeCommandDT;
 import engine.logic.Engine;
 import engine.logic.Transaction;
+import rse.logger.Logger;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -15,7 +17,7 @@ import java.util.List;
 public class ShowStockServlet extends HttpServlet {
 
     final private String StockViewPagePath = "/../../../pages/stockview/stockview.html";
-
+    private Gson gson = new Gson();
 
     /*
     This method returns json object in text that describing a single stock.
@@ -24,10 +26,17 @@ public class ShowStockServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException{
         StockDT stockDT = Engine.getInstance().showStock(request.getParameter("symbol"));
-
-        response.setContentType("text/json");
-        PrintWriter out = response.getWriter();
-
+        try {
+            response.setContentType("text/json");
+            PrintWriter out = response.getWriter();
+            String res = gson.toJson(stockDT);
+            Logger.getServerLogger().post(res);
+            out.println(res);
+            out.flush();
+        } catch (Exception e){
+            response.sendError(400,e.getMessage());
+        }
+/*
         // insert the basic data about the stock
         out.println("{symbol:"+stockDT.getSymbol()+", companyName:" +stockDT.getCompanyName()+
                 ", sharePrice:"+stockDT.getSharePrice()+", sharesQuantity:" +stockDT.getQuantity()+
@@ -64,7 +73,7 @@ public class ShowStockServlet extends HttpServlet {
                     ", commandType:"+tc.getCommandType().toString()+
                     ", user:" +tc.getUser().getUserName()+"}");
         }
-        out.println("]}");
+        out.println("]}");*/
 
     }
 }
