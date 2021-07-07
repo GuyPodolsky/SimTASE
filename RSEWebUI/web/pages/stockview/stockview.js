@@ -30,7 +30,7 @@ function updateShowStock(){
         error: function (xhr, httpErrorMessage, customErrorMessage) {
             alert(customErrorMessage);
         },
-        success: function (res) {
+        success: function (data) {
             let username = data["username"];
             let userHoldings = data["userHoldings"];
             let stock = data["stock"];
