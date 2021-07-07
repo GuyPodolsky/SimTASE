@@ -30,16 +30,23 @@ function updateShowStock(){
         error: function (xhr, httpErrorMessage, customErrorMessage) {
             alert(customErrorMessage);
         },
-        success: function (data) {
+        success: function (res) {
+            let data = JSON.parse(res);
             let username = data["username"];
             let userHoldings = data["userHoldings"];
             let stock = data["stock"];
-            $("#username-greet").innerText = "Hi "+username;
+            document.getElementById("username-greet").innerText ="Hi "+username;
+            document.getElementById("company-name").innerHTML ="Company Name: " + stock["companyName"];
+            document.getElementById("share-value").innerHTML ="Share Value: " + stock["sharePrice"];
+            document.getElementById("turnover").innerHTML ="Turnover: " + stock["transactionsTurnOver"];
+            document.getElementById("own-holdings").innerHTML ="You own " + userHoldings +" shares";
+            ////document.getElementById("#").innerHTML ="Hi "+username;
+            //$("#username-greet").innerHTML = "Hi "+username;
             //$("#details-box-header").childNodes[0].innerText = stock["symbol"] +" Stock View";
-            $("#company-name"). innerText = "Company Name: " + stock["companyName"];
-            $("#share-value").innerText = "Share Value: " + stock["sharePrice"];
-            $("#turnover").innerText = "Turnover: " + stock["transactionsTurnOver"];
-            $("#own-holdings").innerText = "You own " + userHoldings +" shares";
+            //$("#company-name"). innerHTML = "Company Name: " + stock["companyName"];
+            //$("#share-value").innerHTML = "Share Value: " + stock["sharePrice"];
+            //$("#turnover").innerHTML = "Turnover: " + stock["transactionsTurnOver"];
+            //$("#own-holdings").innerHTML = "You own " + userHoldings +" shares";
         }
 
     })

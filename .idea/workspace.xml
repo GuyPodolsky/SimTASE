@@ -6,7 +6,11 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a14c5375-d147-41c4-b6bf-d40cd56cf20d" name="Default" comment="now we transfer from page 2 to 3" />
+    <list default="true" id="a14c5375-d147-41c4-b6bf-d40cd56cf20d" name="Default" comment="now we transfer from page 2 to 3">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RSEWebUI/src/rse/servlets/ShowStockServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/src/rse/servlets/ShowStockServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RSEWebUI/web/pages/stockview/stockview.js" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/web/pages/stockview/stockview.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -538,7 +542,7 @@
       <workItem from="1625137785673" duration="2872000" />
       <workItem from="1625228658283" duration="12348000" />
       <workItem from="1625328978355" duration="3530000" />
-      <workItem from="1625664954307" duration="8662000" />
+      <workItem from="1625664954307" duration="11607000" />
     </task>
     <task id="LOCAL-00001" summary="V1">
       <created>1624972995375</created>
@@ -625,7 +629,19 @@
       <option name="presentableId" value="LOCAL‎00012" />
       <updated>1625673928532</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL‎00013" summary="now we transfer from page 2 to 3">
+      <created>1625674203762</created>
+      <option name="number" value="LOCAL‎00013" />
+      <option name="presentableId" value="LOCAL‎00013" />
+      <updated>1625674203762</updated>
+    </task>
+    <task id="LOCAL‎00014" summary="now we transfer from page 2 to 3">
+      <created>1625674259644</created>
+      <option name="number" value="LOCAL‎00014" />
+      <option name="presentableId" value="LOCAL‎00014" />
+      <updated>1625674259644</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

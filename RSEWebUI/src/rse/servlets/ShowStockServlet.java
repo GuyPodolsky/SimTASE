@@ -39,7 +39,7 @@ public class ShowStockServlet extends HttpServlet {
             PrintWriter out = response.getWriter();
             int userHoldings = user.getUserStockHoldings(symbol);
             String resStock = gson.toJson(stockDT);
-            String res = "{username:"+username+",userHoldings:"+userHoldings+",stock:"+resStock+"}";
+            String res = "{\"username\":\""+username+"\",\"userHoldings\":\""+userHoldings+"\",\"stock\":"+resStock+"}";
             Logger.getServerLogger().post(res);
             out.println(res);
             out.flush();
