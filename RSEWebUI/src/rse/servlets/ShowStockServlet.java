@@ -5,11 +5,13 @@ import engine.dto.StockDT;
 import engine.dto.TradeCommandDT;
 import engine.logic.Engine;
 import engine.logic.Transaction;
+import engine.users.User;
 import rse.logger.Logger;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -25,11 +27,19 @@ public class ShowStockServlet extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException{
-        StockDT stockDT = Engine.getInstance().showStock(request.getParameter("symbol"));
+        HttpSession session = request.getSession(false);
+        if(session == null)
+            throw new IllegalStateException("User must enter the system first.");
+        String username = String.valueOf(session.getAttribute("username"));
+        User user = Engine.getInstance().getUsersManager().getUser(username);
+        String symbol = request.getParameter("symbol");
+        StockDT stockDT = Engine.getInstance().showStock(symbol);
         try {
-            response.setContentType("text/json");
+            //response.setContentType("text/json");
             PrintWriter out = response.getWriter();
-            String res = gson.toJson(stockDT);
+            int userHoldings = user.getUserStockHoldings(symbol);
+            String resStock = gson.toJson(stockDT);
+            String res = "{username:"+username+",userHoldings:"+userHoldings+",stock:"+resStock+"}";
             Logger.getServerLogger().post(res);
             out.println(res);
             out.flush();
