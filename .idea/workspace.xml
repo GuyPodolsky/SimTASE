@@ -6,14 +6,7 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a14c5375-d147-41c4-b6bf-d40cd56cf20d" name="Default" comment="fixed the bug with trasfer">
-      <change afterPath="$PROJECT_DIR$/RSEWebUI/web/pages/stockview/stockview.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RSEEngine/src/engine/dto/StockDT.java" beforeDir="false" afterPath="$PROJECT_DIR$/RSEEngine/src/engine/dto/StockDT.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RSEWebUI/src/rse/servlets/ShowStockServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/src/rse/servlets/ShowStockServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RSEWebUI/web/pages/dashboard/dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/web/pages/dashboard/dashboard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RSEWebUI/web/pages/stockview/stockview.html" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/web/pages/stockview/stockview.html" afterDir="false" />
-    </list>
+    <list default="true" id="a14c5375-d147-41c4-b6bf-d40cd56cf20d" name="Default" comment="now we transfer from page 2 to 3" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -545,7 +538,7 @@
       <workItem from="1625137785673" duration="2872000" />
       <workItem from="1625228658283" duration="12348000" />
       <workItem from="1625328978355" duration="3530000" />
-      <workItem from="1625664954307" duration="8206000" />
+      <workItem from="1625664954307" duration="8662000" />
     </task>
     <task id="LOCAL-00001" summary="V1">
       <created>1624972995375</created>
@@ -626,7 +619,13 @@
       <option name="presentableId" value="LOCAL‎00011" />
       <updated>1625590071617</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL‎00012" summary="now we transfer from page 2 to 3">
+      <created>1625673928532</created>
+      <option name="number" value="LOCAL‎00012" />
+      <option name="presentableId" value="LOCAL‎00012" />
+      <updated>1625673928532</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -664,7 +663,8 @@
     <MESSAGE value="started to work on showing the active stocks in the system.&#10;I've tried to append the new stocks and not to get all the stocks every time (because we still don't have stocks in the system I can't really check if it worked well)." />
     <MESSAGE value="fixed the bug with stack at updateActiveUsers" />
     <MESSAGE value="fixed the bug with trasfer" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed the bug with trasfer" />
+    <MESSAGE value="now we transfer from page 2 to 3" />
+    <option name="LAST_COMMIT_MESSAGE" value="now we transfer from page 2 to 3" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

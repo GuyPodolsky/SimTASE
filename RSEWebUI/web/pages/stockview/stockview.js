@@ -31,7 +31,6 @@ function updateShowStock(){
             alert(customErrorMessage);
         },
         success: function (res) {
-            let data = JSON.parse(res);
             let username = data["username"];
             let userHoldings = data["userHoldings"];
             let stock = data["stock"];
