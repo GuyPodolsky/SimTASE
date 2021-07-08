@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>---symbol--- Stock View</title>
+    <script src="../../common/jquery-2.0.3.min.js"></script>
+    <script src="stockview.js"></script>
     <link rel="stylesheet" type="text/css" href="stockview.css">
 </head>
 <body id="main-header">
@@ -23,10 +25,9 @@
             <div id="details-box-details">
                 <dl id="detail-list">
                     <li id="company-name">Company Name: ----- </li>
-                    <li id="stock-quantity">Stocks Quantity: ------ </li>
                     <li id="share-value">Share Value: ------- </li>
                     <li id="turnover">Turnover: ------ </li>
-                    <li id="own-holdings">Yow own ------ shares</li>
+                    <li id="own-holdings">You own ------ shares</li>
                 </dl>
             </div>
     </div>
@@ -44,7 +45,7 @@
             </form>
         </div>
         <div id="table-view-box">
-            <table id="table-view">
+<!--            <table id="table-view">
                 <tr id="ops-header">
                     <th>Timestamp</th>
                     <th>User</th>
@@ -58,6 +59,50 @@
                     <th>Quantity</th>
                     <th>Price Per Share</th>
                 </tr>
+            </table>-->
+            <table id="transactions-table">
+                <thead>
+                    <tr>
+                        <th>Timestamp</th>
+                        <th>Quantity</th>
+                        <th>Price Per Share</th>
+                        <th>Seller</th>
+                        <th>Buyer</th>
+                    </tr>
+                </thead>
+                <tbody id="transactions-table-body">
+
+                </tbody>
+            </table>
+            <table id="buy-commands-table">
+                <thead>
+                    <tr>
+                        <th>Timestamp</th>
+                        <th>User</th>
+                        <th>Direction</th>
+                        <th>Type</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                    </tr>
+                </thead>
+                <tbody id="buy-commands-table-body">
+
+                </tbody>
+            </table>
+            <table id="sell-commands-table">
+                <thead>
+                    <tr>
+                        <th>Timestamp</th>
+                        <th>User</th>
+                        <th>Direction</th>
+                        <th>Type</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                    </tr>
+                </thead>
+                <tbody id="sell-commands-table-body">
+
+                </tbody>
             </table>
         </div>
     </div>

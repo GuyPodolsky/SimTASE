@@ -12,7 +12,6 @@ public class StockDT {
     /**
      * The variables that defines a stock.
      */
-    private int quantity;
     private final String companyName;
     private final String symbol;
     private final float sharePrice;
@@ -34,7 +33,6 @@ public class StockDT {
     public StockDT()
     {
         this.companyName = "";
-        this.quantity = 0;
         this.stockTransactions = null;
         this.sharePrice = 0;
         this.sellCommandDTs = null;
@@ -52,7 +50,6 @@ public class StockDT {
         this.transactionsTurnOver = turnOver;
         buyCommandDTs = buy;
         sellCommandDTs = sell;
-        this.quantity = 0;
     }
 
     //////////////// test
@@ -66,7 +63,7 @@ public class StockDT {
         this.stockTransactions = null;
         this.buyCommandDTs = null;
         this.sellCommandDTs = null;
-        this.quantity = quantity;
+
     }
 
 
@@ -84,7 +81,7 @@ public class StockDT {
         this.transactionsTurnOver = stock.getTransactionsTurnOver();
         buyCommandDTs = stock.getBuyCommandsList();
         sellCommandDTs = stock.getSellCommandsList();
-        this.quantity = 0;
+
     }
 
     /**
@@ -108,14 +105,6 @@ public class StockDT {
 
     public float getTransactionsTurnOver() {
         return transactionsTurnOver;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
     }
 
     /**

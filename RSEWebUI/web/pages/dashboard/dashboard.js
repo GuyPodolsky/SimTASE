@@ -156,7 +156,9 @@ function stockSelected(event) {
     let row = event.currentTarget;
     let cells = row.childNodes;
     let symbol = cells[0].innerText;
-    $.ajax({
+
+    window.location.replace("../stockview/stockview.html?stock="+symbol);
+/*    $.ajax({
         type: 'GET',
         data: {'symbol': symbol},
         url: "/showStock",
@@ -166,7 +168,7 @@ function stockSelected(event) {
 
         }
 
-    });
+    });*/
 }
 
 function updateUserDetails() {
