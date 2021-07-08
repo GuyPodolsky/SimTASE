@@ -8,8 +8,13 @@ $(function (){ // onload
     $("#addingToBalance").submit(function (){
         $.ajax({
             type:'POST',
-            data: $(this).serialize(),
-            url:"/AddToUserBalance",
+            data:{
+                op:"add",
+                amount:document.getElementById("add-amount").value},
+            url:'/UpdateUserDetails',
+            error:function (){
+                alert("PROBLEMMMMM");
+            }
         })
         return false;
     })
@@ -45,7 +50,8 @@ $(function (){ // onload
     })
 })
 
-function updateActiveUsers(){
+function updateActiveUsers(){ //TODO: make the refresh less annoying.
+                              //TODO: self-transfer.
     $.ajax({
         type:'GET',
         url:"/activeUsers",
@@ -58,6 +64,8 @@ function updateActiveUsers(){
             $("#activeUsersList").empty();
             $("#user-select").empty();
             let json = jsonStr;
+            let sel = document.getElementById("user-select");
+            let val = sel.value;
             for(let i=0; i<json.length;i++){
                 $(document.createElement("li"))
                     .text(json[i]["userName"] + " | " + (json[i]["isAdmin"]?"Admin":"Trader"))
@@ -67,10 +75,10 @@ function updateActiveUsers(){
                     let op = document.createElement('option');
                     op.id = id;
                     op.text = json[i]["userName"];
-                    document.getElementById("user-select").appendChild(op);
+                    sel.appendChild(op);
                 }
             }
-
+            sel.selectedIndex = val;
         }
     })
 }

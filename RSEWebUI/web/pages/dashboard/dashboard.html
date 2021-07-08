@@ -23,13 +23,28 @@
                 <th>Symbol</th>
                 <th>Company name</th>
                 <th>Share price</th>
-<!--                <th>User holdings</th>-->
                 <th>Total transactions turnover</th>
             </thead>
             <tbody id="stocksBody">
 
             </tbody>
         </table>
+    </div>
+    <div id="addPublicOfferBlock" class="section" class="user-adding-forms">
+        <h4 class="user-info"> Add new company public offering:</h4>
+        <form id="addPublicOffering" method="post">
+                    <span style="display:inline-flex;">
+                        <label>Company name:  </label>
+                        <input type="text" name="company name">
+                    </span>
+            <span style="display: inline-flex">
+                        <label>Company symbol:  </label>
+                        <input type="text" name="company symbol">
+                    </span>
+            <input type="number" name="shares quantity" min="1" placeholder="Public offering shares amount" style="width: 16em"><br><br>
+            <input type="number" name="company estimated value" min="1" placeholder="Company estimated value" style="width: 16em"><br><br>
+            <input type="submit" name="Add new company">
+        </form>
     </div>
     <div class="section2">
     <h2 class="sub-title" class="user-info-block">User information:</h2>
@@ -47,8 +62,8 @@
             <span>
                 <h4 class="user-info">Add to balance:</h4>
                 <form id="addingToBalance" method="post" style="display: flex">
-                    <input type="number" name="quantity" placeholder="Amount to add" min="1" step="0.01" />
-                    <input type="submit" value="Add" onclick=""/>
+                    <input id="add-amount" type="number" name="quantity" placeholder="Amount to add" min="1" step="0.01" />
+                    <input type="submit" value="Add"/>
                 </form>
             </span>
             <br>
@@ -80,7 +95,7 @@
                 </tbody>
             </table>
         </div>
-<!--        <div class="user-info-block">
+        <!--        <div class="user-info-block">
             <h4 class="user-info"> Awaiting commands:</h4>
             <table id="awaitingCommands">
                 <tr>
@@ -93,8 +108,7 @@
                 </tr>
             </table>
         </div>-->
-        <br><br>
-        <div class="user-adding-forms">
+        <!--<div class="user-adding-forms">
             <br><br>
             <div class="user-adding-forms">
                 <h4 class="user-info"> Add trade command:</h4>
@@ -121,24 +135,8 @@
                     <input type="submit" name="Add trade command"><br><br>
                 </form>
             </div>
-            <div id="addPublicOfferBlock" class="user-adding-forms">
-                <h4 class="user-info"> Add new company public offering:</h4>
-                <form id="addPublicOffering" method="post">
-                    <span style="display:inline-flex;">
-                        <label>Company name:  </label>
-                        <input type="text" name="company name">
-                    </span>
-                    <span style="display: inline-flex">
-                        <label>Company symbol:  </label>
-                        <input type="text" name="company symbol">
-                    </span>
-                    <input type="number" name="shares quantity" min="1" placeholder="Public offering shares amount" style="width: 16em"><br><br>
-                    <input type="number" name="company estimated value" min="1" placeholder="Company estimated value" style="width: 16em"><br><br>
-                    <input type="submit" name="Add new company">
-                </form>
-            </div>
-        </div>
 
+        </div>-->
     </div>
 
 

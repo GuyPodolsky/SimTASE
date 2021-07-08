@@ -2,6 +2,7 @@ package rse.servlets;
 
 import engine.logic.Engine;
 import engine.users.User;
+import engine.users.UserAction;
 import rse.logger.Logger;
 
 import javax.servlet.http.HttpServlet;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.LocalDateTime;
 
 public class UserDetailsServlet extends HttpServlet {
 
@@ -73,12 +75,12 @@ public class UserDetailsServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession(false);
         User curUser = Engine.getInstance().getUsersManager().getUser(session.getAttribute("username").toString());
-        String testStr = request.getParameter("to");
-        User otherUser = Engine.getInstance().getUsersManager().getUser(testStr);
         float amount = Float.parseFloat(request.getParameter("amount"));
         operation op = operation.getByName(request.getParameter("op"));
         switch (op){
             case Transfer:
+                String otherUserStr = request.getParameter("to");
+                User otherUser = Engine.getInstance().getUsersManager().getUser(otherUserStr);
                 transfer(curUser,otherUser,amount);
                 break;
             case Add:
@@ -106,11 +108,14 @@ public class UserDetailsServlet extends HttpServlet {
     }
 
     private void transfer(User from, User to, float amount){
+        from.getActions().add(new UserAction(("Transfer to " + to.getUserName()), LocalDateTime.now(),amount, from.getUserBalance() , from.getUserBalance()-amount));
+        to.getActions().add(new UserAction(("Transfer from " + from.getUserName()), LocalDateTime.now(),amount, to.getUserBalance() , to.getUserBalance()+amount));
         from.setUserBalance(from.getUserBalance()-amount);
         to.addToUserBalance(amount);
     }
 
     private void add(User user, float amount){
+        user.getActions().add(new UserAction("Addition to balance",LocalDateTime.now(),amount, user.getUserBalance(),user.getUserBalance()+amount));
         user.addToUserBalance(amount);
     }
 }

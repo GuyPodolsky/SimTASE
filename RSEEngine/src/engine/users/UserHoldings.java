@@ -6,7 +6,10 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleFloatProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
+import java.time.format.DateTimeFormatter;
+
 public class UserHoldings {
+
     private final String symbol;
     private final Stock stock;
     private IntegerProperty quantity;

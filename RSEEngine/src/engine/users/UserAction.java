@@ -1,5 +1,8 @@
 package engine.users;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 /*
 enum to differ between the three different action types.
 The enum will ease the showing of each user action
@@ -22,26 +25,26 @@ enum actionType{
 
 public class UserAction {
 
-
-    private actionType action;
+    private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss:SSS");
+    private String action;
     private String date;
     private float transactionAmount;
     private float preBalance;
     private float postBalance;
 
-    public UserAction(actionType actionType, String actionDate, float amount, float pre, float post){
+    public UserAction(String actionType, LocalDateTime actionDate, float amount, float pre, float post){
         this.action = actionType;
-        this.date = actionDate;
+        this.date = formatter.format(actionDate);
         this.transactionAmount = amount;
         this.preBalance = pre;
         this.postBalance = post;
     }
 
-    public actionType getAction() {
+    public String getAction() {
         return action;
     }
 
-    public void setAction(actionType action) {
+    public void setAction(String action) {
         this.action = action;
     }
 
@@ -49,8 +52,8 @@ public class UserAction {
         return date;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setDate(LocalDateTime date) {
+        this.date = formatter.format(date);
     }
 
     public float getTransactionAmount() {

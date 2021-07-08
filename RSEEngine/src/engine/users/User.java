@@ -161,12 +161,12 @@ public class User {
         if(transaction.getSeller().getUserName().equals(userName)) {      // if the user is the seller - we need to add the turnover to his balance
             float pre = userBalance;
             userBalance += transaction.getTurnover();
-            actions.add(new UserAction(actionType.SELL,transaction.getDateStamp().toString(),transaction.getTurnover(),pre, userBalance));
+            actions.add(new UserAction(("Acquisition of " + transaction.getQuantity() + " shares of " + transaction.getSymbol()),LocalDateTime.now(),transaction.getTurnover(),pre, userBalance));
         }
         else {        // else - the user is the buyer and we need to reduce the turnover from the user balance
             float pre = userBalance;
             userBalance -= transaction.getTurnover();
-            actions.add(new UserAction(actionType.BUY,transaction.getDateStamp().toString(),-transaction.getTurnover(), pre,userBalance));
+            actions.add(new UserAction(("Sale of " + transaction.getQuantity() + " shares of " + transaction.getSymbol()),LocalDateTime.now(),-transaction.getTurnover(), pre,userBalance));
         }
         userTransactions.add(transaction);
     }
@@ -192,8 +192,6 @@ public class User {
         String formattedTimestamp = dateStamp.format(DateTimeFormatter.ofPattern("HH:mm:ss:SSS"));
         float pre = userBalance;
         userBalance+=addition;
-        actions.add(new UserAction(actionType.ADD,formattedTimestamp,addition, pre,userBalance));
-
     }
 
     public void addNewStock(Stock stock, int sharesQuantity){
