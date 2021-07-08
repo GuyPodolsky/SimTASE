@@ -40,13 +40,12 @@ function updateShowStock(){
             document.getElementById("share-value").innerHTML ="Share Value: " + stock["sharePrice"];
             document.getElementById("turnover").innerHTML ="Turnover: " + stock["transactionsTurnOver"];
             document.getElementById("own-holdings").innerHTML ="You own " + userHoldings +" shares";
-            ////document.getElementById("#").innerHTML ="Hi "+username;
-            //$("#username-greet").innerHTML = "Hi "+username;
-            //$("#details-box-header").childNodes[0].innerText = stock["symbol"] +" Stock View";
-            //$("#company-name"). innerHTML = "Company Name: " + stock["companyName"];
-            //$("#share-value").innerHTML = "Share Value: " + stock["sharePrice"];
-            //$("#turnover").innerHTML = "Turnover: " + stock["transactionsTurnOver"];
-            //$("#own-holdings").innerHTML = "You own " + userHoldings +" shares";
+            document.getElementById("details-box-header").children[0].innerHTML =stock["symbol"] +" Stock View";
+
+            for(var i =0;i<stock["stockTransactions"].length;i++){ // to show the stock transactions
+                let tran = stock["stockTransactions"][i];   // the i'th transaction
+
+            }
         }
 
     })

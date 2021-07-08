@@ -45,7 +45,7 @@
             </form>
         </div>
         <div id="table-view-box">
-            <table id="table-view">
+<!--            <table id="table-view">
                 <tr id="ops-header">
                     <th>Timestamp</th>
                     <th>User</th>
@@ -59,6 +59,35 @@
                     <th>Quantity</th>
                     <th>Price Per Share</th>
                 </tr>
+            </table>-->
+            <table id="transactions-table">
+                <thead>
+                    <tr>
+                        <th>Timestamp</th>
+                        <th>Quantity</th>
+                        <th>Price Per Share</th>
+                        <th>Seller</th>
+                        <th>Buyer</th>
+                    </tr>
+                </thead>
+                <tbody id="transactions-table-body">
+
+                </tbody>
+            </table>
+            <table id="commands-table">
+                <thead>
+                    <tr>
+                        <th>Timestamp</th>
+                        <th>User</th>
+                        <th>Direction</th>
+                        <th>Type</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                    </tr>
+                </thead>
+                <tbody id="commands-table-body">
+
+                </tbody>
             </table>
         </div>
     </div>
