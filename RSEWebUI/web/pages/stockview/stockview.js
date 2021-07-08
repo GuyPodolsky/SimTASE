@@ -1,11 +1,27 @@
 $(function () { // onload
     let params = new URLSearchParams(location.search);
     let stockSymbol = params.get('stock');
+    window.setTimeout(updateShowStock,1);
     window.setInterval(updateShowStock,3000);
     document.cookie = "stock=" +stockSymbol;
+    document.getElementById("back-btn").onclick = function (action){
+        //window.location.url = "../login/login.html";
+        window.location.replace("/pages/dashboard/dashboard.html");
+    }
 
 
 })
+
+function deleteAllCookies() {
+    var cookies = document.cookie.split(";");
+
+    for (var i = 0; i < cookies.length; i++) {
+        var cookie = cookies[i];
+        var eqPos = cookie.indexOf("=");
+        var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+        document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+    }
+}
 
 
 function getCookie(cname) {
