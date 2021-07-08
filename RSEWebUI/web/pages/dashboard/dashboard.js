@@ -1,9 +1,12 @@
 
 
 $(function (){ // onload
-    window.setInterval(updateActiveUsers,3000);
-    window.setInterval(updateActiveStocks,3000);
-    window.setInterval(updateUserDetails,3000);
+    window.setTimeout(updateActiveUsers,1);
+    window.setTimeout(updateActiveStocks,1);
+    window.setTimeout(updateUserDetails,1);
+    window.setInterval(updateActiveUsers,2000);
+    window.setInterval(updateActiveStocks,2000);
+    window.setInterval(updateUserDetails,2000);
 
     $("#addingToBalance").submit(function (){
         $.ajax({

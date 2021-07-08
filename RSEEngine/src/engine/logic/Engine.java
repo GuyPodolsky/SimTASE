@@ -333,7 +333,7 @@ public class Engine implements Trader {
             buyCommands = new PriorityQueue<>(1, Collections.reverseOrder());
             rseBuyCommands = rs.getRseBuyCommands();
             for (RseTradeCommand tc : rseBuyCommands)
-                buyCommands.add(new TradeCommand(TradeCommand.direction.valueOf(tc.getRseDir()), TradeCommand.commandType.valueOf(tc.getRseType()), tc.getRseQuantity(), tc.getRsePrice(), tc.getRseSymbol(), LocalDateTime.parse(tc.getRseDateTime()), users.getUser(tc.getRseUser())));
+                buyCommands.add(new TradeCommand(TradeCommand.Direction.valueOf(tc.getRseDir()), TradeCommand.CommandType.valueOf(tc.getRseType()), tc.getRseQuantity(), tc.getRsePrice(), tc.getRseSymbol(), LocalDateTime.parse(tc.getRseDateTime()), users.getUser(tc.getRseUser())));
         }
         Queue<TradeCommand> sellCommands = null;
         List<RseTradeCommand> rseSellCommands = null;
@@ -341,7 +341,7 @@ public class Engine implements Trader {
             sellCommands = new PriorityQueue<>(1);
             rseSellCommands = rs.getRseSellCommands();
             for (RseTradeCommand tc : rseSellCommands)
-                sellCommands.add(new TradeCommand(TradeCommand.direction.valueOf(tc.getRseDir()), TradeCommand.commandType.valueOf(tc.getRseType()), tc.getRseQuantity(), tc.getRsePrice(), tc.getRseSymbol(), LocalDateTime.parse(tc.getRseDateTime()), users.getUser(tc.getRseUser())));
+                sellCommands.add(new TradeCommand(TradeCommand.Direction.valueOf(tc.getRseDir()), TradeCommand.CommandType.valueOf(tc.getRseType()), tc.getRseQuantity(), tc.getRsePrice(), tc.getRseSymbol(), LocalDateTime.parse(tc.getRseDateTime()), users.getUser(tc.getRseUser())));
         }
         List<Transaction> transactions = null;
         List<RseTransactions> rseTransactions = null;
@@ -392,13 +392,13 @@ public class Engine implements Trader {
      * @throws InputMismatchException will be thrown in case there isn't a stock will this symbol.
      */
     @Override
-    public String addTradeCommand(String companySymbol, TradeCommand.direction dir, TradeCommand.commandType command, int quantity, float wantedPrice, User user) throws InputMismatchException {
-        if (command != TradeCommand.commandType.MKT && wantedPrice <= 0)
+    public String addTradeCommand(String companySymbol, TradeCommand.Direction dir, TradeCommand.CommandType command, int quantity, float wantedPrice, User user) throws InputMismatchException {
+        if (command != TradeCommand.CommandType.MKT && wantedPrice <= 0)
             throw new IllegalArgumentException("Command has been canceled. \n" + " Price must be a positive number.");
         if (quantity <= 0)
             throw new IllegalArgumentException("Command has been canceled. \n" + " Shares quantity must be a positive number.");
         Stock stock = getSingleStock(companySymbol);
-        if (command != TradeCommand.commandType.MKT)                             //in MKT command there isn't a need to ask the user for a desired price.
+        if (command != TradeCommand.CommandType.MKT)                             //in MKT command there isn't a need to ask the user for a desired price.
             return stock.addTradeCommand(dir, command, quantity, wantedPrice, user);
         else
             return stock.addTradeCommand(dir, command, quantity, stock.getSharePrice(), user);

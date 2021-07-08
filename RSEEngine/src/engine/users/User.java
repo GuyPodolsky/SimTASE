@@ -7,7 +7,6 @@ import engine.logic.Transaction;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 
-import javax.management.openmbean.InvalidKeyException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -141,17 +140,17 @@ public class User {
         this.userBalance = userBalance;
     }
 
-    public void addUserTradeCommand(TradeCommand command,TradeCommand.direction dir){
+    public void addUserTradeCommand(TradeCommand command, TradeCommand.Direction dir){
         if(isAdmin)
             throw new IllegalAccessError("Admin can't add trade commands.");
-        if(dir == TradeCommand.direction.SELL)
+        if(dir == TradeCommand.Direction.SELL)
             userSellCommands.put(command.getDate(),command);
         else
             userBuyCommands.put(command.getDate(),command);
     }
 
-    public void removeUserTradeCommand(LocalDateTime time, TradeCommand.direction dir, TradeCommand command){
-        if(dir == TradeCommand.direction.SELL)
+    public void removeUserTradeCommand(LocalDateTime time, TradeCommand.Direction dir, TradeCommand command){
+        if(dir == TradeCommand.Direction.SELL)
             userSellCommands.remove(time,command);
         else
             userBuyCommands.remove(time,command);

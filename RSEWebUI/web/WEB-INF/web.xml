@@ -36,6 +36,10 @@
         <servlet-name>UpdateUserDetails</servlet-name>
         <servlet-class>rse.servlets.UserDetailsServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>TradeCommandsServlet</servlet-name>
+        <servlet-class>rse.servlets.TradeCommandsServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>rse</servlet-name>
         <url-pattern>/rse</url-pattern>
@@ -72,4 +76,9 @@
         <servlet-name>UpdateUserDetails</servlet-name>
         <url-pattern>/UpdateUserDetails</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TradeCommandsServlet</servlet-name>
+        <url-pattern>/TradeCommands</url-pattern>
+    </servlet-mapping>
+
 </web-app>

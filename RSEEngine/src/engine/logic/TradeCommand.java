@@ -19,12 +19,83 @@ public class TradeCommand implements Comparable<TradeCommand>{
     /**
      * A enum of possible trade directions.
      */
-    public enum direction {BUY, SELL}
+    public enum Direction {
+        BUY("buy",0),
+        SELL("sell",1);
+        String name;
+        int num;
+
+        Direction(String name, int num){
+            this.name=name;
+            this.num=num;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public int getNum() {
+            return num;
+        }
+
+        public static Direction getByName(String name) {
+            for(Direction dir: Direction.values()) {
+                if(dir.name.equals(name))
+                    return dir;
+            }
+            return null;
+        }
+
+        public static Direction getByNum(int num) {
+            for(Direction dir: Direction.values()) {
+                if(dir.num == num)
+                    return dir;
+            }
+            return null;
+        }
+    }
 
     /**
      * A enum of possible trade command types.
      */
-    public enum commandType{LMT,MKT,FOK,IOC}
+    public enum CommandType {
+        LMT("LMT",0),
+        MKT("MKT",1),
+        FOK("FOK",2),
+        IOC("IOC",3);
+
+        String name;
+        int num;
+
+        CommandType(String name, int num){
+            this.name=name;
+            this.num=num;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public int getNum() {
+            return num;
+        }
+
+        public static CommandType getByName(String name) {
+            for(CommandType type: CommandType.values()) {
+                if(type.name.equals(name))
+                    return type;
+            }
+            return null;
+        }
+
+        public static CommandType getByNum(int num) {
+            for(CommandType type: CommandType.values()) {
+                if(type.num == num)
+                    return type;
+            }
+            return null;
+        }
+    }
 
     /**
      * A variable that defines a format of showing the date and time
@@ -34,12 +105,12 @@ public class TradeCommand implements Comparable<TradeCommand>{
     /**
      * The variables that defines a trade command.
      */
-    final private direction direction;
+    final private Direction direction;
     private int quantity;
     final private String symbol;
     private float wantedPrice;
     private LocalDateTime dateTimeStamp;
-    final private commandType commandType;
+    final private CommandType commandType;
     final private User user;
 
     /**
@@ -51,7 +122,7 @@ public class TradeCommand implements Comparable<TradeCommand>{
      * @param symbol the symbol of the stock.
      * @throws InputMismatchException will be thrown in case one of the variables above is invalid. (Example: howMany variable is a negative number)
      */
-    public TradeCommand(direction dir, commandType type, int howMany, float whatPrice, String symbol,User usr) throws InputMismatchException {
+    public TradeCommand(Direction dir, CommandType type, int howMany, float whatPrice, String symbol, User usr) throws InputMismatchException {
         if (!(howMany>=0)) {    //checks that the number of shares that we would like to trade with is a positive number.
             throw new InputMismatchException("Invalid quantity value!, should be a positive integer");
         } else if(!(whatPrice>=0)) { //checks that the desired price per share is a positive number.
@@ -70,7 +141,7 @@ public class TradeCommand implements Comparable<TradeCommand>{
         }
     }
 
-    public TradeCommand(direction dir, commandType type, int howMany, float whatPrice, String symbol,LocalDateTime dateTimeStamp,User usr) throws InputMismatchException {
+    public TradeCommand(Direction dir, CommandType type, int howMany, float whatPrice, String symbol, LocalDateTime dateTimeStamp, User usr) throws InputMismatchException {
         if (!(howMany>=0)) {    //checks that the number of shares that we would like to trade with is a positive number.
             throw new InputMismatchException("Invalid quantity value!, should be a positive integer");
         } else if(!(whatPrice>=0)) { //checks that the desired price per share is a positive number.
@@ -93,7 +164,7 @@ public class TradeCommand implements Comparable<TradeCommand>{
      * A getter of the trade direction.
      * @return the trade direction.
      */
-    public direction getDirection() { return this.direction; }
+    public Direction getDirection() { return this.direction; }
 
     /**
      * A getter of the quantity of share we would like to trade with.
@@ -115,7 +186,7 @@ public class TradeCommand implements Comparable<TradeCommand>{
      * A getter of the type of the trade command.
      * @return the type of the trade command.
      */
-    public commandType getCommandType() { return commandType;}
+    public CommandType getCommandType() { return commandType;}
 
     /**
      * A getter of the desired price per share.

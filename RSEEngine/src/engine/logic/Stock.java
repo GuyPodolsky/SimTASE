@@ -245,15 +245,15 @@ public class Stock {
      * @return A string with the initial status of the added trade.
      * @throws IllegalArgumentException if the user want to sell more shares of the stock then he really has.
      */
-   public String addTradeCommand(TradeCommand.direction dir, TradeCommand.commandType command, int quantity, float wantedPrice, User user){
+   public String addTradeCommand(TradeCommand.Direction dir, TradeCommand.CommandType command, int quantity, float wantedPrice, User user){
        TradeCommand tr;
-       if(dir == TradeCommand.direction.SELL && quantity> user.getUserFreeHoldings(this.getSymbol()))
+       if(dir == TradeCommand.Direction.SELL && quantity> user.getUserFreeHoldings(this.getSymbol()))
            throw new IllegalArgumentException("Command has been canceled. \n"+user.getUserName() + " has only " + user.getUserFreeHoldings(this.getSymbol())+ " shares of this stock left to trade.");
-       if(command != TradeCommand.commandType.MKT)
+       if(command != TradeCommand.CommandType.MKT)
            tr = new TradeCommand(dir, command, quantity, wantedPrice, this.getSymbol(),user);
         else{
             float mktPrice;
-            if(dir == TradeCommand.direction.BUY)
+            if(dir == TradeCommand.Direction.BUY)
                 mktPrice = getMKTSellPrice(quantity);
             else // sell command
                 mktPrice = getMKTBuyPrice(quantity);
@@ -301,7 +301,7 @@ public class Stock {
      * @param priorityFlag the direction of the last inserted trade, needed to set a priority to the price per share of the trade.
      * @return -1 if there isn't any matching commands, otherwise the number of shares that were traded.
      */
-    public int searchMatchingLMTCommand(TradeCommand.direction priorityFlag) {
+    public int searchMatchingLMTCommand(TradeCommand.Direction priorityFlag) {
         if (buyCommands.isEmpty() || sellCommands.isEmpty())
             return -1; // there isn't any matching command
 
@@ -314,9 +314,9 @@ public class Stock {
 
         if (buy.getPrice() < sell.getPrice()&& !buy.getUser().equals(sell.getUser()))
             return -1;
-        else if(buy.getUser().equals(sell.getUser())&& priorityFlag.equals(TradeCommand.direction.BUY)) {
+        else if(buy.getUser().equals(sell.getUser())&& priorityFlag.equals(TradeCommand.Direction.BUY)) {
             needToReturn = true;
-            while (!sellCommands.isEmpty() && buy.getPrice() >= sell.getPrice() && buy.getUser().equals(sell.getUser()) && priorityFlag.equals(TradeCommand.direction.BUY)) {
+            while (!sellCommands.isEmpty() && buy.getPrice() >= sell.getPrice() && buy.getUser().equals(sell.getUser()) && priorityFlag.equals(TradeCommand.Direction.BUY)) {
                 save.add(sell);
                 sellCommands.remove();
                 sell = sellCommands.peek();
@@ -327,9 +327,9 @@ public class Stock {
                 return -1; // there isn't any matching command of a different user
             }
         }
-        else if(buy.getUser().equals(sell.getUser())&& priorityFlag.equals(TradeCommand.direction.SELL)) {
+        else if(buy.getUser().equals(sell.getUser())&& priorityFlag.equals(TradeCommand.Direction.SELL)) {
             needToReturn = true;
-            while (!buyCommands.isEmpty() && buy.getPrice() >= sell.getPrice() && buy.getUser().equals(sell.getUser()) && priorityFlag.equals(TradeCommand.direction.SELL)) {
+            while (!buyCommands.isEmpty() && buy.getPrice() >= sell.getPrice() && buy.getUser().equals(sell.getUser()) && priorityFlag.equals(TradeCommand.Direction.SELL)) {
                 save.add(buy);
                 buyCommands.remove();
                 buy = buyCommands.peek();
@@ -345,7 +345,7 @@ public class Stock {
         while (flag && !(buy.getPrice() < sell.getPrice())) {
             // get the minimum quantity for the trade
             int finalQuantity = Arrays.stream(new int[]{buy.getQuantity(), sell.getQuantity()}).min().getAsInt();
-            float price = (priorityFlag==TradeCommand.direction.BUY) ? sell.getPrice():buy.getPrice();
+            float price = (priorityFlag== TradeCommand.Direction.BUY) ? sell.getPrice():buy.getPrice();
             Transaction transaction = new Transaction(finalQuantity, price, buy.getUser(), sell.getUser(),this);
             stockTransactions.add(0, transaction); // add the new transaction
             sharePrice.set(price);
@@ -355,31 +355,31 @@ public class Stock {
             // need to check if there's any leftover shares
             if (buy.getQuantity() - sell.getQuantity() > 0) { // there are more buying shares awaiting
                 buy.setQuantity(buy.getQuantity() - sell.getQuantity()); // updating the number of shares to buy
-                sell.getUser().removeUserTradeCommand(sell.getDate(), TradeCommand.direction.SELL,sell);    // remove this trade command from the user sell commands list
+                sell.getUser().removeUserTradeCommand(sell.getDate(), TradeCommand.Direction.SELL,sell);    // remove this trade command from the user sell commands list
                 sellCommands.remove(); // removing the first sell command
                 sell = sellCommands.peek(); // check if there are more shares to trade
                 if (sell == null)
                     flag = false;
             } else if (sell.getQuantity() - buy.getQuantity() > 0) {
                 sell.setQuantity(sell.getQuantity() - buy.getQuantity());
-                buy.getUser().removeUserTradeCommand(buy.getDate(), TradeCommand.direction.BUY,buy);     // remove this trade command from the user buy commands list
+                buy.getUser().removeUserTradeCommand(buy.getDate(), TradeCommand.Direction.BUY,buy);     // remove this trade command from the user buy commands list
                 buyCommands.remove();
                 buy = buyCommands.peek(); // check if there are more shares to trade
                 if (buy == null)
                     flag = false;
             } else { // the quantities were equal - remove both of them from the queue
                 flag = false;
-                buy.getUser().removeUserTradeCommand(buy.getDate(), TradeCommand.direction.BUY,buy);
+                buy.getUser().removeUserTradeCommand(buy.getDate(), TradeCommand.Direction.BUY,buy);
                 buyCommands.remove();   // remove this trade command from the user buy commands list
-                sell.getUser().removeUserTradeCommand(sell.getDate(), TradeCommand.direction.SELL,sell);
+                sell.getUser().removeUserTradeCommand(sell.getDate(), TradeCommand.Direction.SELL,sell);
                 sellCommands.remove();  // remove this trade command from the user sell commands list
 
             }
         }
-        if(needToReturn&&priorityFlag.equals(TradeCommand.direction.BUY))
+        if(needToReturn&&priorityFlag.equals(TradeCommand.Direction.BUY))
             while(!save.isEmpty())
                 sellCommands.add(save.remove(0));
-        else if(needToReturn&&priorityFlag.equals(TradeCommand.direction.SELL))
+        else if(needToReturn&&priorityFlag.equals(TradeCommand.Direction.SELL))
             while(!save.isEmpty())
                 buyCommands.add(save.remove(0));
 
@@ -408,7 +408,7 @@ public class Stock {
     }
 
     private String IOCHandler(TradeCommand command) {
-        Queue<TradeCommand> TC = command.getDirection()==TradeCommand.direction.BUY ? buyCommands:sellCommands;
+        Queue<TradeCommand> TC = command.getDirection()== TradeCommand.Direction.BUY ? buyCommands:sellCommands;
         int saveQuantity = command.getQuantity();
         int res = searchMatchingLMTCommand(command.getDirection()); // generic method, for both buy\sell commands. returns the number of shares that been traded
         if(res == -1) {

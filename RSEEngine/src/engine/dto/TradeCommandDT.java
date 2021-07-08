@@ -19,13 +19,13 @@ public class TradeCommandDT {
     /**
      * The variables that defines a trade command.
      */
-    final private TradeCommand.direction direction;
+    final private TradeCommand.Direction direction;
     final private int quantity;
     final private String symbol;
     final private float wantedPrice;
     final private LocalDateTime DateTimeStamp;
     final private String formattedDateTime;
-    final private TradeCommand.commandType commandType;
+    final private TradeCommand.CommandType commandType;
     private User user;
     final private float turnover;
 
@@ -38,7 +38,7 @@ public class TradeCommandDT {
      * @param symbol the symbol of the traded stock.
      * @param dateTimeStamp the time and date of the trade command creation.
      */
-    public TradeCommandDT(TradeCommand.direction dir, TradeCommand.commandType type, int howMany, float whatPrice, String symbol, LocalDateTime dateTimeStamp) {
+    public TradeCommandDT(TradeCommand.Direction dir, TradeCommand.CommandType type, int howMany, float whatPrice, String symbol, LocalDateTime dateTimeStamp) {
         this.direction = dir;
         this.quantity = howMany;
         this.symbol = symbol;
@@ -50,7 +50,7 @@ public class TradeCommandDT {
         this.turnover = whatPrice * howMany;
     }
 
-    public TradeCommandDT(TradeCommand.direction direction, int quantity, String symbol, float wantedPrice, LocalDateTime dateTimeStamp, TradeCommand.commandType commandType, User user) {
+    public TradeCommandDT(TradeCommand.Direction direction, int quantity, String symbol, float wantedPrice, LocalDateTime dateTimeStamp, TradeCommand.CommandType commandType, User user) {
         this.direction = direction;
         this.quantity = quantity;
         this.symbol = symbol;
@@ -66,7 +66,7 @@ public class TradeCommandDT {
      * A getter of the trade command direction.
      * @return the trade command direction.
      */
-    public TradeCommand.direction getDirection(){
+    public TradeCommand.Direction getDirection(){
         return this.direction;
     }
 
@@ -98,7 +98,7 @@ public class TradeCommandDT {
      * A getter of the trade command type.
      * @return the trade command type.
      */
-    public TradeCommand.commandType getCommandType() {
+    public TradeCommand.CommandType getCommandType() {
         return commandType;
     }
 

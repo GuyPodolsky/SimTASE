@@ -1,16 +1,34 @@
 $(function () { // onload
     let params = new URLSearchParams(location.search);
     let stockSymbol = params.get('stock');
-    window.setTimeout(updateShowStock,1);
-    window.setInterval(updateShowStock,3000);
-    document.cookie = "stock=" +stockSymbol;
-    document.getElementById("back-btn").onclick = function (action){
-        //window.location.url = "../login/login.html";
-        window.location.replace("/pages/dashboard/dashboard.html");
-    }
+    window.setTimeout(updateShowStock, 1);
+    window.setInterval(updateShowStock, 3000);
+    document.cookie = "stock=" + stockSymbol;
 
-
+    $("#buy-sell-form").submit(function (){
+        let dir = document.getElementById("dirChoice1").checked ? "buy":"sell";
+        let type = document.getElementById("typeSel").options.selectedIndex;
+        let quantity = document.getElementById("quantity").value;
+        let price = document.getElementById("price").value;
+        $.ajax({
+            type:'POST',
+            data:{
+                symbol:stockSymbol,
+                dir:dir,
+                type:type,
+                quantity:quantity,
+                price:price
+            },
+            url:'/TradeCommands',
+            error:function (){
+                alert("PROBLEMMMMM");
+            }
+        })
+        return false;
+    })
 })
+
+
 
 function deleteAllCookies() {
     var cookies = document.cookie.split(";");
@@ -22,7 +40,6 @@ function deleteAllCookies() {
         document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
     }
 }
-
 
 function getCookie(cname) {
     let name = cname + "=";
@@ -123,4 +140,8 @@ function updateShowStock(){
             } // for
         } // successes
     })// ajax call
+}
+
+function goBack(){
+    window.location.replace("../dashboard/dashboard.html");
 }
