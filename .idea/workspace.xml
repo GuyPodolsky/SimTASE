@@ -6,8 +6,9 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a14c5375-d147-41c4-b6bf-d40cd56cf20d" name="Default" comment="page 3 is now updating according to the stock. still need to add the awaiting command and transactions">
+    <list default="true" id="a14c5375-d147-41c4-b6bf-d40cd56cf20d" name="Default" comment="I've split the table in page 3 to two different tables">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RSEEngine/src/engine/users/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/RSEEngine/src/engine/users/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RSEWebUI/web/pages/stockview/stockview.html" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/web/pages/stockview/stockview.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RSEWebUI/web/pages/stockview/stockview.js" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/web/pages/stockview/stockview.js" afterDir="false" />
     </list>
@@ -543,7 +544,7 @@
       <workItem from="1625228658283" duration="12348000" />
       <workItem from="1625328978355" duration="3530000" />
       <workItem from="1625664954307" duration="11758000" />
-      <workItem from="1625748106014" duration="719000" />
+      <workItem from="1625748106014" duration="2901000" />
     </task>
     <task id="LOCAL-00001" summary="V1">
       <created>1624972995375</created>
@@ -648,7 +649,13 @@
       <option name="presentableId" value="LOCAL‎00015" />
       <updated>1625677789910</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL‎00016" summary="I've split the table in page 3 to two different tables">
+      <created>1625749117128</created>
+      <option name="number" value="LOCAL‎00016" />
+      <option name="presentableId" value="LOCAL‎00016" />
+      <updated>1625749117128</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -688,7 +695,8 @@
     <MESSAGE value="fixed the bug with trasfer" />
     <MESSAGE value="now we transfer from page 2 to 3" />
     <MESSAGE value="page 3 is now updating according to the stock. still need to add the awaiting command and transactions" />
-    <option name="LAST_COMMIT_MESSAGE" value="page 3 is now updating according to the stock. still need to add the awaiting command and transactions" />
+    <MESSAGE value="I've split the table in page 3 to two different tables" />
+    <option name="LAST_COMMIT_MESSAGE" value="I've split the table in page 3 to two different tables" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
