@@ -29,13 +29,17 @@ public class ShowStockServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException{
         HttpSession session = request.getSession(false);
-        if(session == null)
-            throw new IllegalStateException("User must enter the system first.");
-        String username = String.valueOf(session.getAttribute("username"));
-        User user = Engine.getInstance().getUsersManager().getUser(username);
-        String symbol = request.getParameter("symbol");
-        StockDT stockDT = Engine.getInstance().showStock(symbol);
+        if(session == null) {
+            response.sendError(HttpServletResponse.SC_FORBIDDEN, "User must enter the system first.");
+            return;
+        }
+
         try {
+            String username = String.valueOf(session.getAttribute("username"));
+            User user = Engine.getInstance().getUsersManager().getUser(username);
+            String symbol = request.getParameter("symbol");
+            StockDT stockDT = Engine.getInstance().showStock(symbol);
+
             //response.setContentType("text/json");
             PrintWriter out = response.getWriter();
             int userHoldings = user.getUserStockHoldings(symbol);
@@ -49,47 +53,16 @@ public class ShowStockServlet extends HttpServlet {
             Logger.getServerLogger().post(res);
             out.println(res);
             out.flush();
+        } catch (IllegalArgumentException | IllegalStateException e){
+            Logger.getServerLogger().post(e.getMessage());
+            response.setHeader("errorMessage",e.getMessage());
+            response.sendError(HttpServletResponse.SC_FORBIDDEN,e.getMessage());
         } catch (Exception e){
-            response.sendError(400,e.getMessage());
+            Logger.getServerLogger().post(e.getMessage());
+            response.setHeader("errorMessage",e.getMessage());
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR,e.getMessage());
         }
-/*
-        // insert the basic data about the stock
-        out.println("{symbol:"+stockDT.getSymbol()+", companyName:" +stockDT.getCompanyName()+
-                ", sharePrice:"+stockDT.getSharePrice()+", sharesQuantity:" +stockDT.getQuantity()+
-                ", transactionsTurnOver:" +stockDT.getTransactionsTurnOver()+", transactions:[");
-        // insert the transactions that been made in this stock
-        List<Transaction> trans = stockDT.getTransactions();
-        for (Transaction tr:trans) {
-            out.println("{date:"+tr.getFormattedTimestamp()+
-                    ", quantity:" +tr.getQuantity()+
-                    ", price:" +tr.getPrice()+
-                    ", turnover:"+tr.getTurnover()+
-                    ", buyer:"+tr.getBuyer().getUserName()+
-                    ", seller:" +tr.getSeller()+"}");
-        }
-        // insert the buy commands awaiting in this stock
-        out.println("], buyCommands:[");
-        List<TradeCommandDT> buycmd = stockDT.getBuysCommands();
-        for(TradeCommandDT tc:buycmd) {
-            out.println("{date:"+tc.getFormattedDateTime()+
-                    ", quantity:"+tc.getQuantity()+
-                    ", wantedPrice:"+tc.getPrice()+
-                    ", turnover:"+tc.getTurnover()+
-                    ", commandType:"+tc.getCommandType().toString()+
-                    ", user:" +tc.getUser().getUserName()+"}");
-        }
-        // insert the sell commands awaiting in this stock
-        out.println("], sellCommands:[");
-        List<TradeCommandDT> sellcmd = stockDT.getSellsCommands();
-        for(TradeCommandDT tc:sellcmd) {
-            out.println("{date:"+tc.getFormattedDateTime()+
-                    ", quantity:"+tc.getQuantity()+
-                    ", wantedPrice:"+tc.getPrice()+
-                    ", turnover:"+tc.getTurnover()+
-                    ", commandType:"+tc.getCommandType().toString()+
-                    ", user:" +tc.getUser().getUserName()+"}");
-        }
-        out.println("]}");*/
+
 
     }
 }

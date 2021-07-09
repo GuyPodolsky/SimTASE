@@ -3,6 +3,7 @@ package rse.servlets;
 import engine.logic.Engine;
 import engine.users.User;
 import rse.logger.Logger;
+import sun.rmi.runtime.Log;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -16,8 +17,15 @@ public class AddNewStockServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException{
         HttpSession session = request.getSession(false);
-        if(session == null)
-            throw new IllegalStateException("User must enter the system first.");
+        if(session == null){
+            response.sendError(HttpServletResponse.SC_FORBIDDEN, "User must enter the system first.");
+            return;
+        }
+        if(Boolean.parseBoolean(session.getAttribute("is_admin").toString())){
+            response.sendError(HttpServletResponse.SC_UNAUTHORIZED,"Admin is unauthorized to add stocks to the system");
+            return;
+        }
+
         try {
             synchronized (lock) {
                 String name = String.valueOf(session.getAttribute("username"));
@@ -31,7 +39,9 @@ public class AddNewStockServlet extends HttpServlet {
             }
         }
         catch (Exception e){
-            response.sendError(400,e.getMessage());
+            Logger.getServerLogger().post(e.getMessage());
+            response.setHeader("errorMessage",e.getMessage());
+            response.sendError(HttpServletResponse.SC_FORBIDDEN,e.getMessage());
         }
     }
 

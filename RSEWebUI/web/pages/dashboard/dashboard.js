@@ -15,8 +15,8 @@ $(function (){ // onload
                 op:"add",
                 amount:document.getElementById("add-amount").value},
             url:'/UpdateUserDetails',
-            error:function (){
-                alert("PROBLEMMMMM");
+            error:function (jqXHR, textStatus, errorThrown){
+                document.getElementById("notifyUser").innerText = jqXHR.status + " " +jqXHR.getResponseHeader("errorMessage");
             }
         })
         return false;
@@ -27,11 +27,11 @@ $(function (){ // onload
             type:'POST',
             data:$(this).serialize(),
             url:"/AddNewStockServlet",
-            error:function (msg){
-                alert("error on addPublicOffering"+msg);
+            error:function (jqXHR, textStatus, errorThrown){
+                document.getElementById("notifyUser").innerText = jqXHR.status + " " +jqXHR.getResponseHeader("errorMessage");
             },
             success: function (msg){
-                alert(msg);
+                document.getElementById("notifyUser").innerText = msg;
             }
         })
         return false;
@@ -45,8 +45,8 @@ $(function (){ // onload
                 to:document.getElementById("user-select").value,
                 amount:document.getElementById("trans-amount").value},
             url:'/UpdateUserDetails',
-            error:function (){
-                alert("PROBLEMMMMM");
+            error:function (jqXHR, textStatus, errorThrown){
+                document.getElementById("notifyUser").innerText = jqXHR.status + " " +jqXHR.getResponseHeader("errorMessage");
             }
         })
         return false;
@@ -60,8 +60,8 @@ function updateActiveUsers(){ //TODO: make the refresh less annoying.
         url:"/activeUsers",
         dataType:'json',
         timeout:2000,
-        error:function (msg){
-          console.error(msg);
+        error:function (jqXHR, textStatus, errorThrown){
+            document.getElementById("notifyUser").innerText = jqXHR.status + " " +jqXHR.getResponseHeader("errorMessage");
         },
         success: function (jsonStr){
             $("#activeUsersList").empty();
@@ -161,17 +161,6 @@ function stockSelected(event) {
     let symbol = cells[0].innerText;
 
     window.location.replace("../stockview/stockview.html?stock="+symbol);
-/*    $.ajax({
-        type: 'GET',
-        data: {'symbol': symbol},
-        url: "/showStock",
-        error: function (xhr, httpErrorMessage, customErrorMessage) {
-        },
-        success: function (){
-
-        }
-
-    });*/
 }
 
 function updateUserDetails() {
@@ -198,8 +187,8 @@ function updateUserDetails() {
                 cell5.innerHTML = actions[i]["postBalance"];
             }
         },
-        error: function () {
-
+        error:function (jqXHR, textStatus, errorThrown){
+            document.getElementById("notifyUser").innerText = jqXHR.status + " " +jqXHR.getResponseHeader("errorMessage");
         }
     })
 }

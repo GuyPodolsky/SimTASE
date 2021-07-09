@@ -20,8 +20,8 @@ $(function () { // onload
                 price:price
             },
             url:'/TradeCommands',
-            error:function (){
-                alert("PROBLEMMMMM");
+            error:function (code,msg){
+                document.getElementById("notifyUser").innerText = msg;
             }
         })
         return false;
@@ -63,8 +63,8 @@ function updateShowStock(){
         type: 'GET',
         data: {'symbol': stockSymbol},
         url: "/showStock",
-        error: function (xhr, httpErrorMessage, customErrorMessage) {
-            alert(customErrorMessage);
+        error:function (code,msg){
+            document.getElementById("notifyUser").innerText = msg;
         },
         success: function (res) {
             let data = JSON.parse(res);

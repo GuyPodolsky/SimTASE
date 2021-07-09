@@ -25,38 +25,27 @@ public class ActiveUsersServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         HttpSession session = request.getSession(false);
-        if(session == null)
-            throw new IllegalAccessError("User must sign in to the system before using RSE.");
+        if(session == null) {
+            Logger.getServerLogger().post("User must enter the system first.");
+            response.setHeader("errorMessage","User must enter the system first.");
+            response.sendError(HttpServletResponse.SC_FORBIDDEN, "User must enter the system first.");
+            return;
+        }
         try {
-            // i dont really sure if we need this in here
             String username = session.getAttribute("username").toString();
             boolean isAdmin = Boolean.getBoolean(session.getAttribute("is_admin").toString());
 
             UsersManager um = Engine.getInstance().getUsersManager();
             String users = this.gson.toJson(new ArrayList<>(um.getUsers().values()));
 
-            //response.setContentType("text/json");
             PrintWriter out = response.getWriter();
             Logger.getServerLogger().post(users);
             out.println(users);
             out.flush();
         }catch (Exception e){
-            response.sendError(500, e.getMessage());
-            response.getWriter().println(e.getMessage());
+            Logger.getServerLogger().post(e.getMessage());
+            response.setHeader("errorMessage",e.getMessage());
+            response.sendError(HttpServletResponse.SC_FORBIDDEN,e.getMessage());
         }
-
-
-     /*   *//*
-        This servlet will return a text describing json object
-        this will be a list with every user name and is if he's admin or trader.
-         *//*
-        out.print("[");
-        for(User user: users.values()){
-            out.print("{username:"+user.getUserName()+
-                    ",is_admin:"+user.isAdmin()+"}");
-        }
-        out.print("]");*/
-
     }
-
 }

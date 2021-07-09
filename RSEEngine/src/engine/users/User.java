@@ -193,13 +193,14 @@ public class User {
         userBalance+=addition;
     }
 
-    public void addNewStock(Stock stock, int sharesQuantity){
+    public void addNewStock(Stock stock, int sharesQuantity, int value){
 /*        LocalDateTime dateStamp = LocalDateTime.now();
         String formattedTimestamp = dateStamp.format(DateTimeFormatter.ofPattern("HH:mm:ss:SSS"));
         float pre = userBalance;
         userBalance+=totalValue;*/
         UserHoldings holdings = new UserHoldings(stock.getSymbol(), stock, sharesQuantity);
         userStocks.put(stock.getSymbol(), holdings);
+        userBalance+= value;
         //updateWorth();    // todo: ask guy if i need to call this
 
 

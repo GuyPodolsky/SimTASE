@@ -22,9 +22,10 @@ public class ShowAllStocksServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         HttpSession session = request.getSession(false);
-        if(session == null)         // if the user didn't sign correctly to the system
-            throw new IllegalAccessError("User must sign in to the system before using RSE.");
-
+        if(session == null) {        // if the user didn't sign correctly to the system
+            response.sendError(HttpServletResponse.SC_FORBIDDEN, "User must enter the system first.");
+            return;
+        }
 
 
        //int systemStocks = Engine.getInstance().stocksCount();

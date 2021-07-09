@@ -1,5 +1,6 @@
 #main-header{
     overflow: auto;
+    margin-bottom: 120px;
 }
 #details-box {
     display: inline-block;

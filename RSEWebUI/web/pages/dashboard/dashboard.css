@@ -81,7 +81,18 @@ h1,h2,h4,p,label,input,select,button{
 }
 body{
  background-color: #9d9d9d;
+    margin-bottom: 120px;
 }
 input{
     width: min-content;
 }
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    height: 70px;
+    background-color: white;
+    width: 100%;
+    border-color: #6262f1;
+}
+

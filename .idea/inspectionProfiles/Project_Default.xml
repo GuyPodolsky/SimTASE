@@ -6,6 +6,7 @@
       <option name="customHeaders">
         <set>
           <option value="addition" />
+          <option value="errorMessage" />
         </set>
       </option>
     </inspection_tool>

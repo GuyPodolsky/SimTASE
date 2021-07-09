@@ -22,12 +22,26 @@ public class TradeCommandsServlet extends HttpServlet {
         int quantity = Integer.parseInt(request.getParameter("quantity"));
         float price = Float.parseFloat(request.getParameter("price"));
         HttpSession session = request.getSession(false);
-        if(session==null)
-            response.sendError(603,"User must sign in to the system before using RSE.");
+        if(session==null){
+            Logger.getServerLogger().post("User must enter the system first.");
+            response.setHeader("errorMessage","User must enter the system first.");
+            response.sendError(HttpServletResponse.SC_FORBIDDEN, "User must enter the system first.");
+            return;
+        }
+        if(Boolean.parseBoolean(session.getAttribute("is_admin").toString())){
+            Logger.getServerLogger().post("Admin is unauthorized to add trade command to the system");
+            response.setHeader("errorMessage","Admin is unauthorized to add trade command to the system");
+            response.sendError(HttpServletResponse.SC_UNAUTHORIZED,"Admin is unauthorized to add trade command to the system");
+            return;
+        }
         else {
             User user = Engine.getInstance().getUsersManager().getUser(session.getAttribute("username").toString());
-            if(user==null)
-                response.sendError(604,"User not found.");
+            if(user==null) {
+                Logger.getServerLogger().post("User not found.");
+                response.setHeader("errorMessage","User not found.");
+                response.sendError(HttpServletResponse.SC_FORBIDDEN, "User not found.");
+                return;
+            }
             else {
                 Logger.getServerLogger().post(
                         "Symbol:" + symbol + "," +

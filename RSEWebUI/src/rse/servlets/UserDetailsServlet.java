@@ -54,12 +54,17 @@ public class UserDetailsServlet extends HttpServlet {
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         HttpSession session = request.getSession(false);
-        if(session==null)
-            response.sendError(603,"User must sign in to the system before using RSE.");
+        if(session==null){
+
+            response.sendError(HttpServletResponse.SC_FORBIDDEN, "User must enter the system first.");
+            return;
+        }
         else{
             User user = Engine.getInstance().getUsersManager().getUser(session.getAttribute("username").toString());
-            if(user==null)
-                response.sendError(604,"User not found.");
+            if(user==null) {
+                response.sendError(HttpServletResponse.SC_FORBIDDEN, "User not found.");
+                return;
+            }
             else {
                 String jsonResult = "{";
                 jsonResult += (getUserBalance(user)+",");

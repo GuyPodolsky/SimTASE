@@ -40,7 +40,7 @@ public class Engine implements Trader {
         int sharePrice = estimatedValue/sharesQuantity;
         Stock newStock = new Stock(companyName,symbol,sharePrice);
         stocks.put(symbol,companyName,newStock);    // todo: check if the order of symbol first and then companyName is correct
-        users.getUser(username).addNewStock(newStock,sharesQuantity);
+        users.getUser(username).addNewStock(newStock,sharesQuantity,estimatedValue);
     }
 
     public UsersManager getUsersManager(){
