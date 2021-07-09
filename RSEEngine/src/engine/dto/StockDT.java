@@ -1,5 +1,6 @@
 package engine.dto;
 
+import com.google.gson.annotations.Expose;
 import engine.logic.Stock;
 import engine.logic.Transaction;
 import java.util.LinkedList;
@@ -12,10 +13,14 @@ public class StockDT {
     /**
      * The variables that defines a stock.
      */
+    @Expose
     private final String companyName;
+    @Expose
     private final String symbol;
+    @Expose
     private final float sharePrice;
     private final List<Transaction> stockTransactions; // Transactions that already been done
+    @Expose
     private final float transactionsTurnOver;
     private final List<TradeCommandDT> buyCommandDTs;
     private final List<TradeCommandDT> sellCommandDTs;

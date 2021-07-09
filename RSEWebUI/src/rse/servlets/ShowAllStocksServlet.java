@@ -1,6 +1,7 @@
 package rse.servlets;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import engine.dto.StockDT;
 import engine.logic.Engine;
 import rse.logger.Logger;
@@ -16,6 +17,7 @@ import java.util.List;
 public class ShowAllStocksServlet extends HttpServlet {
 
     private Gson gson = new Gson();
+    private Gson excludeGson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -29,7 +31,7 @@ public class ShowAllStocksServlet extends HttpServlet {
 
        List<StockDT> stocks = Engine.getInstance().showAllStocks();
        //List<StockDT> newStocks = stocks.subList(stocksNum,systemStocks);
-       String res = this.gson.toJson(stocks);
+       String res = this.excludeGson.toJson(stocks);
        PrintWriter out = response.getWriter();
        Logger.getServerLogger().post(res);
        out.println(res);

@@ -7,17 +7,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a14c5375-d147-41c4-b6bf-d40cd56cf20d" name="Default" comment="1. one servlet for user details&#10;2. UserAction class gets a String as type and LocalDateTime as timestamp">
-      <change afterPath="$PROJECT_DIR$/RSEWebUI/src/rse/servlets/TradeCommandsServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RSEEngine/src/engine/dto/StockDT.java" beforeDir="false" afterPath="$PROJECT_DIR$/RSEEngine/src/engine/dto/StockDT.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RSEEngine/src/engine/dto/TradeCommandDT.java" beforeDir="false" afterPath="$PROJECT_DIR$/RSEEngine/src/engine/dto/TradeCommandDT.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RSEEngine/src/engine/logic/Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/RSEEngine/src/engine/logic/Engine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RSEEngine/src/engine/logic/Stock.java" beforeDir="false" afterPath="$PROJECT_DIR$/RSEEngine/src/engine/logic/Stock.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RSEEngine/src/engine/logic/TradeCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/RSEEngine/src/engine/logic/TradeCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RSEEngine/src/engine/logic/Trader.java" beforeDir="false" afterPath="$PROJECT_DIR$/RSEEngine/src/engine/logic/Trader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RSEEngine/src/engine/users/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/RSEEngine/src/engine/users/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RSEWebUI/web/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/web/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RSEWebUI/web/pages/dashboard/dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/web/pages/dashboard/dashboard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RSEWebUI/web/pages/stockview/stockview.html" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/web/pages/stockview/stockview.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RSEEngine/src/engine/logic/Transaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/RSEEngine/src/engine/logic/Transaction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RSEWebUI/src/rse/servlets/ShowAllStocksServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/src/rse/servlets/ShowAllStocksServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RSEWebUI/src/rse/servlets/ShowStockServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/src/rse/servlets/ShowStockServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RSEWebUI/web/pages/stockview/stockview.js" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/web/pages/stockview/stockview.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -98,9 +93,6 @@
       <filtered-out-file-type name="TAG" />
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
-  </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="jar://$PROJECT_DIR$/../../../../Program Files/Java/jdk1.8.0_291/src.zip!/java/nio/file/NoSuchFileException.java" root0="SKIP_INSPECTION" />
   </component>
   <component name="LogFilters">
     <option name="FILTER_ERRORS" value="false" />
@@ -361,7 +353,7 @@
       </method>
     </configuration>
     <configuration name="Tomcat 8.5.23" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 8.5.23" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
-      <option name="BROWSER_ID" value="b2a9dca7-9d0b-4e1e-98a8-afb19c1328d2" />
+      <option name="BROWSER_ID" value="98ca6316-2f89-46d9-a9e5-fa9e2b0625b3" />
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
         <artifact name="RSEWar">
@@ -647,7 +639,14 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ID_WIDTH">
+                <map>
+                  <entry key="Table.Default.Author.ColumnIdWidth" value="17" />
+                  <entry key="Table.Default.Date.ColumnIdWidth" value="17" />
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -691,7 +690,7 @@
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/RSEWebUI/src/rse/servlets/ShowStockServlet.java</url>
-          <line>37</line>
+          <line>38</line>
           <option name="timeStamp" value="22" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">

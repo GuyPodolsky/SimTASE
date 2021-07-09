@@ -1,6 +1,7 @@
 package rse.servlets;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import engine.dto.StockDT;
 import engine.dto.TradeCommandDT;
 import engine.logic.Engine;
@@ -19,8 +20,8 @@ import java.util.List;
 public class ShowStockServlet extends HttpServlet {
 
     final private String StockViewPagePath = "/../../../pages/stockview/stockview.html";
-    private Gson gson = new Gson();
-
+    //private Gson gson = new Gson();
+    private Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
     /*
     This method returns json object in text that describing a single stock.
     Every this we want to display needs to be updated in here as well.
@@ -39,7 +40,12 @@ public class ShowStockServlet extends HttpServlet {
             PrintWriter out = response.getWriter();
             int userHoldings = user.getUserStockHoldings(symbol);
             String resStock = gson.toJson(stockDT);
-            String res = "{\"username\":\""+username+"\",\"userHoldings\":\""+userHoldings+"\",\"stock\":"+resStock+"}";
+            String stockTrans = gson.toJson(stockDT.getTransactions());
+            String stockBuyCommands = gson.toJson(stockDT.getBuysCommands());
+            String stockSellCommands = gson.toJson(stockDT.getSellsCommands());
+
+            String res = "{\"username\":\""+username+"\",\"userHoldings\":\""+userHoldings+"\",\"stockDetails\":"+resStock+
+                    ",\"stockTransactions\":"+stockTrans+",\"stockBuyCommands\":"+stockBuyCommands+",\"stockSellCommands\":"+stockSellCommands+"}";
             Logger.getServerLogger().post(res);
             out.println(res);
             out.flush();

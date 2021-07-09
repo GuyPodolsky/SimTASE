@@ -1,5 +1,6 @@
 package engine.dto;
 
+import com.google.gson.annotations.Expose;
 import engine.logic.TradeCommand;
 import engine.users.User;
 
@@ -20,14 +21,26 @@ public class TradeCommandDT {
      * The variables that defines a trade command.
      */
     final private TradeCommand.Direction direction;
+    @Expose
     final private int quantity;
+    @Expose
     final private String symbol;
+    @Expose
     final private float wantedPrice;
     final private LocalDateTime DateTimeStamp;
+    @Expose
     final private String formattedDateTime;
     final private TradeCommand.CommandType commandType;
     private User user;
+    @Expose
     final private float turnover;
+
+    @Expose
+    final private String username;
+    @Expose
+    final private String dirString;
+    @Expose
+    final private String typeString;
 
     /**
      * A ctor of class instance from the needed variables to define a trade command.
@@ -40,25 +53,31 @@ public class TradeCommandDT {
      */
     public TradeCommandDT(TradeCommand.Direction dir, TradeCommand.CommandType type, int howMany, float whatPrice, String symbol, LocalDateTime dateTimeStamp) {
         this.direction = dir;
+        this.dirString = dir.getName();
         this.quantity = howMany;
         this.symbol = symbol;
         this.wantedPrice = whatPrice;
         this.commandType = type;
+        this.typeString = type.getName();
         this.DateTimeStamp = dateTimeStamp;
         this.formattedDateTime = dateTimeStamp.format(dateTimeFormat);
         this.user = null;
+        this.username = "";
         this.turnover = whatPrice * howMany;
     }
 
     public TradeCommandDT(TradeCommand.Direction direction, int quantity, String symbol, float wantedPrice, LocalDateTime dateTimeStamp, TradeCommand.CommandType commandType, User user) {
         this.direction = direction;
+        this.dirString = direction.getName();
         this.quantity = quantity;
         this.symbol = symbol;
         this.wantedPrice = wantedPrice;
         DateTimeStamp = dateTimeStamp;
         this.formattedDateTime = dateTimeStamp.format(dateTimeFormat);
         this.commandType = commandType;
+        this.typeString = commandType.getName();
         this.user = user;
+        this.username = user.getUserName();
         this.turnover = wantedPrice*quantity;
     }
 

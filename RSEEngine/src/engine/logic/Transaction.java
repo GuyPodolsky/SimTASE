@@ -1,5 +1,6 @@
 package engine.logic;
 
+import com.google.gson.annotations.Expose;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import engine.users.User;
@@ -23,14 +24,24 @@ public class Transaction {
     /**
      * All the variables that defines a made transaction
      */
+
     final private LocalDateTime dateStamp;
+    @Expose
     final private String formattedTimestamp;
+    @Expose
     final private String symbol;
+    @Expose
     final private int quantity;
+    @Expose
     final private float turnover; // =quantity * price
+    @Expose
     final private float price; // save the price the shares really sold for
     final private User buyer;
     final private User seller;
+    @Expose
+    final private String buyerName;
+    @Expose
+    final private String sellerName;
 
     public String getSymbol() { return symbol; }
 
@@ -64,7 +75,9 @@ public class Transaction {
             Engine.getInstance().getStocks().get(symbol).getSharePriceProperty().set(soldPrice);
             this.turnover = quantity * soldPrice;
             this.buyer = buyer;
+            this.buyerName = buyer.getUserName();
             this.seller = seller;
+            this.sellerName = seller.getUserName();
 
             this.buyer.addUserTransaction(this);
             this.seller.addUserTransaction(this);
@@ -109,7 +122,9 @@ public class Transaction {
             this.price = soldPrice;
             this.turnover = quantity * soldPrice;
             this.buyer = buyer;
+            this.buyerName = buyer.getUserName();
             this.seller = seller;
+            this.sellerName= seller.getUserName();
 
             this.buyer.addUserTransaction(this);
             this.seller.addUserTransaction(this);
