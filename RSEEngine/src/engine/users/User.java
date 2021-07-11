@@ -206,6 +206,8 @@ public class User {
 
     }
 
+    public void updateUserHolding(String symbol,int addition){ userStocks.get(symbol).addQuantity(addition); }
+
 //Overrides:
 
     @Override

@@ -3,6 +3,7 @@ package engine.logic;
 import engine.dto.StockDT;
 import engine.dto.TradeCommandDT;
 import engine.users.UserAction;
+import engine.users.UserHoldings;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.StringProperty;
 import engine.jaxb.schema.generated.*;
@@ -125,7 +126,7 @@ public class Engine implements Trader {
      * @throws JAXBException
      * @throws IllegalArgumentException
      */
-    public void saveDataToFile(String path) throws IOException, JAXBException, IllegalArgumentException {
+    /*public void saveDataToFile(String path) throws IOException, JAXBException, IllegalArgumentException {
         String tmpPath = "./tmpSave.xml";
         try {
             File XMLFilePath = new File(path);
@@ -146,7 +147,7 @@ public class Engine implements Trader {
         } catch (FileNotFoundException e) {
             throw new FileNotFoundException("There is no such a XML file.");
         }
-    }
+    }*/
 
     /**
      * serializes the data into a xml file.
@@ -155,7 +156,7 @@ public class Engine implements Trader {
      * @param tmpPath
      * @throws JAXBException
      */
-    private void serializeFrom(OutputStream out, String tmpPath) throws JAXBException {
+    /*private void serializeFrom(OutputStream out, String tmpPath) throws JAXBException {
         RizpaStockExchangeDescriptor rse = new RizpaStockExchangeDescriptor();
         Collection<Stock> stocksCollection = stocks.values();
         RseStocks rseStocks = new RseStocks();
@@ -215,20 +216,20 @@ public class Engine implements Trader {
         m.setProperty(m.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
         m.marshal(rse, new File(tmpPath)); //marshals the data into a xml file.
 
-    }
+    }*/
 
     /**
      * A method that uploads a system instance from an xml file.
      *
-     * @param path a path to a xml file that contains the required data.
      * @throws FileNotFoundException    will be thrown in case the file isn't exits.
      * @throws JAXBException            will be thrown in case the JAXB process failed.
      * @throws IllegalArgumentException will be thrown in case the the file isn't a xml file.
      */
-    public void uploadDataFromFile(String path, DoubleProperty doubleProperty, StringProperty stringProperty) throws FileNotFoundException, JAXBException, IllegalArgumentException // first option
+   /* public void uploadDataFromFile(String path, DoubleProperty doubleProperty, StringProperty stringProperty) throws FileNotFoundException, JAXBException, IllegalArgumentException // first option
     {
         // need to upload all the stocks from xml file
         MultiKeyMap<String,Stock> tmpStocks = new MultiKeyMap<String, Stock>();
+        Map<String,Integer> tmpHoldings = new TreeMap<>();
         try {
             File xmlPath = new File(path);
             InputStream inputStream = new FileInputStream(new File(path));
@@ -236,7 +237,7 @@ public class Engine implements Trader {
             if (!isXMLFile(path))
                 throw new IllegalArgumentException("The given file is not a xml file.");
             deserializeFrom(inputStream, tmpStocks);
-            stocks.clear();
+            //stocks.clear();
             stocks = tmpStocks;
             stringProperty.setValue("Fetching data from file ended.");
         } catch (JAXBException e) {
@@ -244,22 +245,35 @@ public class Engine implements Trader {
         } catch (FileNotFoundException e) {
             throw new FileNotFoundException("There is no such a XML file.");
         }
-    }
-    public void uploadDataFromFile(InputStream in, String username) throws FileNotFoundException, JAXBException, IllegalArgumentException // first option
+    }*/
+    public void uploadDataFromFile(InputStream in, User user) throws FileNotFoundException, JAXBException, IllegalArgumentException // first option
     {
         // need to upload all the stocks from xml file
         MultiKeyMap<String,Stock> tmpStocks = new MultiKeyMap<String, Stock>();
+        Map<String,Integer> tmpHoldings = new TreeMap<>();
         try {
-           /* File xmlPath = new File(path);
-            InputStream inputStream = new FileInputStream(new File(path));
-            stringProperty.setValue("Opening file.. ");
-            if (!isXMLFile(path))
-                throw new IllegalArgumentException("The given file is not a xml file.");*/
-            deserializeFrom(in, tmpStocks);
-            //stocks.clear();
+            deserializeFrom(in, tmpStocks,tmpHoldings);
             for(Stock stock: tmpStocks.values()){
-                stocks.put(stock.getSymbol(),stock.getCompanyName(),stock);
+                if(!stocks.containsKey(stock.getSymbol()))
+                    stocks.put(stock.getSymbol(),stock.getCompanyName(),stock);
             }
+            float pre = user.getUserBalance();
+            int amount = 0;
+            for(String symbol: tmpHoldings.keySet()){
+                if(user.getUserStockHoldings(symbol)>0) {
+                    user.updateUserHolding(symbol, tmpHoldings.get(symbol));
+                    amount += tmpHoldings.get(symbol) * stocks.get(symbol).getSharePrice().intValue();
+                }
+                else
+                {
+                    int quantity = tmpHoldings.get(symbol);
+                    Stock stock = stocks.get(symbol);
+                    int value = quantity*stock.getSharePrice().intValue();
+                    user.addNewStock(stock,quantity,value);
+                    amount+=value;
+                }
+            }
+            user.getActions().add(new UserAction("XML file load",LocalDateTime.now(),amount,pre,(pre+amount)));
 
         } catch (JAXBException e) {
             throw new JAXBException("JAXB Exception detected.");
@@ -293,19 +307,24 @@ public class Engine implements Trader {
      * @param tmpStocks a temporary MultiKeyMap of system's stocks (prevents a deletion of the previous system data in case there will be a failure).
      * @throws JAXBException will be thrown in case there is a problem in the process of JAXB.
      */
-    private void deserializeFrom(InputStream in, MultiKeyMap<String, Stock> tmpStocks) throws JAXBException, IllegalArgumentException, InputMismatchException, DateTimeException {
+    private void deserializeFrom(InputStream in, MultiKeyMap<String, Stock> tmpStocks, Map<String,Integer> tmpHoldings) throws JAXBException, IllegalArgumentException, InputMismatchException, DateTimeException {
         synchronized (lock2) {
             JAXBContext jc = JAXBContext.newInstance(JAXB_XML_PACKAGE_NAME);
             Unmarshaller u = jc.createUnmarshaller();
             RizpaStockExchangeDescriptor rse = (RizpaStockExchangeDescriptor) u.unmarshal(in); //Converts the XML file content into an instance of the generated class.
             List<RseStock> rseStocks = rse.getRseStocks().getRseStock();                       //gets a list of all the stocks
-
-            for (RseStock s : rseStocks)                                                        //casts each generated stock class instance to the system's stock class and inserts them into the MultiKeyMap.
-            {
-                Stock tmp = castRseStockToStock(s, tmpStocks);                                   //casts the generated stock class to system's stock class.
-                tmpStocks.put(tmp.getSymbol(), tmp.getCompanyName(), tmp);                        //inserts the stock into the MultiKeyMap.
+            List<RseItem> rseHoldings = rse.getRseHoldings().getRseItem();
+            for (RseStock s : rseStocks){                                                      //casts each generated stock class instance to the system's stock class and inserts them into the MultiKeyMap.
+                Stock tmp = castRseStockToStock(s, tmpStocks);                                 //casts the generated stock class to system's stock class.
+                tmpStocks.put(tmp.getSymbol(), tmp.getCompanyName(), tmp);                     //inserts the stock into the MultiKeyMap.
             }
-
+            for (RseItem i : rseHoldings){
+                if(!(tmpStocks.containsKey(i.getSymbol())||stocks.containsKey(i.getSymbol())))
+                    throw new IllegalArgumentException("The file loading failed!, since the " + i.getSymbol() + " symbol doesn't exist!");
+                if(i.getQuantity()<1)
+                    throw new IllegalArgumentException("The file loading failed!, since the " + i.getQuantity() + " isn't a valid quantity!");
+                tmpHoldings.put(i.getSymbol(), i.getQuantity());
+            }
         }
     }
 

@@ -62,4 +62,9 @@ public class UserHoldings {
     public void setFreeShares(int freeShares) {
         this.freeShares = freeShares;
     }
+
+    public void addQuantity(int quantity){
+        this.freeShares += quantity;
+        this.quantity.add(quantity);
+    }
 }

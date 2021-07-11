@@ -6,10 +6,14 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a14c5375-d147-41c4-b6bf-d40cd56cf20d" name="Default" comment="fixed the bugs in showStock and page 2 after adding a trade command">
+    <list default="true" id="a14c5375-d147-41c4-b6bf-d40cd56cf20d" name="Default" comment="small change in the engine">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RSEEngine/src/engine/logic/Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/RSEEngine/src/engine/logic/Engine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RSEEngine/src/engine/logic/Trader.java" beforeDir="false" afterPath="$PROJECT_DIR$/RSEEngine/src/engine/logic/Trader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RSEEngine/src/engine/users/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/RSEEngine/src/engine/users/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RSEEngine/src/engine/users/UserHoldings.java" beforeDir="false" afterPath="$PROJECT_DIR$/RSEEngine/src/engine/users/UserHoldings.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RSEWebUI/src/rse/servlets/LoadXMLServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/src/rse/servlets/LoadXMLServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RSEWebUI/web/pages/dashboard/dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/web/pages/dashboard/dashboard.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,6 +97,7 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/RSEWebUI/web/pages/dashboard/dashboard.js" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/RSEWebUI/web/pages/dashboard/dashboard.html" root0="FORCE_HIGHLIGHTING" />
+    <setting file="jar://$PROJECT_DIR$/../../../../Program Files/Java/jdk1.8.0_291/src.zip!/java/nio/file/NoSuchFileException.java" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/RSEWebUI/web/pages/stockview/stockview.html" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="LogFilters">
@@ -693,7 +698,8 @@
     <MESSAGE value="1. one servlet for user details&#10;2. UserAction class gets a String as type and LocalDateTime as timestamp" />
     <MESSAGE value="fixed the bugs in showStock and page 2 after adding a trade command" />
     <MESSAGE value="too mush" />
-    <option name="LAST_COMMIT_MESSAGE" value="too mush" />
+    <MESSAGE value="small change in the engine" />
+    <option name="LAST_COMMIT_MESSAGE" value="small change in the engine" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -712,6 +718,11 @@
           <url>file://$PROJECT_DIR$/RSEWebUI/src/rse/servlets/TradeCommandsServlet.java</url>
           <line>18</line>
           <option name="timeStamp" value="39" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/RSEWebUI/src/rse/servlets/LoadXMLServlet.java</url>
+          <line>16</line>
+          <option name="timeStamp" value="43" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/RSEWebUI/web/pages/stockview/stockview.js</url>

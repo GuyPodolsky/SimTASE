@@ -28,9 +28,11 @@ $(function (){ // onload
             data:$(this).serialize(),
             url:"/AddNewStockServlet",
             error:function (jqXHR, textStatus, errorThrown){
+                notifyMe(jqXHR.status + " " +jqXHR.getResponseHeader("errorMessage"));
                 //document.getElementById("notifyUser").innerText = jqXHR.status + " " +jqXHR.getResponseHeader("errorMessage");
             },
             success: function (msg){
+                notifyMe(msg);
                 //document.getElementById("notifyUser").innerText = msg;
             }
         })
@@ -46,6 +48,7 @@ $(function (){ // onload
                 amount:document.getElementById("trans-amount").value},
             url:'/UpdateUserDetails',
             error:function (jqXHR, textStatus, errorThrown){
+                notifyMe(qXHR.status + " " +jqXHR.getResponseHeader("errorMessage"));
                 //document.getElementById("notifyUser").innerText = jqXHR.status + " " +jqXHR.getResponseHeader("errorMessage");
             }
         })
@@ -60,6 +63,7 @@ function updateActiveUsers(){ //TODO: make the refresh less annoying.
         dataType:'json',
         timeout:2000,
         error:function (jqXHR, textStatus, errorThrown){
+            notifyMe(jqXHR.status + " " +jqXHR.getResponseHeader("errorMessage"));
             //document.getElementById("notifyUser").innerText = jqXHR.status + " " +jqXHR.getResponseHeader("errorMessage");
         },
         success: function (jsonStr){
@@ -145,6 +149,13 @@ function loadXMLFile() {
             $.ajax({
                     type: 'POST',
                     data: {'xmlFile': files[0]},
+                    url: '/LoadXMLServlet',
+                    error: function (jqXHR, textStatus, errorThrown){
+                        notifyMe(jqXHR.status + " " +jqXHR.getResponseHeader("errorMessage"));
+                    },
+                    success: function (msg) {
+                        notifyMe(msg);
+                    }
                 },
             )
         };
