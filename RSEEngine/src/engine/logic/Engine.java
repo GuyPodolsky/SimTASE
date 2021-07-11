@@ -41,7 +41,7 @@ public class Engine implements Trader {
         int sharePrice = estimatedValue/sharesQuantity;
         Stock newStock = new Stock(companyName,symbol,sharePrice);
         stocks.put(symbol,companyName,newStock);    // todo: check if the order of symbol first and then companyName is correct
-        users.getUser(username).getActions().add(new UserAction(("IPO of "+symbol+" stock"),LocalDateTime.now(),(sharePrice*sharesQuantity),users.getUser(username).getUserBalance(),(sharePrice*sharesQuantity+users.getUser(username).getUserBalance())));
+        users.getUser(username).getActions().add(new UserAction(("IPO of "+symbol+" stock"),LocalDateTime.now(),estimatedValue,users.getUser(username).getUserBalance(),(estimatedValue+users.getUser(username).getUserBalance())));
         users.getUser(username).addNewStock(newStock,sharesQuantity,estimatedValue);
 
     }
