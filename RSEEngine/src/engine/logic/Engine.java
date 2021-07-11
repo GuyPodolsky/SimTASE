@@ -2,6 +2,7 @@ package engine.logic;
 
 import engine.dto.StockDT;
 import engine.dto.TradeCommandDT;
+import engine.users.UserAction;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.StringProperty;
 import engine.jaxb.schema.generated.*;
@@ -40,7 +41,9 @@ public class Engine implements Trader {
         int sharePrice = estimatedValue/sharesQuantity;
         Stock newStock = new Stock(companyName,symbol,sharePrice);
         stocks.put(symbol,companyName,newStock);    // todo: check if the order of symbol first and then companyName is correct
+        users.getUser(username).getActions().add(new UserAction(("IPO of "+symbol+" stock"),LocalDateTime.now(),(sharePrice*sharesQuantity),users.getUser(username).getUserBalance(),(sharePrice*sharesQuantity+users.getUser(username).getUserBalance())));
         users.getUser(username).addNewStock(newStock,sharesQuantity,estimatedValue);
+
     }
 
     public UsersManager getUsersManager(){

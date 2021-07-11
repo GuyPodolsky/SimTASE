@@ -35,6 +35,7 @@ function login(){
         data: $('#loginForm').serialize(),
         url:"/login",
         success: function (){
+            notifyMe("You logged in successfully!");
             window.location.url("/../dashboard/dashboard.html");
         },
         error: function (xhr, httpStatusMessage, customErrorMessage) {

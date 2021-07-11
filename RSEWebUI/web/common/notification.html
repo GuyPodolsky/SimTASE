@@ -1,0 +1,21 @@
+<link rel="stylesheet" type="text/css" href="notification.css">
+<footer id="notifyUser">
+    <label id="notify-text">Notification!</label>
+    <a href="javascript:localStorage.isShow=''"><img id="close-btn" src="close.png"></a>
+    <script>
+        setInterval(updateMsg,1);
+        //setInterval(updateDisplay,1);
+        function updateMsg(){
+            document.getElementById("notify-text").innerHTML = localStorage.noteMessage;
+        }
+       function updateDisplay(){
+            //document.getElementById('notifyUser').setAttribute("hidden",localStorage.isShow);
+            /*let bool = Boolean(localStorage.isShow);
+            if(!bool)
+               document.getElementById('notifyUser').hidden = true;
+            else
+                document.getElementById('notifyUser').hidden = false;*/
+           document.getElementById('notifyUser').hidden = Boolean(localStorage.isShow);
+        }
+    </script>
+</footer>

@@ -17,7 +17,9 @@ public class UserDetailsServlet extends HttpServlet {
 
     private enum operation {
         Transfer("transfer",0),
-        Add("add",1);
+        Add("add",1),
+        GetActions("actions",2),
+        IsAdmin("isAdmin",3);
 
         private String name;
         private int num;
@@ -53,17 +55,48 @@ public class UserDetailsServlet extends HttpServlet {
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        operation op = operation.getByName(request.getParameter("op"));
+        switch (op){
+            case Transfer:
+            case Add:
+                response.sendError(605,"A post operation in a get request");
+                break;
+            case GetActions:
+                getUserActions(request,response);
+                break;
+            case IsAdmin:
+                isAdmin(request,response);
+                break;
+        }
+    }
+
+    private void isAdmin(HttpServletRequest request,HttpServletResponse response) throws IOException {
         HttpSession session = request.getSession(false);
         if(session==null){
-
             response.sendError(HttpServletResponse.SC_FORBIDDEN, "User must enter the system first.");
-            return;
+        }
+        else {
+            User user = Engine.getInstance().getUsersManager().getUser(session.getAttribute("username").toString());
+            if(user==null) {
+                response.sendError(HttpServletResponse.SC_FORBIDDEN, "User not found.");
+            } else {
+                PrintWriter out = response.getWriter();
+                String jsonResult = "{\"is_admin\":"+user.isAdmin()+"}";
+                Logger.getServerLogger().post(jsonResult);
+                out.print(jsonResult);
+            }
+        }
+    }
+
+    private void getUserActions(HttpServletRequest request,HttpServletResponse response) throws IOException {
+        HttpSession session = request.getSession(false);
+        if(session==null){
+            response.sendError(HttpServletResponse.SC_FORBIDDEN, "User must enter the system first.");
         }
         else{
             User user = Engine.getInstance().getUsersManager().getUser(session.getAttribute("username").toString());
             if(user==null) {
                 response.sendError(HttpServletResponse.SC_FORBIDDEN, "User not found.");
-                return;
             }
             else {
                 String jsonResult = "{";

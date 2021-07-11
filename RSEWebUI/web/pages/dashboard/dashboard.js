@@ -16,7 +16,7 @@ $(function (){ // onload
                 amount:document.getElementById("add-amount").value},
             url:'/UpdateUserDetails',
             error:function (jqXHR, textStatus, errorThrown){
-                document.getElementById("notifyUser").innerText = jqXHR.status + " " +jqXHR.getResponseHeader("errorMessage");
+                //document.getElementById("notifyUser").innerText = jqXHR.status + " " +jqXHR.getResponseHeader("errorMessage");
             }
         })
         return false;
@@ -28,10 +28,10 @@ $(function (){ // onload
             data:$(this).serialize(),
             url:"/AddNewStockServlet",
             error:function (jqXHR, textStatus, errorThrown){
-                document.getElementById("notifyUser").innerText = jqXHR.status + " " +jqXHR.getResponseHeader("errorMessage");
+                //document.getElementById("notifyUser").innerText = jqXHR.status + " " +jqXHR.getResponseHeader("errorMessage");
             },
             success: function (msg){
-                document.getElementById("notifyUser").innerText = msg;
+                //document.getElementById("notifyUser").innerText = msg;
             }
         })
         return false;
@@ -46,7 +46,7 @@ $(function (){ // onload
                 amount:document.getElementById("trans-amount").value},
             url:'/UpdateUserDetails',
             error:function (jqXHR, textStatus, errorThrown){
-                document.getElementById("notifyUser").innerText = jqXHR.status + " " +jqXHR.getResponseHeader("errorMessage");
+                //document.getElementById("notifyUser").innerText = jqXHR.status + " " +jqXHR.getResponseHeader("errorMessage");
             }
         })
         return false;
@@ -54,14 +54,13 @@ $(function (){ // onload
 })
 
 function updateActiveUsers(){ //TODO: make the refresh less annoying.
-                              //TODO: self-transfer.
     $.ajax({
         type:'GET',
         url:"/activeUsers",
         dataType:'json',
         timeout:2000,
         error:function (jqXHR, textStatus, errorThrown){
-            document.getElementById("notifyUser").innerText = jqXHR.status + " " +jqXHR.getResponseHeader("errorMessage");
+            //document.getElementById("notifyUser").innerText = jqXHR.status + " " +jqXHR.getResponseHeader("errorMessage");
         },
         success: function (jsonStr){
             $("#activeUsersList").empty();
@@ -166,6 +165,7 @@ function stockSelected(event) {
 function updateUserDetails() {
     $.ajax({
         type: 'GET',
+        data:{op:"actions"},
         url: '/UpdateUserDetails',
         success: function (json) {
             let result = JSON.parse(json);
@@ -188,7 +188,7 @@ function updateUserDetails() {
             }
         },
         error:function (jqXHR, textStatus, errorThrown){
-            document.getElementById("notifyUser").innerText = jqXHR.status + " " +jqXHR.getResponseHeader("errorMessage");
+            //document.getElementById("notifyUser").innerText = jqXHR.status + " " +jqXHR.getResponseHeader("errorMessage");
         }
     })
 }

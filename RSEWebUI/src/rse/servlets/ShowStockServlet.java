@@ -42,7 +42,9 @@ public class ShowStockServlet extends HttpServlet {
 
             //response.setContentType("text/json");
             PrintWriter out = response.getWriter();
-            int userHoldings = user.getUserStockHoldings(symbol);
+            int userHoldings = 0;
+            if(!user.isAdmin())
+                userHoldings = user.getUserStockHoldings(symbol);
             String resStock = gson.toJson(stockDT);
             String stockTrans = gson.toJson(stockDT.getTransactions());
             String stockBuyCommands = gson.toJson(stockDT.getBuysCommands());

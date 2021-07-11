@@ -8,62 +8,44 @@
     <link rel="stylesheet" type="text/css" href="stockview.css">
 </head>
 <body id="main-header">
-<footer id="notifyUser" style="position: fixed;bottom: 0; left: 0;width: 100%;height: 70px; alignment:center;background-color: white" >
-    You logged in successfully!
-</footer>
-    <div id="details-box">
-        <div id="back-btn-box">
+<embed id="notify" src="../../common/notification.html" style="position: fixed; width: 100%; bottom: 0; left: 0">
+    <div id="details-box" class="box1">
+        <div id="back-btn-box" class="box1-1">
             <form id="back-btn-form">
-                <!--<input id="back-btn" type="image" src="goback.png" onclick="goBack()">-->
                 <a href="javascript:goBack()"><img id="back-btn" SRC="goback.png"></a>
             </form>
         </div>
-        <div id="logout-box">
+        <div id="logout-box" class="box1-2">
             <label id="username-greet">Hi ----,</label>
         </div>
-        <center>
-            <div id="details-box-header">
-                <h1>---symbol--- Stock View</h1>
-            </div>
-        </center>
-            <div id="details-box-details">
-                <dl id="detail-list">
-                    <li id="company-name">Company Name: ----- </li>
-                    <li id="share-value">Share Value: ------- </li>
-                    <li id="turnover">Turnover: ------ </li>
-                    <li id="own-holdings">You own ------ shares</li>
-                </dl>
-            </div>
+        <div id="details-box-header" class="box1-3">
+            <h1>---symbol--- Stock View</h1>
+        </div>
+        <div id="details-box-details" class="box1-4">
+            <dl id="detail-list">
+                <li id="company-name">Company Name: ----- </li>
+                <li id="share-value">Share Value: ------- </li>
+                <li id="turnover">Turnover: ------ </li>
+                <li id="own-holdings">You own ------ shares</li>
+            </dl>
+        </div>
     </div>
-    <div id="graph-box">
+    <div id="graph-box" class="box2">
         <!--Optional-->
         <canvas id="price-chart"></canvas>
     </div>
-    <div id="trans-and-ops-box">
-        <div id="trans-or-ops-box">
+    <div id="trans-and-ops-box" class="box3">
+        <div id="trans-or-ops-box" class="box3-1">
             <form id="trans-or-ops">
-                <input type="radio" id="viewChoice1" name="view">
+                <input type="radio" id="viewChoice1" name="view" value="trans" checked>
                 <label>Transactions</label>
-                <input type="radio" id="viewChoice2" name="view">
-                <label>Trade Commands</label>
+                <input type="radio" id="viewChoice2" name="view" value="buy">
+                <label>Buy Trade Commands</label>
+                <input type="radio" id="viewChoice3" name="view" value="sell">
+                <label>Sell Trade Commands</label>
             </form>
         </div>
-        <div id="table-view-box">
-<!--            <table id="table-view">
-                <tr id="ops-header">
-                    <th>Timestamp</th>
-                    <th>User</th>
-                    <th>Direction</th>
-                    <th>Type</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
-                </tr>
-                <tr id="trans-header">
-                    <th>Timestamp</th>
-                    <th>Quantity</th>
-                    <th>Price Per Share</th>
-                </tr>
-            </table>-->
+        <div id="table-view-box" class="box3-2">
             <table id="transactions-table">
                 <thead>
                     <tr>
@@ -110,7 +92,7 @@
             </table>
         </div>
     </div>
-    <div id="buy-sell-box">
+    <div id="buy-sell-box" class="box4">
         <form id="buy-sell-form">
             <input type="radio" id="dirChoice1" name="dir" value="buy" checked>
             <label>Buy</label>

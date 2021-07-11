@@ -1,3 +1,4 @@
+/*
 function notifyMe(title,body) {
     if (!window.Notification) {
         console.log('Browser does not support notifications.');
@@ -28,4 +29,9 @@ function notifyMe(title,body) {
             });
         }
     }
+}*/
+
+function notifyMe(msg){
+    localStorage.noteMessage = msg;
 }
+

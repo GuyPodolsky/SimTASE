@@ -5,73 +5,86 @@
     <title>Dashboard</title>
     <script src="../../common/jquery-2.0.3.min.js"></script>
     <script src="dashboard.js"></script>
+    <script src="../../common/notification.js"></script>
     <link rel="stylesheet" type="text/css" href="dashboard.css">
 </head>
-<body>
-    <footer id="notifyUser" style="position: fixed;bottom: 0; left: 0;width: 100%;height: 70px; alignment:center;background-color: white" >
-        You logged in successfully!
-    </footer>
-    <h1 style="text-align: center">Hi This is the dashboard!</h1>
-    <div id ="activeUsersSection" class="section" class="glyphicon-user">
-        <h2 class="sub-title"> Active users: </h2>
-        <ul id ="activeUsersList" onselect="stockSelected()">
-            <li>Loading the list of active users</li>
-            <li>Please wait...</li>
-        </ul>
+<body id="body">
+<embed id="notify" src="../../common/notification.html" style="position: fixed; width: 100%; bottom: 0; left: 0">
+    <div id="activeUsersSection" class="section" class="glyphicon-user">
+        <div id="active-users-header">
+            <h2 class="sub-title"> Active Users</h2>
+        </div>
+        <div id="active-users-list">
+            <ul id ="activeUsersList" onselect="stockSelected()">
+                <li>Loading the list of active users</li>
+                <li>Please wait...</li>
+            </ul>
+        </div>
     </div>
     <div id ="activeStocksSection" class="section">
-        <h2 class="sub-title">Active stocks:</h2>
-        <table id="activeStocksList" class="table" style="flex-direction: column" >
-            <thead >
+        <div id="active-stocks-header">
+            <h2 class="sub-title">Active stocks</h2>
+        </div>
+        <div id="active-stocks-list">
+            <table id="activeStocksList" class="table" style="flex-direction: column" >
+                <thead >
                 <th>Symbol</th>
                 <th>Company name</th>
                 <th>Share price</th>
                 <th>Total transactions turnover</th>
-            </thead>
-            <tbody id="stocksBody">
-
-            </tbody>
-        </table>
+                </thead>
+                <tbody id="stocksBody">
+                </tbody>
+            </table>
+        </div>
     </div>
     <div id="addPublicOfferBlock" class="section" class="user-adding-forms">
-        <h4 class="user-info"> Add new company public offering:</h4>
-        <form id="addPublicOffering" method="post">
-                    <span style="display:inline-flex;">
-                        <label>Company name:  </label>
-                        <input type="text" name="company name">
-                    </span>
-            <span style="display: inline-flex">
-                        <label>Company symbol:  </label>
-                        <input type="text" name="company symbol">
-                    </span>
-            <input type="number" name="shares quantity" min="1" placeholder="Public offering shares amount" style="width: 16em"><br><br>
-            <input type="number" name="company estimated value" min="1" placeholder="Company estimated value" style="width: 16em"><br><br>
-            <input type="submit" name="Add new company">
-        </form>
+        <div id="add-company-stock-header">
+            <h2 class="user-info">Add New Company Public Offering</h2>
+        </div>
+        <div id="add-company-stock-form">
+            <form id="addPublicOffering" method="post">
+                <div id="company-inputs">
+                    <label>Company Name:</label><br>
+                    <input type="text" name="company name" placeholder="Company name"><br><br>
+                    <label>Company Symbol:</label><br>
+                    <input type="text" name="company symbol" placeholder="Company symbol"><br><br>
+                    <label>Shares Quantity:</label><br>
+                    <input type="number" name="shares quantity" min="1" placeholder="Public offering shares amount" style="width: 16em"><br><br>
+                    <label>Company Estimated Value:</label><br>
+                    <input type="number" name="company estimated value" min="1" placeholder="Company estimated value" style="width: 16em">
+                </div>
+                <div id="company-submit">
+                    <input id="company-submit-btn" type="submit" name="Add new company">
+                </div>
+            </form>
+        </div>
     </div>
-    <div class="section2">
-    <h2 class="sub-title" class="user-info-block">User information:</h2>
-        <span id="loadFileButton" class="user-info-block" >
-            <h4 class="user-info">Load stocks from XML file:</h4> <br> <br>
+    <div id="user-section" class="user-section">
+        <div id="user-section-header">
+            <h2 class="sub-title" class="user-info-block">User Information</h2>
+        </div>
+        <div id="user-details">
+            <div id="load-file">
+            <span id="loadFileButton" class="user-info-block" >
+            <h4 class="user-info">Load stocks from XML file:</h4>
             <label id="file-upload-status" style="display: none">status</label>
             <button onclick="loadXMLFile()">Load XML File</button>
-        </span>
-
-        <div id="balance" class="user-info-block">
-             <span>
-            <h4 class="user-info">User balance:</h4>
-            <p id="userBalance"> 0 </p>
             </span>
-            <span>
+            </div>
+            <div id="balance" class="user-info-block">
+                <h4 class="user-info">User balance:</h4>
+                <p id="userBalance"> 0 </p>
+            </div>
+            <div id="add-to-balance">
                 <h4 class="user-info">Add to balance:</h4>
                 <form id="addingToBalance" method="post" style="display: flex">
                     <input id="add-amount" type="number" name="quantity" placeholder="Amount to add" min="1" step="0.01" />
                     <input type="submit" value="Add"/>
                 </form>
-            </span>
-            <br>
-            <span>
-                <h4 class="user-info">Transfer money: </h4>
+            </div>
+            <div id="transfer-money">
+                <h4 class="user-info">Transfer money:</h4>
                 <form id="transferMoney" method="post" style="display: flex">
                     <input id="trans-amount" type="number" name="quantity" placeholder="Amount" min="1" step="0.01"/>
                     <select id="user-select">
@@ -80,12 +93,15 @@
                     </select>
                     <input type="submit" value="Transfer">
                 </form>
-            </span>
+            </div>
         </div>
-        <div class="user-info-block">
-            <h4 class="user-info"> Previous transactions:</h4>
-            <table id="userCurrent" class="table">
-                <thead>
+        <div id="user-actions" class="user-info-block">
+            <div id="user-actions-header">
+                <h2 class="user-info">Previous Transactions</h2>
+            </div>
+            <div id="user-actions-list">
+                <table id="userCurrent" class="table">
+                    <thead>
                     <tr>
                         <th>Type</th>
                         <th>Date</th>
@@ -93,55 +109,12 @@
                         <th>Previous balance</th>
                         <th>Updated balance</th>
                     </tr>
-                </thead>
-                <tbody id="userCurrentBody">
-                </tbody>
-            </table>
-        </div>
-        <!--        <div class="user-info-block">
-            <h4 class="user-info"> Awaiting commands:</h4>
-            <table id="awaitingCommands">
-                <tr>
-                    <th>Date</th>
-                    <th>Symbol</th>
-                    <th>Direction</th>
-                    <th>Type</th>
-                    <th>Quantity</th>
-                    <th>Wanted price</th>
-                </tr>
-            </table>
-        </div>-->
-        <!--<div class="user-adding-forms">
-            <br><br>
-            <div class="user-adding-forms">
-                <h4 class="user-info"> Add trade command:</h4>
-                <form id="addTradeCommand" method="post">
-                    <span style="display:-ms-inline-flexbox" >
-                        <p>Choose command direction:</p>
-                        <input type="radio" id="buy" name="buy/sell" value="buy" align="middle">
-                        <label for="buy">Buy</label>
-                        <input type="radio" id="sell" name="buy/sell" value="sell" align="middle">
-                        <label for="sell">Sell</label><br><br>
-                    </span>
-                    <select id="stockSymbol "name="symbol">
-                        <option value="" disabled selected hidden>Symbol select</option>
-                        <option value="Google">google</option>
-                    </select><br><br>
-                    <select id="tradecommandType" name="Trade command type">
-                        <option value="" disabled selected hidden>Command type select</option>
-                        <option value="LMT">LMT</option>
-                        <option value="MKT">MKT</option>
-                        <option value="IOC">IOC</option>
-                        <option value="FOC">FOC</option>
-                    </select><br><br>
-                    <input type="number" name="quantity" placeholder="Quantity" min="1"><br><br>
-                    <input type="submit" name="Add trade command"><br><br>
-                </form>
+                    </thead>
+                    <tbody id="userCurrentBody">
+                    </tbody>
+                </table>
             </div>
-
-        </div>-->
+        </div>
     </div>
-
-
 </body>
 </html>

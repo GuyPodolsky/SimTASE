@@ -1,8 +1,12 @@
+var admin=false;
+
 $(function () { // onload
     let params = new URLSearchParams(location.search);
     let stockSymbol = params.get('stock');
     window.setTimeout(updateShowStock, 1);
     window.setInterval(updateShowStock, 3000);
+    window.setTimeout(isAdmin,1);
+    window.setInterval(updateView,1);
     document.cookie = "stock=" + stockSymbol;
 
     $("#buy-sell-form").submit(function (){
@@ -21,14 +25,44 @@ $(function () { // onload
             },
             url:'/TradeCommands',
             error:function (code,msg){
-                document.getElementById("notifyUser").innerText = msg;
+                notifyMe(msg);
             }
         })
         return false;
     })
 })
 
+function updateView(){
+    let trans = document.getElementById('transactions-table');
+    let sell = document.getElementById('sell-commands-table');
+    let buy = document.getElementById('buy-commands-table');
+    const rbs = document.querySelectorAll('input[name="view"]');
+    let selectedValue;
+    for (const rb of rbs) {
+        if (rb.checked) {
+            selectedValue = rb.value;
+            break;
+        }
+    }
+    switch (selectedValue){
+        case 'trans':
+            trans.hidden = false;
+            sell.hidden = true;
+            buy.hidden = true;
+            break;
+        case 'buy':
+            trans.hidden = true;
+            sell.hidden = true;
+            buy.hidden = false;
+            break;
+        case 'sell':
+            trans.hidden = true;
+            sell.hidden = false;
+            buy.hidden = true;
+            break;
+    }
 
+}
 
 function deleteAllCookies() {
     var cookies = document.cookie.split(";");
@@ -64,7 +98,7 @@ function updateShowStock(){
         data: {'symbol': stockSymbol},
         url: "/showStock",
         error:function (code,msg){
-            document.getElementById("notifyUser").innerText = msg;
+            notifyMe(msg)
         },
         success: function (res) {
             let data = JSON.parse(res);
@@ -140,6 +174,35 @@ function updateShowStock(){
             } // for
         } // successes
     })// ajax call
+}
+
+function isAdmin() {
+    $.ajax({
+        type: 'GET',
+        data: {op: "isAdmin"},
+        url: '/UpdateUserDetails',
+        error: function (code, msg) {
+            notifyMe(msg);
+        },
+        success: function (res) {
+            let box1 = document.getElementById('details-box');
+            let box4 = document.getElementById('buy-sell-box');
+            let ownHoldings = document.getElementById('own-holdings');
+            let data = JSON.parse(res);
+            let is_admin = data["is_admin"];
+            if(Boolean(is_admin)) {
+                admin=true;
+                box4.hidden = true;
+                box1.style.gridRow='1/3';
+                ownHoldings.hidden = true;
+            }else{
+                admin=false;
+                box4.hidden = false;
+                box1.style.gridRow='1';
+                ownHoldings.hidden = false;
+            }
+        }
+    });
 }
 
 function goBack(){

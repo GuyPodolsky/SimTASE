@@ -6,20 +6,21 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a14c5375-d147-41c4-b6bf-d40cd56cf20d" name="Default" comment="fixed the bugs in showStock and page 2 after adding a trade command">
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+    <list default="true" id="a14c5375-d147-41c4-b6bf-d40cd56cf20d" name="Default" comment="1.TradeCommandServlet added&#10;2.going back button is working now&#10;3.enhanced the capabilities of direction and type enums&#10;4. found some bugs I have described them in depth in a Whatsapp message">
+      <change afterPath="$PROJECT_DIR$/RSEWebUI/web/common/close.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RSEWebUI/web/common/notification.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RSEWebUI/web/common/notification.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RSEEngine/src/engine/logic/Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/RSEEngine/src/engine/logic/Engine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RSEEngine/src/engine/users/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/RSEEngine/src/engine/users/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RSEWebUI/src/rse/servlets/ActiveUsersServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/src/rse/servlets/ActiveUsersServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RSEWebUI/src/rse/servlets/AddNewStockServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/src/rse/servlets/AddNewStockServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RSEWebUI/src/rse/servlets/ShowAllStocksServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/src/rse/servlets/ShowAllStocksServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RSEWebUI/src/rse/servlets/ShowStockServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/src/rse/servlets/ShowStockServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RSEWebUI/src/rse/servlets/TradeCommandsServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/src/rse/servlets/TradeCommandsServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RSEWebUI/src/rse/servlets/UserDetailsServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/src/rse/servlets/UserDetailsServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RSEWebUI/web/common/notification.js" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/web/common/notification.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RSEWebUI/web/pages/dashboard/dashboard.css" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/web/pages/dashboard/dashboard.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RSEWebUI/web/pages/dashboard/dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/web/pages/dashboard/dashboard.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RSEWebUI/web/pages/dashboard/dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/web/pages/dashboard/dashboard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RSEWebUI/web/pages/login/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/web/pages/login/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RSEWebUI/web/pages/login/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/web/pages/login/login.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RSEWebUI/web/pages/stockview/stockview.css" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/web/pages/stockview/stockview.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RSEWebUI/web/pages/stockview/stockview.html" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/web/pages/stockview/stockview.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RSEWebUI/web/pages/stockview/stockview.js" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/web/pages/stockview/stockview.js" afterDir="false" />
@@ -76,9 +77,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JavaScript File" />
+        <option value="Class" />
         <option value="HTML File" />
         <option value="CSS File" />
-        <option value="Class" />
       </list>
     </option>
   </component>
@@ -102,6 +103,12 @@
       <filtered-out-file-type name="TAG" />
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/RSEWebUI/web/pages/dashboard/dashboard.js" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/RSEWebUI/web/pages/dashboard/dashboard.html" root0="FORCE_HIGHLIGHTING" />
+    <setting file="jar://$PROJECT_DIR$/../../../../Program Files/Java/jdk1.8.0_291/src.zip!/java/nio/file/NoSuchFileException.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/RSEWebUI/web/pages/stockview/stockview.html" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="LogFilters">
     <option name="FILTER_ERRORS" value="false" />
@@ -133,7 +140,7 @@
     <property name="jdk.selected.JAVA_MODULE" value="1.8" />
     <property name="js-jscs-nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/RSEEngine/src" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/3rd/google-gson-2.1/gson-2.1.jar" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/RSEWebUI/web/common" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -149,6 +156,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\guypodolsky\IdeaProjects\WebRSE\RSEWebUI\web\common" />
       <recent name="C:\Users\amare\IdeaProjects\rse\WebRSE\RSEWebUI\src\rse\servlets" />
       <recent name="C:\Users\guypodolsky\IdeaProjects\WebRSE\RSEEngine\src\engine\dto" />
       <recent name="C:\Users\guypodolsky\IdeaProjects\WebRSE\RSEEngine\src\engine\logic" />
@@ -556,6 +564,8 @@
       <workItem from="1625228658283" duration="12348000" />
       <workItem from="1625328978355" duration="3530000" />
       <workItem from="1625764493762" duration="12784000" />
+      <workItem from="1625938643353" duration="31000" />
+      <workItem from="1625938711797" duration="31526000" />
     </task>
     <task id="LOCAL-00001" summary="V1">
       <created>1624972995375</created>
@@ -704,15 +714,16 @@
           <line>40</line>
           <option name="timeStamp" value="21" />
         </line-breakpoint>
-        <line-breakpoint type="java-line">
-          <url>file://$PROJECT_DIR$/RSEWebUI/src/rse/servlets/ShowStockServlet.java</url>
-          <line>42</line>
-          <option name="timeStamp" value="22" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/RSEWebUI/src/rse/servlets/TradeCommandsServlet.java</url>
           <line>18</line>
           <option name="timeStamp" value="39" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/RSEWebUI/web/pages/stockview/stockview.js</url>
+          <line>93</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="41" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -49,4 +49,4 @@ public class AddNewStockServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         doPost(request,response);
     }
-    }
+}
