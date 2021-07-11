@@ -6,25 +6,7 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a14c5375-d147-41c4-b6bf-d40cd56cf20d" name="Default" comment="1.TradeCommandServlet added&#10;2.going back button is working now&#10;3.enhanced the capabilities of direction and type enums&#10;4. found some bugs I have described them in depth in a Whatsapp message">
-      <change afterPath="$PROJECT_DIR$/RSEWebUI/web/common/close.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RSEWebUI/web/common/notification.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/RSEWebUI/web/common/notification.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RSEEngine/src/engine/logic/Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/RSEEngine/src/engine/logic/Engine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RSEWebUI/src/rse/servlets/AddNewStockServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/src/rse/servlets/AddNewStockServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RSEWebUI/src/rse/servlets/ShowStockServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/src/rse/servlets/ShowStockServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RSEWebUI/src/rse/servlets/UserDetailsServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/src/rse/servlets/UserDetailsServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RSEWebUI/web/common/notification.js" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/web/common/notification.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RSEWebUI/web/pages/dashboard/dashboard.css" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/web/pages/dashboard/dashboard.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RSEWebUI/web/pages/dashboard/dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/web/pages/dashboard/dashboard.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RSEWebUI/web/pages/dashboard/dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/web/pages/dashboard/dashboard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RSEWebUI/web/pages/login/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/web/pages/login/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RSEWebUI/web/pages/login/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/web/pages/login/login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RSEWebUI/web/pages/stockview/stockview.css" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/web/pages/stockview/stockview.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RSEWebUI/web/pages/stockview/stockview.html" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/web/pages/stockview/stockview.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RSEWebUI/web/pages/stockview/stockview.js" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/web/pages/stockview/stockview.js" afterDir="false" />
-    </list>
+    <list default="true" id="a14c5375-d147-41c4-b6bf-d40cd56cf20d" name="Default" comment="too mush" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -566,6 +548,7 @@
       <workItem from="1625764493762" duration="12784000" />
       <workItem from="1625938643353" duration="31000" />
       <workItem from="1625938711797" duration="31526000" />
+      <workItem from="1626007640795" duration="302000" />
     </task>
     <task id="LOCAL-00001" summary="V1">
       <created>1624972995375</created>
@@ -653,7 +636,14 @@
       <option name="presentableId" value="LOCAL‎00012" />
       <updated>1625816257749</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="too mush">
+      <created>1626007849791</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1626007849791</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -699,7 +689,8 @@
     <MESSAGE value="fixed the bug with stack at updateActiveUsers" />
     <MESSAGE value="1. one servlet for user details&#10;2. UserAction class gets a String as type and LocalDateTime as timestamp" />
     <MESSAGE value="fixed the bugs in showStock and page 2 after adding a trade command" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed the bugs in showStock and page 2 after adding a trade command" />
+    <MESSAGE value="too mush" />
+    <option name="LAST_COMMIT_MESSAGE" value="too mush" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -722,7 +713,6 @@
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/RSEWebUI/web/pages/stockview/stockview.js</url>
           <line>93</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="41" />
         </line-breakpoint>
       </breakpoints>
