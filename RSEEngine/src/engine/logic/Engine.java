@@ -245,7 +245,7 @@ public class Engine implements Trader {
             throw new FileNotFoundException("There is no such a XML file.");
         }
     }
-    public void uploadDataFromFile(InputStream in) throws FileNotFoundException, JAXBException, IllegalArgumentException // first option
+    public void uploadDataFromFile(InputStream in, String username) throws FileNotFoundException, JAXBException, IllegalArgumentException // first option
     {
         // need to upload all the stocks from xml file
         MultiKeyMap<String,Stock> tmpStocks = new MultiKeyMap<String, Stock>();
