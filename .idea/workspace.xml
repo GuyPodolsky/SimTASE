@@ -6,14 +6,16 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a14c5375-d147-41c4-b6bf-d40cd56cf20d" name="Default" comment="small change in the engine">
+    <list default="true" id="a14c5375-d147-41c4-b6bf-d40cd56cf20d" name="Default" comment="XML load ability in the engine">
+      <change afterPath="$PROJECT_DIR$/RSEWebUI/web/pages/stockview/loader.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RSEEngine/src/engine/logic/Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/RSEEngine/src/engine/logic/Engine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RSEEngine/src/engine/logic/Trader.java" beforeDir="false" afterPath="$PROJECT_DIR$/RSEEngine/src/engine/logic/Trader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RSEEngine/src/engine/users/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/RSEEngine/src/engine/users/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RSEEngine/src/engine/users/UserHoldings.java" beforeDir="false" afterPath="$PROJECT_DIR$/RSEEngine/src/engine/users/UserHoldings.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RSEWebUI/src/rse/servlets/LoadXMLServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/src/rse/servlets/LoadXMLServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RSEWebUI/web/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/web/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RSEWebUI/web/pages/dashboard/dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/web/pages/dashboard/dashboard.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RSEWebUI/web/pages/dashboard/dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/web/pages/dashboard/dashboard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RSEWebUI/web/pages/stockview/stockview.html" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/web/pages/stockview/stockview.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RSEWebUI/web/pages/stockview/stockview.js" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/web/pages/stockview/stockview.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,12 +110,15 @@
     <option name="CUSTOM_FILTER" />
   </component>
   <component name="ProjectId" id="1S3XQ1IDVrqtVULUNS0J7w57Y2C" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="abbreviatePackageNames" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="GoToClass.includeLibraries" value="false" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
@@ -155,6 +160,7 @@
       <recent name="C:\Users\guypodolsky\IdeaProjects\WebRSE\RSEEngine\src" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\guypodolsky\IdeaProjects\WebRSE\RSEWebUI\web\pages\stockview" />
       <recent name="C:\Users\guypodolsky\IdeaProjects\WebRSE\RSEWebUI\web\pages\login" />
       <recent name="C:\aviad\projects\java\Java and Internet course\examples\Online Chat V2\chatWebApp\web\pages\chatroom" />
       <recent name="C:\aviad\projects\java\Java and Internet course\examples\Online Chat V2\chatWebApp\web\common" />
@@ -651,7 +657,14 @@
       <option name="project" value="LOCAL" />
       <updated>1626007849791</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="XML load ability in the engine">
+      <created>1626013371059</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1626013371059</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -685,6 +698,7 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="V1" />
     <MESSAGE value="V1 with engine" />
     <MESSAGE value="V1 with engine working!!!!!!!!!" />
@@ -699,7 +713,8 @@
     <MESSAGE value="fixed the bugs in showStock and page 2 after adding a trade command" />
     <MESSAGE value="too mush" />
     <MESSAGE value="small change in the engine" />
-    <option name="LAST_COMMIT_MESSAGE" value="small change in the engine" />
+    <MESSAGE value="XML load ability in the engine" />
+    <option name="LAST_COMMIT_MESSAGE" value="XML load ability in the engine" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -720,19 +735,20 @@
           <option name="timeStamp" value="39" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/RSEWebUI/src/rse/servlets/LoadXMLServlet.java</url>
-          <line>16</line>
-          <option name="timeStamp" value="43" />
+          <url>file://$PROJECT_DIR$/RSEEngine/src/engine/users/UserHoldings.java</url>
+          <line>66</line>
+          <option name="timeStamp" value="47" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/RSEWebUI/web/pages/stockview/stockview.js</url>
-          <line>93</line>
+          <line>114</line>
           <option name="timeStamp" value="41" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
+        <PinnedItemInfo parentTag="org.apache.catalina.connector.Request" memberName="parameterMap" />
         <PinnedItemInfo parentTag="javax.servlet.ServletException" memberName="stackTrace" />
       </pinned-members>
     </pin-to-top-manager>

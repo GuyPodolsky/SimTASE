@@ -7,6 +7,7 @@ $(function () { // onload
     window.setInterval(updateShowStock, 3000);
     window.setTimeout(isAdmin,1);
     window.setInterval(updateView,1);
+    window.setInterval(drawChart,3000);
     document.cookie = "stock=" + stockSymbol;
 
     $("#buy-sell-form").submit(function (){
@@ -31,6 +32,26 @@ $(function () { // onload
         return false;
     })
 })
+
+function drawChart() {
+    var data = google.visualization.arrayToDataTable([
+        ['Year', 'Sales', 'Expenses'],
+        ['2004',  1000,      400],
+        ['2005',  1170,      460],
+        ['2006',  660,       1120],
+        ['2007',  1030,      540]
+    ]);
+
+    var options = {
+        title: 'Company Performance',
+        curveType: 'function',
+        legend: { position: 'bottom' }
+    };
+
+    var chart = new google.visualization.LineChart(document.getElementById('graph-box'));
+
+    chart.draw(data, options);
+}
 
 function updateView(){
     let trans = document.getElementById('transactions-table');

@@ -54,6 +54,25 @@ $(function (){ // onload
         })
         return false;
     })
+
+    $("#xmlLoad").submit(function () {
+        let file = this[0].files[0];
+        let formData = new FormData();
+        formData.append("key", file);//"fake-key"
+        $.ajax({
+            method: 'POST',
+            data: formData,
+            url: '/LoadXMLServlet',
+            processData: false, // Don't process the files
+            contentType: false,
+            error: function (jqXHR, textStatus, errorThrown) {
+                notifyMe(jqXHR.status + " " + jqXHR.getResponseHeader("errorMessage"));
+            },
+            success: function (msg) {
+                notifyMe(msg);
+            }
+        });
+    });
 })
 
 function updateActiveUsers(){ //TODO: make the refresh less annoying.
@@ -128,39 +147,39 @@ function updateActiveStocks(){
 }
 
 function loadXMLFile() {
+    // you can use this method to get file and perform respective operations
     let input = document.createElement('input');
     input.type = 'file';
     input.onchange = _ => {
         // you can use this method to get file and perform respective operations
-        let input = document.createElement('input');
-        input.type = 'file';
-        input.onchange = _ => {
-            // you can use this method to get file and perform respective operations
-            let files = Array.from(input.files);
-            if (files.length > 1) {
-                document.getElementById('file-upload-status').style.display = 'block';
-                document.getElementById('file-upload-status').innerHTML = 'Can\'t load more than one file';
-                document.getElementById('file-upload-status').style.color = 'red';
-                setTimeout(function () {
-                    document.getElementById('file-upload-status').style.display = 'none';
-                }, 30 * 1000);
-            }
-            console.log(files);
-            $.ajax({
-                    type: 'POST',
-                    data: {'xmlFile': files[0]},
-                    url: '/LoadXMLServlet',
-                    error: function (jqXHR, textStatus, errorThrown){
-                        notifyMe(jqXHR.status + " " +jqXHR.getResponseHeader("errorMessage"));
-                    },
-                    success: function (msg) {
-                        notifyMe(msg);
-                    }
+        let files = Array.from(input.files);
+        if (files.length > 1) {
+            document.getElementById('file-upload-status').style.display = 'block';
+            document.getElementById('file-upload-status').innerHTML = 'Can\'t load more than one file';
+            document.getElementById('file-upload-status').style.color = 'red';
+            setTimeout(function () {
+                document.getElementById('file-upload-status').style.display = 'none';
+            }, 30 * 1000);
+        }
+        var formData = new FormData();
+        formData.append("key",files[0]);
+        console.log(files);
+        $.ajax({
+                type: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                url: '/LoadXMLServlet',
+                error: function (jqXHR, textStatus, errorThrown){
+                    notifyMe(jqXHR.status + " " +jqXHR.getResponseHeader("errorMessage"));
                 },
-            )
-        };
-        input.click();
-    }
+                success: function (msg) {
+                    notifyMe(msg);
+                }
+            },
+        )
+    };
+    input.click();
 }
 
 function stockSelected(event) {

@@ -67,9 +67,13 @@
         <div id="user-details">
             <div id="load-file">
             <span id="loadFileButton" class="user-info-block" >
-            <h4 class="user-info">Load stocks from XML file:</h4>
-            <label id="file-upload-status" style="display: none">status</label>
-            <button onclick="loadXMLFile()">Load XML File</button>
+                <h4 class="user-info">Load stocks from XML file:</h4>
+                <label id="file-upload-status" style="display: none">status</label>
+                <!--<button onclick="loadXMLFile()">Load XML File</button>-->
+                <form id="xmlLoad" enctype="multipart/form-data">
+                    <input type="file" name="file" accept="text/xml"><br><br>
+                    <input type="Submit" value="Upload File"><br>
+                </form>
             </span>
             </div>
             <div id="balance" class="user-info-block">

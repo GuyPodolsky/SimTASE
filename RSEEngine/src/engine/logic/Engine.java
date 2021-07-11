@@ -27,7 +27,7 @@ import java.util.*;
  */
 public class Engine implements Trader {
     private static Engine instance = new Engine();                                 //the single instance of the class.
-    private static final String JAXB_XML_PACKAGE_NAME = "jaxb.schema.generated";
+    private static final String JAXB_XML_PACKAGE_NAME = "engine.jaxb.schema.generated";
 
     private MultiKeyMap<String, Stock> stocks = new MultiKeyMap<String, Stock>();//will be search with their symbol
     private Object lock2 = new Object();
@@ -262,7 +262,9 @@ public class Engine implements Trader {
             for(String symbol: tmpHoldings.keySet()){
                 if(user.getUserStockHoldings(symbol)>0) {
                     user.updateUserHolding(symbol, tmpHoldings.get(symbol));
-                    amount += tmpHoldings.get(symbol) * stocks.get(symbol).getSharePrice().intValue();
+                    int value = tmpHoldings.get(symbol) * stocks.get(symbol).getSharePrice().intValue();
+                    amount += value;
+                    user.addToUserBalance(value);
                 }
                 else
                 {

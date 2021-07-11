@@ -65,6 +65,6 @@ public class UserHoldings {
 
     public void addQuantity(int quantity){
         this.freeShares += quantity;
-        this.quantity.add(quantity);
+        this.quantity.setValue(this.getQuantity()+quantity);
     }
 }
