@@ -160,12 +160,12 @@ public class User {
         if(transaction.getSeller().getUserName().equals(userName)) {      // if the user is the seller - we need to add the turnover to his balance
             float pre = userBalance;
             userBalance += transaction.getTurnover();
-            actions.add(new UserAction(("Acquisition of " + transaction.getQuantity() + " shares of " + transaction.getSymbol()),LocalDateTime.now(),transaction.getTurnover(),pre, userBalance));
+            actions.add(new UserAction(("Sale of " + transaction.getQuantity() + " shares of " + transaction.getSymbol()),LocalDateTime.now(),transaction.getTurnover(), pre,userBalance));
         }
-        else {        // else - the user is the buyer and we need to reduce the turnover from the user balance
+        else {                                                            // else - the user is the buyer and we need to reduce the turnover from the user balance
             float pre = userBalance;
             userBalance -= transaction.getTurnover();
-            actions.add(new UserAction(("Sale of " + transaction.getQuantity() + " shares of " + transaction.getSymbol()),LocalDateTime.now(),-transaction.getTurnover(), pre,userBalance));
+            actions.add(new UserAction(("Acquisition of " + transaction.getQuantity() + " shares of " + transaction.getSymbol()),LocalDateTime.now(),(-1*transaction.getTurnover()),pre, userBalance));
         }
         userTransactions.add(transaction);
     }

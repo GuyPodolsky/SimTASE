@@ -6,9 +6,10 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a14c5375-d147-41c4-b6bf-d40cd56cf20d" name="Default" comment="XML load ability complete">
+    <list default="true" id="a14c5375-d147-41c4-b6bf-d40cd56cf20d" name="Default" comment="bug with FOK and IOC">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RSEEngine/src/engine/logic/Stock.java" beforeDir="false" afterPath="$PROJECT_DIR$/RSEEngine/src/engine/logic/Stock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RSEEngine/src/engine/users/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/RSEEngine/src/engine/users/User.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -557,7 +558,7 @@
       <workItem from="1625938711797" duration="31526000" />
       <workItem from="1626007640795" duration="302000" />
       <workItem from="1626071599550" duration="9729000" />
-      <workItem from="1626089936678" duration="1059000" />
+      <workItem from="1626089936678" duration="5659000" />
     </task>
     <task id="LOCAL-00001" summary="V1">
       <created>1624972995375</created>
@@ -666,7 +667,14 @@
       <option name="project" value="LOCAL" />
       <updated>1626020465138</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="bug with FOK and IOC">
+      <created>1626091192779</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1626091192779</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -717,7 +725,8 @@
     <MESSAGE value="small change in the engine" />
     <MESSAGE value="XML load ability in the engine" />
     <MESSAGE value="XML load ability complete" />
-    <option name="LAST_COMMIT_MESSAGE" value="XML load ability complete" />
+    <MESSAGE value="bug with FOK and IOC" />
+    <option name="LAST_COMMIT_MESSAGE" value="bug with FOK and IOC" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -739,31 +748,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/RSEEngine/src/engine/logic/Stock.java</url>
-          <line>422</line>
-          <option name="timeStamp" value="52" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/RSEEngine/src/engine/logic/Stock.java</url>
-          <line>443</line>
-          <option name="timeStamp" value="53" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/RSEEngine/src/engine/logic/Stock.java</url>
-          <line>250</line>
-          <option name="timeStamp" value="57" />
+          <line>437</line>
+          <option name="timeStamp" value="70" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/RSEWebUI/web/pages/stockview/stockview.js</url>
           <line>114</line>
           <option name="timeStamp" value="41" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/RSEEngine/src/engine/logic/Stock.java</url>
-          <line>248</line>
-          <properties class="engine.logic.Stock" method="addTradeCommand">
-            <option name="EMULATED" value="true" />
-          </properties>
-          <option name="timeStamp" value="59" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
