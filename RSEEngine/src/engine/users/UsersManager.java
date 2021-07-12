@@ -1,5 +1,6 @@
 package engine.users;
 
+import javax.servlet.http.HttpSession;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -36,11 +37,11 @@ public class UsersManager {
      * @param name the name of the new user
      * @throws IllegalArgumentException if there is already a user with the given name
      */
-    public void addUser(String name, boolean isAdmin) throws IllegalArgumentException {
+    public void addUser(String name, boolean isAdmin, HttpSession session) throws IllegalArgumentException {
         if (users.containsKey(name))
             throw new IllegalArgumentException("A user with this name " + name + " is already in the system.");
 
-        users.put(name, new User(name, isAdmin));
+        users.put(name, new User(name, isAdmin,session));
     }
 
     public void addUser(String name, User user) throws IllegalArgumentException {

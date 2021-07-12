@@ -9,7 +9,9 @@
     <link rel="stylesheet" type="text/css" href="dashboard.css">
 </head>
 <body id="body">
+<!--
 <embed id="notify" src="../../common/notification.html" style="position: fixed; width: 100%; bottom: 0; left: 0">
+-->
     <div id="activeUsersSection" class="section" class="glyphicon-user">
         <div id="active-users-header">
             <h2 class="sub-title"> Active Users</h2>
@@ -46,9 +48,9 @@
             <form id="addPublicOffering" method="post">
                 <div id="company-inputs">
                     <label>Company Name:</label><br>
-                    <input type="text" name="company name" placeholder="Company name"><br><br>
+                    <input type="text" name="company name" placeholder="Company name" required data-validation-required-message="Please enter the company name."><br><br>
                     <label>Company Symbol:</label><br>
-                    <input type="text" name="company symbol" placeholder="Company symbol"><br><br>
+                    <input type="text" name="company symbol" placeholder="Company symbol" required data-validation-required-message="Please enter the company symbol."><br><br>
                     <label>Shares Quantity:</label><br>
                     <input type="number" name="shares quantity" min="1" placeholder="Public offering shares amount" style="width: 16em"><br><br>
                     <label>Company Estimated Value:</label><br>

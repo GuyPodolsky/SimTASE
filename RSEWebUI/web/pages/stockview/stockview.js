@@ -6,6 +6,7 @@ $(function () { // onload
     window.setTimeout(updateShowStock, 1);
     window.setTimeout(isAdmin,1);
     window.setInterval(updateShowStock, 3000);
+    window.setInterval(getMessagesFromServer,2000);
     window.setInterval(updateView,1);
     document.cookie = "stock=" + stockSymbol;
     document.title = String(stockSymbol) + " Stock View";
@@ -34,8 +35,12 @@ $(function () { // onload
                 price:price
             },
             url:'/TradeCommands',
-            error:function (code,msg){
-                notifyMe(msg);
+            error: function (jqXHR, textStatus, errorThrown){
+                notifyMe("Error",jqXHR.status + " " +jqXHR.getResponseHeader("errorMessage"));
+            },
+            success:function (msg){
+                notifyMe("Trade command:",msg);
+                document.getElementById("buy-sell-form").reset();
             }
         })
         return false;
@@ -154,8 +159,8 @@ function updateShowStock(){
         type: 'GET',
         data: {'symbol': stockSymbol},
         url: "/showStock",
-        error:function (code,msg){
-            notifyMe(msg)
+        error: function (jqXHR, textStatus, errorThrown){
+            notifyMe("Error",jqXHR.status + " " +jqXHR.getResponseHeader("errorMessage"));
         },
         success: function (res) {
             let data = JSON.parse(res);
@@ -239,8 +244,8 @@ function isAdmin() {
         type: 'GET',
         data: {op: "isAdmin"},
         url: '/UpdateUserDetails',
-        error: function (code, msg) {
-            notifyMe(msg);
+        error: function (jqXHR, textStatus, errorThrown){
+            notifyMe("Error",jqXHR.status + " " +jqXHR.getResponseHeader("errorMessage"));
         },
         success: function (res) {
             let box1 = document.getElementById('details-box');
@@ -271,4 +276,17 @@ function isAdmin() {
 
 function goBack(){
     window.location.replace("../dashboard/dashboard.html");
+}
+
+function getMessagesFromServer(){
+    $.ajax({
+        type: 'GET',
+        url: '/MessageFromServer',
+        success: function (json) {
+            let msgs = JSON.parse(json);
+            for(var i =0;i<msgs.length;i++){
+                notifyMe("Message from server:",msgs[i] );
+            }
+        }
+    })
 }

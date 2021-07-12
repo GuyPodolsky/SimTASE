@@ -7,6 +7,7 @@ $(function (){ // onload
     window.setInterval(updateActiveUsers,2000);
     window.setInterval(updateActiveStocks,2000);
     window.setInterval(updateUserDetails,2000);
+    window.setInterval(getMessagesFromServer,2000);
 
     $("#addingToBalance").submit(function (){
         $.ajax({
@@ -16,7 +17,10 @@ $(function (){ // onload
                 amount:document.getElementById("add-amount").value},
             url:'/UpdateUserDetails',
             error:function (jqXHR, textStatus, errorThrown){
-                //document.getElementById("notifyUser").innerText = jqXHR.status + " " +jqXHR.getResponseHeader("errorMessage");
+                notifyMe("Error",jqXHR.status + " " +jqXHR.getResponseHeader("errorMessage"));
+            },
+            success:function (){
+                document.getElementById("add-amount").value = null;
             }
         })
         return false;
@@ -28,12 +32,11 @@ $(function (){ // onload
             data:$(this).serialize(),
             url:"/AddNewStockServlet",
             error:function (jqXHR, textStatus, errorThrown){
-                notifyMe(jqXHR.status + " " +jqXHR.getResponseHeader("errorMessage"));
-                //document.getElementById("notifyUser").innerText = jqXHR.status + " " +jqXHR.getResponseHeader("errorMessage");
-            },
+                notifyMe("Error",jqXHR.status + " " +jqXHR.getResponseHeader("errorMessage"));
+                },
             success: function (msg){
                 notifyMe(msg);
-                //document.getElementById("notifyUser").innerText = msg;
+                document.getElementById("addPublicOffering").reset();
             }
         })
         return false;
@@ -48,8 +51,10 @@ $(function (){ // onload
                 amount:document.getElementById("trans-amount").value},
             url:'/UpdateUserDetails',
             error:function (jqXHR, textStatus, errorThrown){
-                notifyMe(qXHR.status + " " +jqXHR.getResponseHeader("errorMessage"));
-                //document.getElementById("notifyUser").innerText = jqXHR.status + " " +jqXHR.getResponseHeader("errorMessage");
+                notifyMe("Error",qXHR.status + " " +jqXHR.getResponseHeader("errorMessage"));
+                },
+            success: function (){
+                document.getElementById("transferMoney").reset();
             }
         })
         return false;
@@ -66,10 +71,10 @@ $(function (){ // onload
             processData: false, // Don't process the files
             contentType: false,
             error: function (jqXHR, textStatus, errorThrown) {
-                notifyMe(jqXHR.status + " " + jqXHR.getResponseHeader("errorMessage"));
+                notifyMe("Error",jqXHR.status + " " + jqXHR.getResponseHeader("errorMessage"));
             },
             success: function (msg) {
-                notifyMe(msg);
+                notifyMe(msg,"The RSE has been updated with the data.");
             }
         });
     });
@@ -82,9 +87,8 @@ function updateActiveUsers(){ //TODO: make the refresh less annoying.
         dataType:'json',
         timeout:2000,
         error:function (jqXHR, textStatus, errorThrown){
-            notifyMe(jqXHR.status + " " +jqXHR.getResponseHeader("errorMessage"));
-            //document.getElementById("notifyUser").innerText = jqXHR.status + " " +jqXHR.getResponseHeader("errorMessage");
-        },
+            notifyMe("Error",jqXHR.status + " " +jqXHR.getResponseHeader("errorMessage"));
+                    },
         success: function (jsonStr){
             $("#activeUsersList").empty();
             $("#user-select").empty();
@@ -137,7 +141,6 @@ function updateActiveStocks(){
                 newRow.id = "row"+i;
                 newRow.ondblclick = function (i){stockSelected(i)};
 
-
                 document.getElementById("stocksBody").appendChild(newRow);
 
             }
@@ -171,7 +174,7 @@ function loadXMLFile() {
                 contentType: false,
                 url: '/LoadXMLServlet',
                 error: function (jqXHR, textStatus, errorThrown){
-                    notifyMe(jqXHR.status + " " +jqXHR.getResponseHeader("errorMessage"));
+                    notifyMe("Error",jqXHR.status + " " +jqXHR.getResponseHeader("errorMessage"));
                 },
                 success: function (msg) {
                     notifyMe(msg);
@@ -183,8 +186,7 @@ function loadXMLFile() {
 }
 
 function stockSelected(event) {
-    //var rowId = event.relatedTarget.id;
-    //let row = document.getElementById(rowId);
+
     let row = event.currentTarget;
     let cells = row.childNodes;
     let symbol = cells[0].innerText;
@@ -216,11 +218,19 @@ function updateUserDetails() {
                 cell4.innerHTML = actions[i]["preBalance"];
                 cell5.innerHTML = actions[i]["postBalance"];
             }
-        },
-        error:function (jqXHR, textStatus, errorThrown){
-            //document.getElementById("notifyUser").innerText = jqXHR.status + " " +jqXHR.getResponseHeader("errorMessage");
         }
     })
 }
 
-
+function getMessagesFromServer(){
+    $.ajax({
+        type: 'GET',
+        url: '/MessageFromServer',
+        success: function (json) {
+           let msgs = JSON.parse(json);
+           for(var i =0;i<msgs.length;i++){
+               notifyMe("Message from server:",msgs[i] );
+           }
+        }
+    })
+}

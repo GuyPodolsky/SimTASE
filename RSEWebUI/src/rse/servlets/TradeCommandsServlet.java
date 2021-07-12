@@ -20,7 +20,9 @@ public class TradeCommandsServlet extends HttpServlet {
         TradeCommand.Direction dir = TradeCommand.Direction.getByName(request.getParameter("dir"));
         TradeCommand.CommandType type = TradeCommand.CommandType.getByNum(Integer.parseInt(request.getParameter("type")));
         int quantity = Integer.parseInt(request.getParameter("quantity"));
-        float price = Float.parseFloat(request.getParameter("price"));
+        float price=0;
+        if(type != TradeCommand.CommandType.MKT)
+            price = Float.parseFloat(request.getParameter("price"));
         HttpSession session = request.getSession(false);
         if(session==null){
             Logger.getServerLogger().post("User must enter the system first.");
@@ -49,7 +51,9 @@ public class TradeCommandsServlet extends HttpServlet {
                         "Type:" + type + "," +
                         "Quantity:" + quantity + "," +
                         "Price:" + price);
-                Engine.getInstance().addTradeCommand(symbol, dir, type, quantity, price,user);
+                String msg = Engine.getInstance().addTradeCommand(symbol, dir, type, quantity, price,user);
+                Logger.getServerLogger().post(msg);
+                response.getWriter().println(msg);
             }
         }
     }

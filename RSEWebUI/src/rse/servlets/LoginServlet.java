@@ -29,9 +29,10 @@ public class LoginServlet extends HttpServlet {
                 response.sendError(602,"Existing username was entered");
             } else {
                 try {
-                    um.addUser(username, isAdmin);
+
                     Logger.getServerLogger().post("New user created (username: " + username + ", is admin: " + isAdmin + ")");
                     HttpSession session = request.getSession(true);
+                    um.addUser(username, isAdmin,session);
                     session.setAttribute("username", username);
                     session.setAttribute("is_admin", isAdmin);
                     Logger.getServerLogger().post("New session created (username: " + session.getAttribute("username") + ", is admin: " + session.getAttribute("is_admin") + ")");

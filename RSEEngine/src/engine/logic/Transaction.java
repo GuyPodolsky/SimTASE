@@ -80,7 +80,9 @@ public class Transaction {
             this.sellerName = seller.getUserName();
 
             this.buyer.addUserTransaction(this);
+            this.buyer.addMessage("You just bought "+quantity+ " shares of "+ symbol);
             this.seller.addUserTransaction(this);
+            this.seller.addMessage("You just sold "+quantity+ " shares of "+ symbol);
 
             if(seller.getUserStockHoldings(stock.getSymbol()) == quantity)
                 seller.getUserStocks().remove(stock.getSymbol());
@@ -128,6 +130,8 @@ public class Transaction {
 
             this.buyer.addUserTransaction(this);
             this.seller.addUserTransaction(this);
+            this.buyer.addMessage("You just bought "+quantity+ " shares of "+ symbol);
+            this.seller.addMessage("You just sold "+quantity+ " shares of "+ symbol);
             buyer.setTotalHoldingsValue(LocalDateTime.now(),buyer.getTotalHoldingsValue()+turnover);
             seller.setTotalHoldingsValue( LocalDateTime.now(),seller.getTotalHoldingsValue()-turnover);
         }
