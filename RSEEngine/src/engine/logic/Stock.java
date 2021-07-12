@@ -7,6 +7,7 @@ import engine.users.User;
 import engine.users.UserHoldings;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * A class that defines a stock.
@@ -407,8 +408,20 @@ public class Stock {
         }
     }
 
-    private String IOCHandler(TradeCommand command) {
-        Queue<TradeCommand> TC = command.getDirection()== TradeCommand.Direction.BUY ? buyCommands:sellCommands;
+/*    private String IOCHandler(TradeCommand command) {
+        Queue<TradeCommand> TC = command.getDirection()==TradeCommand.Direction.BUY ? sellCommands:buyCommands;
+        int saveQuantity = command.getQuantity();
+        while(command.getQuantity()>0 && !TC.isEmpty() && (command.getDirection()==TradeCommand.Direction.BUY ? TC.peek().getPrice()<=command.getPrice():TC.peek().getPrice()>=command.getPrice())){
+            if(command.getQuantity()>=TC.peek().getQuantity()){
+                command.setQuantity(command.getQuantity()-TC.poll().getQuantity());
+            }
+
+        }
+    }*/
+
+    /*private String IOCHandler(TradeCommand command) {
+        Queue<TradeCommand> TC = command.getDirection()==TradeCommand.Direction.BUY ? buyCommands:sellCommands;
+        TC.add(command);
         int saveQuantity = command.getQuantity();
         int res = searchMatchingLMTCommand(command.getDirection()); // generic method, for both buy\sell commands. returns the number of shares that been traded
         if(res == -1) {
@@ -420,10 +433,37 @@ public class Stock {
         } else if(res == saveQuantity) {
             return ("The command was fully executed.");
         } else if(res < saveQuantity) {
-            if(!TC.remove(command)) throw new UnknownError("Couldn't remove from waiting list.");
+            if(!TC.remove(command))
+                throw new UnknownError("Couldn't remove from waiting list.");
             return ("The command was partly executed. The rest of the " + command.getQuantity() + " shares wasn't entered to the waiting list.");
         }
         throw new UnknownError("Unknown Error Occurred In IOC command Handler: " + res);
+    }*/
+
+    private String IOCHandler(TradeCommand command) {
+        int availableShares = 0;
+        switch (command.getDirection()) { // this is the only command that always saves the command to the queue
+            case BUY:
+                /*availableShares = */sellCommands.stream()
+                        .filter(c -> c.getPrice() <= command.getPrice())
+                        .mapToInt(c -> c.getQuantity())
+                        .sum();
+                break;
+           case SELL:
+                availableShares = buyCommands.stream()
+                        .filter(c -> c.getPrice() >= command.getPrice())
+                        .mapToInt(c -> c.getQuantity())
+                        .sum();
+                break;
+            default:
+                throw new UnknownError("Unknown Error Occurred In FOK command Handler");
+        }
+        if (availableShares > 0){
+            if (availableShares < command.getQuantity())
+                command.setQuantity(availableShares);
+            return LMTHandler(command);
+        } else
+            return ("There isn't a possibility to execute this command right know. The command wasn't executed, and wasn't entered to the waiting");
     }
 
     private String FOKHandler(TradeCommand command) {
