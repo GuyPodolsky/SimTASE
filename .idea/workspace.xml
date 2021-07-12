@@ -6,10 +6,20 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a14c5375-d147-41c4-b6bf-d40cd56cf20d" name="Default" comment="fixed the bugs in showStock and page 2 after adding a trade command">
+    <list default="true" id="a14c5375-d147-41c4-b6bf-d40cd56cf20d" name="Default" comment="fixed bug with price in MKT command">
+      <change afterPath="$PROJECT_DIR$/RSEWebUI/src/rse/servlets/MessageFromServer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RSEWebUI/src/rse/servlets/TradeCommandsServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/src/rse/servlets/TradeCommandsServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RSEEngine/RSEEngine.iml" beforeDir="false" afterPath="$PROJECT_DIR$/RSEEngine/RSEEngine.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RSEEngine/src/engine/logic/Transaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/RSEEngine/src/engine/logic/Transaction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RSEEngine/src/engine/users/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/RSEEngine/src/engine/users/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RSEEngine/src/engine/users/UsersManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/RSEEngine/src/engine/users/UsersManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RSEWebUI/src/rse/servlets/LoginServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/src/rse/servlets/LoginServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RSEWebUI/web/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/web/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RSEWebUI/web/common/notification.html" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/web/common/notification.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RSEWebUI/web/common/notification.js" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/web/common/notification.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RSEWebUI/web/pages/dashboard/dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/web/pages/dashboard/dashboard.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RSEWebUI/web/pages/dashboard/dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/web/pages/dashboard/dashboard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RSEWebUI/web/pages/login/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/web/pages/login/login.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RSEWebUI/web/pages/stockview/stockview.html" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/web/pages/stockview/stockview.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RSEWebUI/web/pages/stockview/stockview.js" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/web/pages/stockview/stockview.js" afterDir="false" />
     </list>
@@ -65,9 +75,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JavaScript File" />
-        <option value="Class" />
         <option value="HTML File" />
         <option value="CSS File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -668,7 +678,13 @@
       <option name="project" value="LOCAL" />
       <updated>1626020465138</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL‎00016" summary="fixed bug with price in MKT command">
+      <created>1626095853353</created>
+      <option name="number" value="LOCAL‎00016" />
+      <option name="presentableId" value="LOCAL‎00016" />
+      <updated>1626095853353</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -719,7 +735,8 @@
     <MESSAGE value="small change in the engine" />
     <MESSAGE value="XML load ability in the engine" />
     <MESSAGE value="XML load ability complete" />
-    <option name="LAST_COMMIT_MESSAGE" value="XML load ability complete" />
+    <MESSAGE value="fixed bug with price in MKT command" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed bug with price in MKT command" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -741,12 +758,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/RSEEngine/src/engine/logic/Stock.java</url>
-          <line>422</line>
+          <line>410</line>
           <option name="timeStamp" value="52" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/RSEEngine/src/engine/logic/Stock.java</url>
-          <line>443</line>
+          <line>411</line>
           <option name="timeStamp" value="53" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -756,7 +773,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/RSEWebUI/web/pages/stockview/stockview.js</url>
-          <line>117</line>
+          <line>118</line>
           <option name="timeStamp" value="41" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">

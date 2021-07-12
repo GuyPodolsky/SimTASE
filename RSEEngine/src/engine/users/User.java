@@ -7,6 +7,7 @@ import engine.logic.Transaction;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 
+import javax.servlet.http.HttpSession;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -27,9 +28,12 @@ public class User {
     private Map<LocalDateTime,TradeCommand> userSellCommands;
     private List<UserAction> actions;
 
+    private List<String> msgsToUser;
+
+
 //Constructors:
 
-    User(String _username,boolean _isAdmin){
+    User(String _username, boolean _isAdmin, HttpSession session){
         this.userName = _username;
         if(!_isAdmin){                              // if the user is admin - he can't trade at all it the system
             this.userStocks = new TreeMap<>();
@@ -43,6 +47,7 @@ public class User {
         }
         this.isAdmin =_isAdmin;
         userBalance =0;
+        msgsToUser = new ArrayList<>();
     }
 
     public User(String name,Map<String, UserHoldings> stocks){
@@ -63,6 +68,7 @@ public class User {
             initTotalWorth += hold.getTotalHold();
         totalHoldingsValue.put(LocalDateTime.now(),initTotalWorth);
         updateWorth();
+        msgsToUser = new ArrayList<>();
     }
 
 
@@ -213,6 +219,21 @@ public class User {
     @Override
     public String toString() {
         return userName;
+    }
+
+    public List<String> getMsgsToUser() {
+        return msgsToUser;
+    }
+
+    public void addMessage(String msg){
+        msgsToUser.add(msg);
+    }
+
+    public void setMsgsToUser(List<String> msgsToUser) {
+        this.msgsToUser = msgsToUser;
+    }
+    public void emptyMsgsToUser() {
+        this.msgsToUser.clear();
     }
 
 }
