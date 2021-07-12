@@ -25,7 +25,10 @@ $(function () { // onload
                 price:price
             },
             url:'/TradeCommands',
-            error:function (code,msg){
+            error: function (jqXHR, textStatus, errorThrown){
+                notifyMe(jqXHR.status + " " +jqXHR.getResponseHeader("errorMessage"));
+            },
+            success:function (msg){
                 notifyMe(msg);
             }
         })

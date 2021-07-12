@@ -6,9 +6,12 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a14c5375-d147-41c4-b6bf-d40cd56cf20d" name="Default" comment="XML load ability complete">
+    <list default="true" id="a14c5375-d147-41c4-b6bf-d40cd56cf20d" name="Default" comment="fixed the bugs in showStock and page 2 after adding a trade command">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RSEEngine/src/engine/logic/Stock.java" beforeDir="false" afterPath="$PROJECT_DIR$/RSEEngine/src/engine/logic/Stock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RSEWebUI/src/rse/servlets/TradeCommandsServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/src/rse/servlets/TradeCommandsServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RSEWebUI/web/pages/dashboard/dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/web/pages/dashboard/dashboard.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RSEWebUI/web/pages/stockview/stockview.html" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/web/pages/stockview/stockview.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RSEWebUI/web/pages/stockview/stockview.js" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/web/pages/stockview/stockview.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,7 +95,6 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/RSEWebUI/web/pages/dashboard/dashboard.js" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/RSEWebUI/web/pages/dashboard/dashboard.html" root0="FORCE_HIGHLIGHTING" />
-    <setting file="jar://$PROJECT_DIR$/../../../../Program Files/Java/jdk1.8.0_291/src.zip!/java/nio/file/NoSuchFileException.java" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/RSEWebUI/web/pages/stockview/stockview.html" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="LogFilters">
@@ -754,7 +756,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/RSEWebUI/web/pages/stockview/stockview.js</url>
-          <line>114</line>
+          <line>117</line>
           <option name="timeStamp" value="41" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
@@ -778,6 +780,7 @@
         <watch expression="session" />
         <watch expression="jsonResult,50" language="JAVA" />
         <watch expression="TC,4" language="JAVA" />
+        <watch expression="sellCommands" language="JAVA" />
       </configuration>
     </watches-manager>
   </component>
