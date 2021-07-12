@@ -4,11 +4,20 @@ $(function () { // onload
     let params = new URLSearchParams(location.search);
     let stockSymbol = params.get('stock');
     window.setTimeout(updateShowStock, 1);
-    window.setInterval(updateShowStock, 3000);
     window.setTimeout(isAdmin,1);
+    window.setInterval(updateShowStock, 3000);
     window.setInterval(updateView,1);
-    window.setInterval(drawChart,3000);
     document.cookie = "stock=" + stockSymbol;
+    document.title = String(stockSymbol) + " Stock View";
+
+    document.getElementById('typeSel').onchange = function (event) {
+       let sel = document.getElementById('typeSel').value;
+       let price = document.getElementById('priceBox');
+       if(sel === '1')
+           price.hidden = true;
+       else
+           price.hidden = false;
+    };
 
     $("#buy-sell-form").submit(function (){
         let dir = document.getElementById("dirChoice1").checked ? "buy":"sell";
@@ -33,20 +42,47 @@ $(function () { // onload
     })
 })
 
-function drawChart() {
-    var data = google.visualization.arrayToDataTable([
+function drawChart(json) {
+    let maxNum = 0;
+    let jsonParse = JSON.parse(json);
+    let dataArr = jsonParse["stockTransactions"];
+    let arr = new Array(dataArr.length+1);
+    arr[0] =  new Array(2);
+    arr[0][0] = 'Timestamp';
+    arr[0][1] = 'Price Per Share';
+    for(let i=1; i<arr.length;i++){
+        let dataRow = dataArr[dataArr.length-i];
+        arr[i]=new Array(2);
+        arr[i][0]= String(dataRow["formattedTimestamp"]);
+        let num = Number.parseFloat(dataRow["price"]);
+        arr[i][1]= num;
+        if(maxNum<num)
+            maxNum=num;
+    }
+
+    let data = google.visualization.arrayToDataTable(arr);
+    /*var data = google.visualization.arrayToDataTable([
         ['Year', 'Sales', 'Expenses'],
         ['2004',  1000,      400],
         ['2005',  1170,      460],
         ['2006',  660,       1120],
         ['2007',  1030,      540]
-    ]);
+    ]);*/
 
+    maxNum= maxNum+((maxNum%13+1)*50);
     var options = {
-        title: 'Company Performance',
+        title: 'Share Price',
         curveType: 'function',
-        legend: { position: 'bottom' }
+        legend: { position: 'bottom' },
+        vAxis: {
+            viewWindow: {
+                min: 0,
+                max: maxNum
+            },
+        }
     };
+
+
 
     var chart = new google.visualization.LineChart(document.getElementById('graph-box'));
 
@@ -136,6 +172,7 @@ function updateShowStock(){
             // Show the stock transactions
             let transBody = document.getElementById("transactions-table-body");
             let transactions = data["stockTransactions"];
+            drawChart(res);
             transBody.innerHTML = "";
             for (var i = 0; i < transactions.length; i++) {
                 let tran = transactions[i];   // the i'th transaction
@@ -209,6 +246,7 @@ function isAdmin() {
             let box1 = document.getElementById('details-box');
             let box4 = document.getElementById('buy-sell-box');
             let ownHoldings = document.getElementById('own-holdings');
+            let viewSel= document.getElementById('trans-or-ops');
             let data = JSON.parse(res);
             let is_admin = data["is_admin"];
             if(Boolean(is_admin)) {
@@ -216,11 +254,16 @@ function isAdmin() {
                 box4.hidden = true;
                 box1.style.gridRow='1/3';
                 ownHoldings.hidden = true;
+                ////
+                viewSel.hidden = false;
+
             }else{
                 admin=false;
                 box4.hidden = false;
                 box1.style.gridRow='1';
                 ownHoldings.hidden = false;
+                ////
+                viewSel.hidden = true;
             }
         }
     });

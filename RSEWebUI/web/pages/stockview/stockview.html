@@ -104,22 +104,20 @@
             <input type="radio" id="dirChoice1" name="dir" value="buy" checked>
             <label>Buy</label>
             <input type="radio" id="dirChoice2" name="dir" value="sell">
-            <label>Sell</label>
-            <br>
-            <label>Type:</label>
+            <label>Sell</label><br><br>
+            <label>Type: </label>
             <select id="typeSel" name="type">
                 <option value="0">LMT</option>
                 <option value="1">MKT</option>
-                <option value="2">FOC</option>
+                <option value="2">FOK</option>
                 <option value="3">IOC</option>
-            </select>
-            <br>
+            </select><br><br>
             <label>Quantity: </label>
-            <input id="quantity" type="number">
-            <br>
-            <label>Price: </label>
-            <input id="price" type="number" step="0.01">
-            <br>
+            <input id="quantity" type="number"><br><br>
+            <div id="priceBox">
+                <label>Price: </label>
+                <input id="price" type="number" step="0.01"><br><br>
+            </div>
             <input type="submit">
             <input type="reset">
         </form>

@@ -86,7 +86,7 @@
         grid-gap: 1em;
         grid-column: 1/6;
         grid-row: 2;
-        grid-template-columns: repeat(4,1fr);
+        grid-template-columns: repeat(3,1fr);
         justify-items: center;
     }
         #balance{
@@ -98,12 +98,13 @@
             grid-column: 2;
         }
         #transfer-money{
+            visibility: hidden;
             grid-row: 1;
             grid-column: 3;
         }
         #load-file{
             grid-row: 1;
-            grid-column: 4;
+            grid-column: 3;
         }
     #user-actions{
         grid-row: 3;

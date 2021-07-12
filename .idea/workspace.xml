@@ -6,10 +6,12 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a14c5375-d147-41c4-b6bf-d40cd56cf20d" name="Default" comment="bug with FOK and IOC">
+    <list default="true" id="a14c5375-d147-41c4-b6bf-d40cd56cf20d" name="Default" comment="fixed the bugs">
+      <change afterPath="$PROJECT_DIR$/RSEWebUI/web/pages/stockview/chart.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RSEEngine/src/engine/logic/Stock.java" beforeDir="false" afterPath="$PROJECT_DIR$/RSEEngine/src/engine/logic/Stock.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RSEEngine/src/engine/users/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/RSEEngine/src/engine/users/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RSEWebUI/web/pages/dashboard/dashboard.css" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/web/pages/dashboard/dashboard.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RSEWebUI/web/pages/stockview/stockview.html" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/web/pages/stockview/stockview.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RSEWebUI/web/pages/stockview/stockview.js" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/web/pages/stockview/stockview.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -141,7 +143,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+    <property name="settings.editor.selected.configurable" value="reference.settings.ide.settings.web.browsers" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -558,7 +560,7 @@
       <workItem from="1625938711797" duration="31526000" />
       <workItem from="1626007640795" duration="302000" />
       <workItem from="1626071599550" duration="9729000" />
-      <workItem from="1626089936678" duration="5659000" />
+      <workItem from="1626089936678" duration="17169000" />
     </task>
     <task id="LOCAL-00001" summary="V1">
       <created>1624972995375</created>
@@ -674,7 +676,14 @@
       <option name="project" value="LOCAL" />
       <updated>1626091192779</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="fixed the bugs">
+      <created>1626095753156</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1626095753156</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -726,7 +735,8 @@
     <MESSAGE value="XML load ability in the engine" />
     <MESSAGE value="XML load ability complete" />
     <MESSAGE value="bug with FOK and IOC" />
-    <option name="LAST_COMMIT_MESSAGE" value="bug with FOK and IOC" />
+    <MESSAGE value="fixed the bugs" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed the bugs" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -753,7 +763,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/RSEWebUI/web/pages/stockview/stockview.js</url>
-          <line>114</line>
+          <line>150</line>
           <option name="timeStamp" value="41" />
         </line-breakpoint>
       </breakpoints>
