@@ -30,15 +30,18 @@
     }
 }*/
 
-/*
 function notifyMe(msg){
-    localStorage.noteMessage = msg;
+    if(sessionStorage.getItem("noteMessage") == null)
+        sessionStorage.setItem("noteMessage",JSON.stringify([]));
+    let arr = JSON.parse(sessionStorage.getItem("noteMessage"));
+    arr.push(msg);
+    sessionStorage.setItem("noteMessage",JSON.stringify(arr));
+    //document.getElementById('notifyUser').hidden = Boolean(localStorage.isShow);
 }
 
-*/
 
 
-function notifyMe(title,body) {
+/*function notifyMe(title,body) {
     if (!window.Notification) {
         console.log('Browser does not support notifications.');
     } else {
@@ -68,4 +71,4 @@ function notifyMe(title,body) {
             });
         }
     }
-}
+}*/

@@ -6,15 +6,10 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a14c5375-d147-41c4-b6bf-d40cd56cf20d" name="Default" comment="fixed bug with price in MKT command">
-      <change afterPath="$PROJECT_DIR$/RSEWebUI/src/rse/servlets/MessageFromServer.java" afterDir="false" />
+    <list default="true" id="a14c5375-d147-41c4-b6bf-d40cd56cf20d" name="Default" comment="changed notification.js again">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RSEEngine/RSEEngine.iml" beforeDir="false" afterPath="$PROJECT_DIR$/RSEEngine/RSEEngine.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RSEEngine/src/engine/logic/Transaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/RSEEngine/src/engine/logic/Transaction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RSEEngine/src/engine/users/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/RSEEngine/src/engine/users/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RSEEngine/src/engine/users/UsersManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/RSEEngine/src/engine/users/UsersManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RSEWebUI/src/rse/servlets/LoginServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/src/rse/servlets/LoginServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RSEWebUI/web/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/web/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RSEEngine/src/engine/logic/Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/RSEEngine/src/engine/logic/Engine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RSEWebUI/src/rse/servlets/LoadXMLServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/src/rse/servlets/LoadXMLServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RSEWebUI/web/common/notification.html" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/web/common/notification.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RSEWebUI/web/common/notification.js" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/web/common/notification.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RSEWebUI/web/pages/dashboard/dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/web/pages/dashboard/dashboard.html" afterDir="false" />
@@ -134,7 +129,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="app.teamhub.trackedBranches" value="1vj9lba/master" />
+    <property name="app.teamhub.trackedBranches" value="-ofjcad/master" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="codeWithMe.voiceChat.enabledByDefault" value="false" />
     <property name="jdk.selected.JAVA_MODULE" value="1.8" />
@@ -570,6 +565,7 @@
       <workItem from="1626007640795" duration="302000" />
       <workItem from="1626071599550" duration="9729000" />
       <workItem from="1626089936678" duration="1059000" />
+      <workItem from="1626172077131" duration="12958000" />
     </task>
     <task id="LOCAL-00001" summary="V1">
       <created>1624972995375</created>
@@ -684,7 +680,13 @@
       <option name="presentableId" value="LOCAL‎00016" />
       <updated>1626095853353</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL‎00017" summary="changed notification.js again">
+      <created>1626107630861</created>
+      <option name="number" value="LOCAL‎00017" />
+      <option name="presentableId" value="LOCAL‎00017" />
+      <updated>1626107630861</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -736,7 +738,8 @@
     <MESSAGE value="XML load ability in the engine" />
     <MESSAGE value="XML load ability complete" />
     <MESSAGE value="fixed bug with price in MKT command" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed bug with price in MKT command" />
+    <MESSAGE value="changed notification.js again" />
+    <option name="LAST_COMMIT_MESSAGE" value="changed notification.js again" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -771,9 +774,19 @@
           <line>250</line>
           <option name="timeStamp" value="57" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/RSEWebUI/src/rse/servlets/LoadXMLServlet.java</url>
+          <line>47</line>
+          <option name="timeStamp" value="60" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/RSEWebUI/src/rse/servlets/LoadXMLServlet.java</url>
+          <line>50</line>
+          <option name="timeStamp" value="62" />
+        </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/RSEWebUI/web/pages/stockview/stockview.js</url>
-          <line>118</line>
+          <line>159</line>
           <option name="timeStamp" value="41" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">

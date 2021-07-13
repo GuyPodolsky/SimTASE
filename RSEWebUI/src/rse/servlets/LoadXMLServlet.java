@@ -42,15 +42,19 @@ public class LoadXMLServlet extends HttpServlet {
             Engine engine = Engine.getInstance();
             for(Part part:parts){
                 try {
-                    if (!part.getContentType().equals("text/xml"))
+                    if (!part.getContentType().equals("text/xml")) {
                         throw new IOException("ERROR! This is not a XML file! please choose a XML file!" + System.lineSeparator());
+                    }
                     engine.uploadDataFromFile(part.getInputStream(), user);
                 } catch (JAXBException | IllegalArgumentException | FileNotFoundException e) {
+                    user.addMessage("The given file is not valid.\n "+e.getMessage());
                     Logger.getServerLogger().post("The given file is not valid.\n"+e.getMessage());
                     response.setHeader("errorMessage","The given file is not valid.\n"+e.getMessage());
                     response.sendError(400,"The given file is not valid.\n"+e.getMessage());
+                    return;
                 }
             }
+            user.addMessage("File loaded successfully");
             Logger.getServerLogger().post("File loaded successfully");
             response.getWriter().println("File loaded successfully");
         }

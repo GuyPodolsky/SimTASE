@@ -1,4 +1,7 @@
 var admin=false;
+function showError(jqXHR, textStatus, errorThrown){
+    notifyMe("Error: "+jqXHR.status + " " +jqXHR.getResponseHeader("errorMessage"));
+}
 
 $(function () { // onload
     let params = new URLSearchParams(location.search);
@@ -36,10 +39,11 @@ $(function () { // onload
             },
             url:'/TradeCommands',
             error: function (jqXHR, textStatus, errorThrown){
-                notifyMe("Error",jqXHR.status + " " +jqXHR.getResponseHeader("errorMessage"));
+                //notifyMe("Error",jqXHR.status + " " +jqXHR.getResponseHeader("errorMessage"));
+                showError(jqXHR, textStatus, errorThrown);
             },
             success:function (msg){
-                notifyMe("Trade command:",msg);
+                notifyMe(msg);
                 document.getElementById("buy-sell-form").reset();
             }
         })
@@ -160,7 +164,8 @@ function updateShowStock(){
         data: {'symbol': stockSymbol},
         url: "/showStock",
         error: function (jqXHR, textStatus, errorThrown){
-            notifyMe("Error",jqXHR.status + " " +jqXHR.getResponseHeader("errorMessage"));
+            //notifyMe("Error",jqXHR.status + " " +jqXHR.getResponseHeader("errorMessage"));
+            showError(jqXHR, textStatus, errorThrown);
         },
         success: function (res) {
             let data = JSON.parse(res);
@@ -245,7 +250,8 @@ function isAdmin() {
         data: {op: "isAdmin"},
         url: '/UpdateUserDetails',
         error: function (jqXHR, textStatus, errorThrown){
-            notifyMe("Error",jqXHR.status + " " +jqXHR.getResponseHeader("errorMessage"));
+            //notifyMe("Error",jqXHR.status + " " +jqXHR.getResponseHeader("errorMessage"));
+            showError(jqXHR, textStatus, errorThrown);
         },
         success: function (res) {
             let box1 = document.getElementById('details-box');
@@ -285,7 +291,7 @@ function getMessagesFromServer(){
         success: function (json) {
             let msgs = JSON.parse(json);
             for(var i =0;i<msgs.length;i++){
-                notifyMe("Message from server:",msgs[i] );
+                notifyMe(msgs[i]);
             }
         }
     })

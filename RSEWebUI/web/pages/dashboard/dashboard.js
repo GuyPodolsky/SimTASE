@@ -17,7 +17,8 @@ $(function (){ // onload
                 amount:document.getElementById("add-amount").value},
             url:'/UpdateUserDetails',
             error:function (jqXHR, textStatus, errorThrown){
-                notifyMe("Error",jqXHR.status + " " +jqXHR.getResponseHeader("errorMessage"));
+                //notifyMe("Error: "+jqXHR.status + " " +jqXHR.getResponseHeader("errorMessage"));
+                showError(jqXHR, textStatus, errorThrown);
             },
             success:function (){
                 document.getElementById("add-amount").value = null;
@@ -32,7 +33,8 @@ $(function (){ // onload
             data:$(this).serialize(),
             url:"/AddNewStockServlet",
             error:function (jqXHR, textStatus, errorThrown){
-                notifyMe("Error",jqXHR.status + " " +jqXHR.getResponseHeader("errorMessage"));
+                //notifyMe("Error: "+jqXHR.status + " " +jqXHR.getResponseHeader("errorMessage"));
+                showError(jqXHR, textStatus, errorThrown);
                 },
             success: function (msg){
                 notifyMe(msg);
@@ -51,7 +53,8 @@ $(function (){ // onload
                 amount:document.getElementById("trans-amount").value},
             url:'/UpdateUserDetails',
             error:function (jqXHR, textStatus, errorThrown){
-                notifyMe("Error",qXHR.status + " " +jqXHR.getResponseHeader("errorMessage"));
+                //notifyMe("Error",qXHR.status + " " +jqXHR.getResponseHeader("errorMessage"));
+                showError(jqXHR, textStatus, errorThrown);
                 },
             success: function (){
                 document.getElementById("transferMoney").reset();
@@ -71,23 +74,31 @@ $(function (){ // onload
             processData: false, // Don't process the files
             contentType: false,
             error: function (jqXHR, textStatus, errorThrown) {
-                notifyMe("Error",jqXHR.status + " " + jqXHR.getResponseHeader("errorMessage"));
+                //notifyMe("Error:"+jqXHR.status + " " + jqXHR.getResponseHeader("errorMessage"));
+                //showError(jqXHR, textStatus, errorThrown);
             },
             success: function (msg) {
-                notifyMe(msg,"The RSE has been updated with the data.");
+                //notifyMe(msg);
+                //notifyMe("File loaded successfully!");
             }
         });
     });
 })
-
+function showError(jqXHR, textStatus, errorThrown){
+    notifyMe("Error: "+jqXHR.status + " " +jqXHR.getResponseHeader("errorMessage"));
+}
 function updateActiveUsers(){ //TODO: make the refresh less annoying.
     $.ajax({
         type:'GET',
         url:"/activeUsers",
         dataType:'json',
+/*
         timeout:2000,
+*/
         error:function (jqXHR, textStatus, errorThrown){
-            notifyMe("Error",jqXHR.status + " " +jqXHR.getResponseHeader("errorMessage"));
+            //notifyMe("Error",jqXHR.status + " " +jqXHR.getResponseHeader("errorMessage"));
+            //showError(jqXHR, textStatus, errorThrown);
+            notifyMe("Problem with getting active users. Please check your connection.");
                     },
         success: function (jsonStr){
             $("#activeUsersList").empty();
@@ -174,7 +185,8 @@ function loadXMLFile() {
                 contentType: false,
                 url: '/LoadXMLServlet',
                 error: function (jqXHR, textStatus, errorThrown){
-                    notifyMe("Error",jqXHR.status + " " +jqXHR.getResponseHeader("errorMessage"));
+                    //notifyMe("Error",jqXHR.status + " " +jqXHR.getResponseHeader("errorMessage"));
+                    showError(jqXHR, textStatus, errorThrown);
                 },
                 success: function (msg) {
                     notifyMe(msg);
@@ -229,7 +241,7 @@ function getMessagesFromServer(){
         success: function (json) {
            let msgs = JSON.parse(json);
            for(var i =0;i<msgs.length;i++){
-               notifyMe("Message from server:",msgs[i] );
+               notifyMe(msgs[i]);
            }
         }
     })

@@ -1,12 +1,33 @@
 <link rel="stylesheet" type="text/css" href="notification.css">
-<footer id="notifyUser">
+<footer id="notifyUser" style="overflow: scroll; ">
+<!--    <script>
+        Storage.prototype.setObj = function(key, obj) {
+        return this.setItem(key, JSON.stringify(obj))
+    }
+    Storage.prototype.getObj = function(key) {
+        return JSON.parse(this.getItem(key))
+    }
+    </script>-->
     <label id="notify-text"></label>
-    <a href="javascript:localStorage.isShow=''"><img id="close-btn" src="close.png" onclick={localStorage.noteMessage=""}></a>
-    <script>
+    <ul id="msgList"></ul>
+
+<!--
+    <a href="javascript:sessionStorage.isShow=''"><img id="close-btn" src="close.png"></a>
+-->
+    <script><!-- onclick={document.getElementById("msgList").innerHTML=null}-->
         setInterval(updateMsg,1000);
         //setInterval(updateDisplay,1);
         function updateMsg(){
-            document.getElementById("notify-text").innerHTML = localStorage.noteMessage;
+            let arr = JSON.parse(sessionStorage.getItem("noteMessage"));
+            if(arr != null){
+                for(var i=0;i<arr.length;i++){
+                    let item = document.createElement("li");
+                    item.innerText = arr[i];
+                    document.getElementById("msgList").insertBefore(item,document.getElementById("msgList").childNodes[0]);//.appendChild(item);
+                }
+            }
+            sessionStorage.setItem("noteMessage",JSON.stringify([]));
+            //document.getElementById("notify-text").innerHTML = localStorage.noteMessage;
         }
        function updateDisplay(){
             //document.getElementById('notifyUser').setAttribute("hidden",localStorage.isShow);

@@ -321,8 +321,8 @@ public class Engine implements Trader {
                 tmpStocks.put(tmp.getSymbol(), tmp.getCompanyName(), tmp);                     //inserts the stock into the MultiKeyMap.
             }
             for (RseItem i : rseHoldings){
-                if(!(tmpStocks.containsKey(i.getSymbol())||stocks.containsKey(i.getSymbol())))
-                    throw new IllegalArgumentException("The file loading failed!, since the " + i.getSymbol() + " symbol doesn't exist!");
+                if(!(tmpStocks.containsKey(i.getSymbol())/*||stocks.containsKey(i.getSymbol())*/))
+                    throw new IllegalArgumentException("The file loading failed!, since the " + i.getSymbol() + " symbol doesn't exist in the file!");
                 if(i.getQuantity()<1)
                     throw new IllegalArgumentException("The file loading failed!, since the " + i.getQuantity() + " isn't a valid quantity!");
                 tmpHoldings.put(i.getSymbol(), i.getQuantity());
