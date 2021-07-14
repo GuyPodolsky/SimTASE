@@ -3,10 +3,11 @@
 $(function (){ // onload
     window.setTimeout(updateActiveUsers,1);
     window.setTimeout(updateActiveStocks,1);
-    window.setTimeout(updateUserDetails,1);
+    //window.setTimeout(updateUserDetails,1);
+    window.setTimeout(isAdmin,1);
     window.setInterval(updateActiveUsers,2000);
     window.setInterval(updateActiveStocks,2000);
-    window.setInterval(updateUserDetails,2000);
+    //window.setInterval(updateUserDetails,2000);
     window.setInterval(getMessagesFromServer,2000);
 
     $("#addingToBalance").submit(function (){
@@ -37,7 +38,7 @@ $(function (){ // onload
                 showError(jqXHR, textStatus, errorThrown);
                 },
             success: function (msg){
-                notifyMe(msg);
+                notifyMe(msg,"IPO Is Complete","success")//notifyMe(msg);
                 document.getElementById("addPublicOffering").reset();
             }
         })
@@ -83,9 +84,41 @@ $(function (){ // onload
             }
         });
     });
-})
+
+
+});
+
+function isAdmin(){
+    $.ajax({
+        type: 'GET',
+        data: {op: "isAdmin"},
+        url: '/UpdateUserDetails',
+        error: function (jqXHR, textStatus, errorThrown) {
+            //notifyMe("Error",jqXHR.status + " " +jqXHR.getResponseHeader("errorMessage"));
+            showError(jqXHR, textStatus, errorThrown);
+        },
+        success: function (res) {
+            var userSec = document.getElementById('user-section');
+            let actUsers = document.getElementById('activeUsersSection');
+            let actStocks = document.getElementById('activeStocksSection');
+            let IPO= document.getElementById('addPublicOfferBlock');
+            let data = JSON.parse(res);
+            let is_admin = Boolean(data["is_admin"]);
+            if(is_admin) {
+               userSec.style.display='none';
+               IPO.style.display='none';
+            }
+            else {
+                window.setTimeout(updateUserDetails,1);
+                window.setInterval(updateUserDetails,2000);
+            }
+        }
+    })
+}
+
 function showError(jqXHR, textStatus, errorThrown){
-    notifyMe("Error: "+jqXHR.status + " " +jqXHR.getResponseHeader("errorMessage"));
+    //notifyMe("Error: "+jqXHR.status + " " +jqXHR.getResponseHeader("errorMessage"));
+    notifyMe(jqXHR.getResponseHeader("errorMessage"),"Error: "+jqXHR.status,"error");
 }
 function updateActiveUsers(){ //TODO: make the refresh less annoying.
     $.ajax({
@@ -189,7 +222,7 @@ function loadXMLFile() {
                     showError(jqXHR, textStatus, errorThrown);
                 },
                 success: function (msg) {
-                    notifyMe(msg);
+                    notifyMe(msg,"XML File Loading Is Complete")//notifyMe(msg);
                 }
             },
         )
@@ -241,7 +274,7 @@ function getMessagesFromServer(){
         success: function (json) {
            let msgs = JSON.parse(json);
            for(var i =0;i<msgs.length;i++){
-               notifyMe(msgs[i]);
+               notifyMe(msgs[i],"Transaction Is Complete","info")//notifyMe(msgs[i]);
            }
         }
     })

@@ -1,6 +1,7 @@
 var admin=false;
 function showError(jqXHR, textStatus, errorThrown){
-    notifyMe("Error: "+jqXHR.status + " " +jqXHR.getResponseHeader("errorMessage"));
+    //notifyMe("Error: "+jqXHR.status + " " +jqXHR.getResponseHeader("errorMessage"));
+    notifyMe(jqXHR.getResponseHeader("errorMessage"),"Error: "+jqXHR.status,"error");
 }
 
 $(function () { // onload
@@ -14,14 +15,10 @@ $(function () { // onload
     document.cookie = "stock=" + stockSymbol;
     document.title = String(stockSymbol) + " Stock View";
 
-    document.getElementById('typeSel').onchange = function (event) {
-       let sel = document.getElementById('typeSel').value;
-       let price = document.getElementById('priceBox');
-       if(sel === '1')
-           price.hidden = true;
-       else
-           price.hidden = false;
-    };
+    document.getElementById('priceBox').hidden = false;
+    document.getElementById('typeSel').onchange = function (event) {typeSel(event);};
+
+
 
     $("#buy-sell-form").submit(function (){
         let dir = document.getElementById("dirChoice1").checked ? "buy":"sell";
@@ -43,15 +40,29 @@ $(function () { // onload
                 showError(jqXHR, textStatus, errorThrown);
             },
             success:function (msg){
-                notifyMe(msg);
+                //notifyMe(msg);
+                notifyMe(msg,"Trade Command Addition","info");
                 document.getElementById("buy-sell-form").reset();
             }
         })
+        document.getElementById('priceBox').hidden=false;
         return false;
     })
 })
 
+function typeSel(event) {
+    let sel = document.getElementById('typeSel');
+    localStorage.typeSel = sel.value;
+    let price = document.getElementById('priceBox');
+    if(sel.value === '1')
+        price.hidden = true;
+    else
+        price.hidden = false;
+};
+
 function drawChart(json) {
+    var time = new Date();
+    var formattedTime = time.getHours() + ":" + time.getMinutes() + ":" + time.getSeconds() + ":" + time.getMilliseconds();
     let maxNum = 0;
     let jsonParse = JSON.parse(json);
     let dataArr = jsonParse["stockTransactions"];
@@ -59,15 +70,24 @@ function drawChart(json) {
     arr[0] =  new Array(2);
     arr[0][0] = 'Timestamp';
     arr[0][1] = 'Price Per Share';
-    for(let i=1; i<arr.length;i++){
-        let dataRow = dataArr[dataArr.length-i];
-        arr[i]=new Array(2);
-        arr[i][0]= String(dataRow["formattedTimestamp"]);
-        let num = Number.parseFloat(dataRow["price"]);
-        arr[i][1]= num;
-        if(maxNum<num)
-            maxNum=num;
+    if(arr.length<=1){
+        arr[1] = new Array(2);
+        arr[1][0] = "No Transactions Were Made Yet";
+        let num = Number.parseFloat(jsonParse["stockDetails"]["sharePrice"]);
+        arr[1][1] = num;
+        maxNum = num;
+    } else {
+        for (let i = 1; i < arr.length; i++) {
+            let dataRow = dataArr[dataArr.length - i];
+            arr[i] = new Array(2);
+            arr[i][0] = String(dataRow["formattedTimestamp"]);
+            let num = Number.parseFloat(dataRow["price"]);
+            arr[i][1] = num;
+            if (maxNum < num)
+                maxNum = num;
+        }
     }
+
 
     let data = google.visualization.arrayToDataTable(arr);
     /*var data = google.visualization.arrayToDataTable([
@@ -78,7 +98,7 @@ function drawChart(json) {
         ['2007',  1030,      540]
     ]);*/
 
-    maxNum= maxNum+((maxNum%13+1)*50);
+    maxNum= maxNum+((maxNum%10+1)*10);
     var options = {
         title: 'Share Price',
         curveType: 'function',
@@ -88,7 +108,8 @@ function drawChart(json) {
                 min: 0,
                 max: maxNum
             },
-        }
+        },
+        pointSize: 10,
     };
 
 
@@ -179,10 +200,12 @@ function updateShowStock(){
             document.getElementById("own-holdings").innerHTML = "You own " + userHoldings + " shares";
             document.getElementById("details-box-header").children[0].innerHTML = stock["symbol"] + " Stock View";
 
+            // Show stock price tendency
+            drawChart(res);
+
             // Show the stock transactions
             let transBody = document.getElementById("transactions-table-body");
             let transactions = data["stockTransactions"];
-            drawChart(res);
             transBody.innerHTML = "";
             for (var i = 0; i < transactions.length; i++) {
                 let tran = transactions[i];   // the i'th transaction
@@ -291,7 +314,7 @@ function getMessagesFromServer(){
         success: function (json) {
             let msgs = JSON.parse(json);
             for(var i =0;i<msgs.length;i++){
-                notifyMe(msgs[i]);
+                notifyMe(msgs[i],"Transaction Is Complete","info")//notifyMe(msgs[i]);
             }
         }
     })

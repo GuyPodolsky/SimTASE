@@ -6,15 +6,15 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a14c5375-d147-41c4-b6bf-d40cd56cf20d" name="Default" comment="changed notification.js again">
+    <list default="true" id="a14c5375-d147-41c4-b6bf-d40cd56cf20d" name="Default" comment="fixed bug with price in MKT command">
+      <change afterPath="$PROJECT_DIR$/RSEWebUI/web/common/toastr.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/RSEWebUI/web/common/toastr.min.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RSEEngine/src/engine/logic/Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/RSEEngine/src/engine/logic/Engine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RSEWebUI/src/rse/servlets/LoadXMLServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/src/rse/servlets/LoadXMLServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RSEWebUI/web/common/notification.html" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/web/common/notification.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RSEWebUI/web/common/notification.js" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/web/common/notification.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RSEWebUI/web/pages/dashboard/dashboard.css" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/web/pages/dashboard/dashboard.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RSEWebUI/web/pages/dashboard/dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/web/pages/dashboard/dashboard.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RSEWebUI/web/pages/dashboard/dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/web/pages/dashboard/dashboard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RSEWebUI/web/pages/login/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/web/pages/login/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RSEWebUI/web/pages/stockview/stockview.css" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/web/pages/stockview/stockview.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RSEWebUI/web/pages/stockview/stockview.html" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/web/pages/stockview/stockview.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RSEWebUI/web/pages/stockview/stockview.js" beforeDir="false" afterPath="$PROJECT_DIR$/RSEWebUI/web/pages/stockview/stockview.js" afterDir="false" />
     </list>
@@ -100,6 +100,7 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/RSEWebUI/web/pages/dashboard/dashboard.js" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/RSEWebUI/web/pages/dashboard/dashboard.html" root0="FORCE_HIGHLIGHTING" />
+    <setting file="jar://$PROJECT_DIR$/../../../../Program Files/Java/jdk1.8.0_291/src.zip!/java/nio/file/NoSuchFileException.java" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/RSEWebUI/web/pages/stockview/stockview.html" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="LogFilters">
@@ -783,11 +784,6 @@
           <url>file://$PROJECT_DIR$/RSEWebUI/src/rse/servlets/LoadXMLServlet.java</url>
           <line>50</line>
           <option name="timeStamp" value="62" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/RSEWebUI/web/pages/stockview/stockview.js</url>
-          <line>159</line>
-          <option name="timeStamp" value="41" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/RSEEngine/src/engine/logic/Stock.java</url>

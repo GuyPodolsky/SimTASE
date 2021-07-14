@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <title>---symbol--- Stock View</title>
     <script src="../../common/jquery-2.0.3.min.js"></script>
+    <script src="../../common/toastr.min.js"></script>
     <script src="../../common/notification.js"></script>
     <script src="stockview.js"></script>
     <link rel="stylesheet" type="text/css" href="stockview.css">
+    <link rel="stylesheet" type="text/css" href="../../common/toastr.min.css">
 
 
     <script type="text/javascript" src="loader.js"></script>
@@ -16,7 +18,7 @@
     </script>
 </head>
 <body id="main-header" style="padding-bottom: 90px">
-<embed id="notify" src="../../common/notification.html" style="position: fixed; width: 100%; bottom: 0; left: 0">
+<!--<embed id="notify" src="../../common/notification.html" style="position: fixed; width: 100%; bottom: 0; left: 0">-->
     <div id="details-box" class="box1">
         <div id="back-btn-box" class="box1-1">
             <form id="back-btn-form">
@@ -108,7 +110,7 @@
             <label>Sell</label><br><br>
             <label>Type: </label>
             <select id="typeSel" name="type">
-                <option value="0">LMT</option>
+                <option value="0" selected>LMT</option>
                 <option value="1">MKT</option>
                 <option value="2">FOK</option>
                 <option value="3">IOC</option>
@@ -120,7 +122,6 @@
                 <input id="price" type="number" step="0.01" min="1"><br><br>
             </div>
             <input type="submit">
-            <input type="reset">
         </form>
     </div>
 </body>

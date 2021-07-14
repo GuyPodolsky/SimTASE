@@ -4,12 +4,14 @@
     <meta charset="UTF-8">
     <title>Dashboard</title>
     <script src="../../common/jquery-2.0.3.min.js"></script>
+    <script src="../../common/toastr.min.js"></script>
     <script src="dashboard.js"></script>
     <script src="../../common/notification.js"></script>
     <link rel="stylesheet" type="text/css" href="dashboard.css">
+    <link rel="stylesheet" type="text/css" href="../../common/toastr.min.css">
 </head>
 <body id="body" style="padding-bottom: 90px">
-<embed id="notify" src="../../common/notification.html" style="position: fixed; width: 100%; bottom: 0; left: 0;">
+<!--<embed id="notify" src="../../common/notification.html" style="position: fixed; width: 100%; bottom: 0; left: 0;">-->
     <div id="activeUsersSection" class="section" class="glyphicon-user">
         <div id="active-users-header">
             <h2 class="sub-title"> Active Users</h2>
@@ -101,7 +103,7 @@
         </div>
         <div id="user-actions" class="user-info-block">
             <div id="user-actions-header">
-                <h2 class="user-info">Previous Transactions</h2>
+                <h2 class="user-info">Account Movements</h2>
             </div>
             <div id="user-actions-list">
                 <table id="userCurrent" class="table">
