@@ -107,6 +107,9 @@ function isAdmin(){
             if(is_admin) {
                userSec.style.display='none';
                IPO.style.display='none';
+               document.getElementById("activeUsersSection").style.height = "100%";
+               document.getElementById("activeStocksSection").style.height = "100%";
+               document.getElementById("body").style.height = "100%";
             }
             else {
                 window.setTimeout(updateUserDetails,1);
@@ -274,7 +277,7 @@ function getMessagesFromServer(){
         success: function (json) {
            let msgs = JSON.parse(json);
            for(var i =0;i<msgs.length;i++){
-               notifyMe(msgs[i],"Transaction Is Complete","info")//notifyMe(msgs[i]);
+               notifyMe(msgs[i],"Message from server:","info")//notifyMe(msgs[i]);
            }
         }
     })
